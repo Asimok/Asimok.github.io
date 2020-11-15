@@ -1449,7 +1449,7 @@ a:hover {
 #site-name,
 #aside_content .author-info__name,
 #aside_content .author-info__description {
-  font-family: 没有胡子的;
+  font-family: 没有胡子的猫;
 }
 .is-center {
   text-align: center;
@@ -2559,7 +2559,7 @@ blockquote footer cite:before {
   padding: 0.5rem;
   text-align: center;
   font-size: 14px;
-  font-family: 没有胡子的;
+  font-family: 没有胡子的猫;
 }
 @media screen and (max-width: 768px) {
   #error-wrap .error-content .error-info {
