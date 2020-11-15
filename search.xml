@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>用tensorboardX可视化神经网络</title>
+      <link href="2020/11/15/%E7%94%A8tensorboardX%E5%8F%AF%E8%A7%86%E5%8C%96%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <url>2020/11/15/%E7%94%A8tensorboardX%E5%8F%AF%E8%A7%86%E5%8C%96%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+      
+        <content type="html"><![CDATA[<h1 id="用tensorboardX可视化神经网络"><a href="#用tensorboardX可视化神经网络" class="headerlink" title="用tensorboardX可视化神经网络"></a>用tensorboardX可视化神经网络</h1><p>安装：<code>pip install tensorboardX</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorboardX <span class="keyword">import</span> SummaryWriter</span><br><span class="line">writer = SummaryWriter(<span class="string">&#x27;runs/scalar_example&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    writer.add_scalar(<span class="string">&#x27;quadratic&#x27;</span>, i**<span class="number">2</span>, global_step=i)</span><br><span class="line">    writer.add_scalar(<span class="string">&#x27;exponential&#x27;</span>, <span class="number">2</span>**i, global_step=i)</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">writer = SummaryWriter(<span class="string">&#x27;runs/another_scalar_example&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    writer.add_scalar(<span class="string">&#x27;quadratic&#x27;</span>, i**<span class="number">3</span>, global_step=i)</span><br><span class="line">    writer.add_scalar(<span class="string">&#x27;exponential&#x27;</span>, <span class="number">3</span>**i, global_step=i)</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="1-启动tensorboard服务"><a href="#1-启动tensorboard服务" class="headerlink" title="1.启动tensorboard服务"></a>1.启动tensorboard服务</h2><ul><li>cd到runs目录所在的同级目录，在命令行输入如下命令，logdir等式右边可以是相对路径或绝对路径。<br><code>tensorboard --logdir=runs --port 6006</code></li></ul><h2 id="2-web展示"><a href="#2-web展示" class="headerlink" title="2.web展示"></a>2.web展示</h2><ul><li><a href="http://localhost:6006/">http://localhost:6006/</a></li></ul><p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201115115708.png" alt="image-20201115115702543"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> PyTorch </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PyTorch </tag>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>利用神经网络完成对手写数字进行识别</title>
       <link href="2020/11/14/%E5%88%A9%E7%94%A8%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%8C%E6%88%90%E5%AF%B9%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E8%AF%86%E5%88%AB/"/>
       <url>2020/11/14/%E5%88%A9%E7%94%A8%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%8C%E6%88%90%E5%AF%B9%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E8%AF%86%E5%88%AB/</url>
