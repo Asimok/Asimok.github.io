@@ -13,10 +13,10 @@ const catalogMagnet = new Vue({
 		],
 		//这里是磁贴描述信息
 		describe:[
-			"日本早安新闻",
-			"vue学习记录",
-			"我的各种作品",
-			"我的学习整理",
+			"自然语言处理",
+			"Pytorch学习记录",
+			"常用小工具",
+			"一些教程",
 		],
 		//这里是磁贴的文字颜色
 		figLetColor: {color:'white'},
