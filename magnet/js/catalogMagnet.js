@@ -1,7 +1,7 @@
 const catalogMagnet = new Vue({
 	el:'#catalogMagnet',
 	data:{
-		message:'你好！欢迎访问我的主页zfe.space!',
+		message:'你好！欢迎访问我的主页asimok.site!',
 		link: [],
 		postnum:[],
 		//这里是磁贴背景图片
@@ -10,10 +10,6 @@ const catalogMagnet = new Vue({
 			"/images/b2.JPG",
 			"/images/b3.JPG",
 			"/images/b4.JPG",
-			"/images/b5.JPG",
-			"/images/b6.JPG",
-			"/images/b7.JPG",
-			"/images/b8.JPG",
 		],
 		//这里是磁贴描述信息
 		describe:[
@@ -21,10 +17,6 @@ const catalogMagnet = new Vue({
 			"vue学习记录",
 			"我的各种作品",
 			"我的学习整理",
-			"我的各种教程",
-			"我的游戏评测",
-			"生活点点滴滴",
-			"一切胡思乱想",
 		],
 		//这里是磁贴的文字颜色
 		figLetColor: {color:'white'},
