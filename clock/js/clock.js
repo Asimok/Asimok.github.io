@@ -1,5 +1,5 @@
-    let clockurl = "https://api.airvisual.com/v2/nearest_city?key=48671ee3-c0e3-4994-b3e2-b69173ee8002"
-	const mykey = {weather:'48671ee3-c0e3-4994-b3e2-b69173ee8002'};
+
+	const mykey = {weather:'068e07ccc553b4668a57dd6efbf29ec2'};
 	let locationurl = 'https://ip.seeip.org/geoip';
 	let cityname ='';
 	let weatherurl ='';
