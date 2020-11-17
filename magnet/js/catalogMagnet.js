@@ -10,10 +10,10 @@ const catalogMagnet = new Vue({
 			"/images/b2.jpg",
 			"/images/b3.jpg",
 			"/images/b4.jpg",
-			"/images/b1.jpg",
-			"/images/b2.jpg",
-			"/images/b3.jpg",
-			"/images/b4.jpg",
+			"/images/深度学习.jpg",
+			"/images/硬件.jpg",
+			"/images/论文.jpg",
+			"/images/软件.jpg",
 		],
 		//这里是磁贴描述信息
 		describe:[
