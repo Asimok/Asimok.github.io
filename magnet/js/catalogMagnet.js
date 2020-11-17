@@ -10,9 +10,17 @@ const catalogMagnet = new Vue({
 			"/images/b2.jpg",
 			"/images/b3.jpg",
 			"/images/b4.jpg",
+			"/images/b1.jpg",
+			"/images/b2.jpg",
+			"/images/b3.jpg",
+			"/images/b4.jpg",
 		],
 		//这里是磁贴描述信息
 		describe:[
+			"自然语言处理",
+			"Pytorch学习记录",
+			"常用小工具",
+			"一些教程",
 			"自然语言处理",
 			"Pytorch学习记录",
 			"常用小工具",

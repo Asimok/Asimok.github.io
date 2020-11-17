@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://39.96.68.13/2020/10/29/TransE/</loc>
+    <lastmod>2020-11-17</lastmod>
+  </url>
+  <url>
+    <loc>http://39.96.68.13/2020/11/12/GCN/</loc>
+    <lastmod>2020-11-17</lastmod>
+  </url>
+  <url>
+    <loc>http://39.96.68.13/2020/11/05/HOLE/</loc>
+    <lastmod>2020-11-17</lastmod>
+  </url>
+  <url>
     <loc>http://39.96.68.13/2020/10/14/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E5%B5%8C%E5%85%A5%EF%BC%9A%E6%96%B9%E6%B3%95%E5%92%8C%E5%BA%94%E7%94%A8%E7%9A%84%E7%BB%BC%E8%BF%B0/</loc>
     <lastmod>2020-11-17</lastmod>
   </url>
@@ -29,19 +41,7 @@
     <lastmod>2020-11-17</lastmod>
   </url>
   <url>
-    <loc>http://39.96.68.13/2020/10/29/TransE/</loc>
-    <lastmod>2020-11-17</lastmod>
-  </url>
-  <url>
     <loc>http://39.96.68.13/2020/11/03/PyTorch%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC/</loc>
-    <lastmod>2020-11-17</lastmod>
-  </url>
-  <url>
-    <loc>http://39.96.68.13/2020/11/12/GCN/</loc>
-    <lastmod>2020-11-17</lastmod>
-  </url>
-  <url>
-    <loc>http://39.96.68.13/2020/11/05/HOLE/</loc>
     <lastmod>2020-11-17</lastmod>
   </url>
   <url>
