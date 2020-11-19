@@ -2,7 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://39.96.68.13/2020/11/12/Attention%20Is%20All%20You%20Need/</loc>
+    <loc>http://39.96.68.13/2020/11/05/HOLE/</loc>
+    
+    <lastmod>2020-11-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/2020/11/12/GCN/</loc>
+    
+    <lastmod>2020-11-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/2020/10/29/TransE/</loc>
+    
+    <lastmod>2020-11-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/2020/11/19/Attention%20Is%20All%20You%20Need/</loc>
     
     <lastmod>2020-11-19</lastmod>
     
@@ -38,27 +59,6 @@
   
   <url>
     <loc>http://39.96.68.13/2020/11/03/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
-    
-    <lastmod>2020-11-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://39.96.68.13/2020/10/29/TransE/</loc>
-    
-    <lastmod>2020-11-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://39.96.68.13/2020/11/12/GCN/</loc>
-    
-    <lastmod>2020-11-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://39.96.68.13/2020/11/05/HOLE/</loc>
     
     <lastmod>2020-11-17</lastmod>
     
