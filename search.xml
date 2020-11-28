@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title>emqx配置https并使用nginx反向代理</title>
+      <link href="2020/11/21/emqx%E9%85%8D%E7%BD%AEhttps%E5%B9%B6%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+      <url>2020/11/21/emqx%E9%85%8D%E7%BD%AEhttps%E5%B9%B6%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="emqx配置https并使用nginx反向代理"><a href="#emqx配置https并使用nginx反向代理" class="headerlink" title="emqx配置https并使用nginx反向代理"></a>emqx配置https并使用nginx反向代理</h1><ol><li>下载域名证书，找到.crt或.key，编辑器打开，复制秘钥文本，找在线转pem工具，生成.pem文件。</li></ol><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105009.jpg" alt="621605869569_.pic_hd"></p><ol start="2"><li>在emq中启动ssl</li></ol><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105109.jpg" alt="641605869642_.pic_hd"></p><ol start="3"><li>配置nginx的反向代理</li></ol><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105124.jpg" alt="661605869702_.pic_hd"></p><ul><li>用ngix反向代理后，wss连接端口就成了443，不是8084。</li></ul><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105147.jpg" alt="681605869823_.pic_hd"></p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105159.jpg" alt="691605869841_.pic_hd"></p><ol start="4"><li>配置文件</li></ol><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105227.jpg" alt="711605869889_.pic_hd"></p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105245.jpg" alt="721605869914_.pic_hd"></p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105709.jpg" alt="751605870352_.pic_hd"></p><ul><li>查看安装路径</li></ul><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105423.jpg" alt="761605870415_.pic_hd"></p><blockquote><p>但不知道什么原因，不使用nginx做反向代理的话，用wss 8084 是无法连接的。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> emqx </tag>
+            
+            <tag> MQTT </tag>
+            
+            <tag> https </tag>
+            
+            <tag> nginx </tag>
+            
+            <tag> ssl </tag>
+            
+            <tag> wss </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Attention Is All You Need</title>
       <link href="2020/11/19/Attention%20Is%20All%20You%20Need/"/>
       <url>2020/11/19/Attention%20Is%20All%20You%20Need/</url>
@@ -25,6 +60,35 @@
             <tag> NLP </tag>
             
             <tag> 机器翻译 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MemNN</title>
+      <link href="2020/11/19/MemNN/"/>
+      <url>2020/11/19/MemNN/</url>
+      
+        <content type="html"><![CDATA[<h1 id="MemNN"><a href="#MemNN" class="headerlink" title="MemNN"></a>MemNN</h1><blockquote><p>Memory Networks：记忆网络</p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>传统的RNN和其改进模型虽然具有记忆功能，但是在长期记忆中表现并不好，Memory Networks的目的是实现长期记忆。</p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><h3 id="MEMORY-NETWORKS"><a href="#MEMORY-NETWORKS" class="headerlink" title="MEMORY NETWORKS"></a>MEMORY NETWORKS</h3><p>组成：1个内存模块(m—用索引的数组)，4个组件(I,G,O,R—通过学习得到)</p><h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><ul><li><p>$I$:（输入特征映射）—— 将输入转换为内部特征表示。</p></li><li><p>$G$:（泛化）—— 对于给定新的输入更新旧的内存。称之为泛化是因为在这个阶段网络有机会压缩并泛化其内存以供未来某些需要。</p></li><li><p>$O$:（输出特征映射）—— 给定新的输入与当前的内存状态，产生新的输出（在特征空间中）。</p></li><li><p>$R$:（回复）—— 将输出转换为特定格式的回复。比如，文本回复或者一个动作。</p></li></ul><h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><ul><li>输入$x$（可以是单词，句子，图片，音频）</li><li>将$x$转为内部特征表示：$I(x)$</li><li>更新内存$m_i$：$m_i= G(m_i, I(x), m), ∀i$</li><li>计算输出特征：$o = O(I(x), m)$</li><li>将输出特征解码，得到最终回复：$r = R(o)$</li></ul><h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ul><li>$G$：最简单的实现是利用下述$H(x$)将输入$I(x)$存储到槽中。</li></ul><p>$$<br>m_{H(x)}=I(x)<br>$$</p><blockquote><p> H(x) 是一个寻址函数（slot choosing function）。</p><p>G 更新的是$m$的$index$，可以直接把新的输入 $I(x)$ 保存到下一个空闲的地址$m_n$，并不更新原有的memory。</p></blockquote><p>更复杂的 G 函数可以去更新更早的memory甚至是所有的memory。</p><h4 id="A-MEMNN-IMPLEMENTATION-FOR-TEXT"><a href="#A-MEMNN-IMPLEMENTATION-FOR-TEXT" class="headerlink" title="A MEMNN IMPLEMENTATION FOR TEXT"></a>A MEMNN IMPLEMENTATION FOR TEXT</h4><ul><li>$I$：sentence</li><li>$G$：将输入保存到下一个可用的地址，仅用于存储新的memory，并不更新原有的memory。</li><li>$O$：输入一个问题$x$，将最合适的$k$个支撑记忆（the supporting memories）返回。</li></ul><p>k=1时：<br>$$<br>o1= O1(x, m) =  \underset{i=1,…,N}{arg\max}\ s_O(x, m_i)<br>$$<br>k=2时：<br>$$<br>o2= O2(x, m) = \underset{i=1,…,N} {arg\ max} \  s_O([x, m_{o1}], mi)<br>$$<br>输出：$o$：$[x, m_{o1}, m_{o2}]$</p><blockquote><p>$s_O$：对匹配项的评分函数。</p></blockquote><ul><li>$R$：根据$O$的输出，返回一组词汇。</li></ul><p>$$<br>r = argmax_{w∈W}s_R([x, m_{o1}, m_{o2}], w)<br>$$</p><blockquote><p>$W$：字典中左右单词的词汇列表。</p><p>$s_R$：对匹配项的评分函数。</p></blockquote><blockquote><p>推理的核心：$O,R$组件。</p></blockquote><h5 id="评分函数"><a href="#评分函数" class="headerlink" title="评分函数"></a>评分函数</h5><p>评分函数$s_O,s_R$具有与嵌入模型相同的形式。<br>$$<br>s(x, y) = Φ_x(x)^⊤U^⊤UΦ_y(y)<br>$$</p><ul><li>使用损失函数<strong>MarginRankingLoss</strong>和<strong>SGD</strong>优化器训练。</li></ul><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>$QA$</p><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><img src="https://asimov-1258043582.cos.ap-nanjing.myqcloud.com/img/20201124162815.png" alt="image-20201124162815142" style="zoom:50%;" /><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>单个单词回答任务：</p><ul><li>在Difficulty 1任务上，RNN和LSTM在提问之前表现较好，但是提问后效果变差，是由于RNN和LSTM长期记忆较差导致的。</li><li>在Difficulty 5任务上，由于模型限制RNN和LSTM表现较差，随着难度增加，效果还会更差。</li><li>在actor和actor+object任务上加入时间特征，效果提升很明显。</li><li>使用了两段推理的MemNN表现最好。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> MemNN </tag>
+            
+            <tag> 阅读理解 </tag>
             
         </tags>
       

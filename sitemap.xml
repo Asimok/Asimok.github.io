@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://39.96.68.13/2020/11/19/MemNN/</loc>
+    
+    <lastmod>2020-11-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/2020/11/21/emqx%E9%85%8D%E7%BD%AEhttps%E5%B9%B6%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</loc>
+    
+    <lastmod>2020-11-21</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://39.96.68.13/2020/11/19/Attention%20Is%20All%20You%20Need/</loc>
     
     <lastmod>2020-11-19</lastmod>
@@ -200,7 +214,7 @@
 
   <url>
     <loc>http://39.96.68.13/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -208,168 +222,224 @@
   
   <url>
     <loc>http://39.96.68.13/tags/Transformer/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/NLP/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/GCN/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/KGE/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/KG/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/HOLE/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/tags/MemNN/</loc>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/tags/%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3/</loc>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/PyTorch/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/TransE/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/tags/emqx/</loc>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/tags/MQTT/</loc>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/tags/https/</loc>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/tags/nginx/</loc>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/tags/ssl/</loc>
+    <lastmod>2020-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://39.96.68.13/tags/wss/</loc>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/Jupyter/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/centos/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/nodejs/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/Numpy/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E6%AD%A3%E5%88%99%E5%8C%96/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E4%BC%98%E5%8C%96%E5%99%A8/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -378,56 +448,56 @@
   
   <url>
     <loc>http://39.96.68.13/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/categories/PyTorch/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/categories/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/categories/NLP/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/categories/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://39.96.68.13/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2020-11-21</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
