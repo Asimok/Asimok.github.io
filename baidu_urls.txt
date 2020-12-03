@@ -1,4 +1,4 @@
-http://39.96.68.13/2020/12/02/Is%20Graph%20Structure%20Necessary%20for%20Multi-hop%20Question%20Answering/
+http://39.96.68.13/2020/12/03/Is%20Graph%20Structure%20Necessary%20for%20Multi-hop%20Question%20Answering/
 http://39.96.68.13/2020/11/26/MemNN/
 http://39.96.68.13/2020/11/21/emqx%E9%85%8D%E7%BD%AEhttps%E5%B9%B6%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/
 http://39.96.68.13/2020/11/19/Attention%20Is%20All%20You%20Need/
