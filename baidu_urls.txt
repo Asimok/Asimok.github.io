@@ -1,5 +1,6 @@
-http://www.asimok.site/2020/12/07/Linux(Ubuntu)%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/
+http://www.asimok.site/2020/12/07/Linux%E6%8C%82%E8%BD%BD%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF/
 http://www.asimok.site/2020/12/07/Bert%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/
+http://www.asimok.site/2020/12/07/Linux(Ubuntu)%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/
 http://www.asimok.site/2020/12/06/%E6%99%BA%E8%83%BD%E5%BC%80%E5%85%B3/
 http://www.asimok.site/2020/12/03/Is%20Graph%20Structure%20Necessary%20for%20Multi-hop%20Question%20Answering/
 http://www.asimok.site/2020/11/26/MemNN/
