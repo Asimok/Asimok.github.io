@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>Nginx 服务器证书安装（配置https）</title>
+      <link href="2020/12/09/Nginx%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E5%AE%89%E8%A3%85%EF%BC%88%E9%85%8D%E7%BD%AEhttps%EF%BC%89/"/>
+      <url>2020/12/09/Nginx%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E5%AE%89%E8%A3%85%EF%BC%88%E9%85%8D%E7%BD%AEhttps%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Nginx-服务器证书安装（配置https）"><a href="#Nginx-服务器证书安装（配置https）" class="headerlink" title="Nginx 服务器证书安装（配置https）"></a>Nginx 服务器证书安装（配置https）</h1><h2 id="下载证书"><a href="#下载证书" class="headerlink" title="下载证书"></a>下载证书</h2><ol><li>从证书颁发平台下载证书</li></ol><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/night1/image-20201209111622263.png" alt="image-20201209111622263"></p><ol start="2"><li>选择Nginx下的证书文件</li></ol><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/night1/image-20201209111746085.png" alt="image-20201209111746085"></p><ol start="3"><li>上传到服务器</li></ol><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/etc/</span>ssl</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/night1/image-20201209111909373.png" alt="image-20201209111909373"></p><h2 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h2><ol><li>启动nginx</li></ol><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service nginx <span class="literal">start</span></span><br></pre></td></tr></table></figure><ol start="2"><li>查找正在运行中的nginx服务</li></ol><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ps</span> -ef | <span class="keyword">grep</span> nginx</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/night1/image-20201209112109135.png" alt="image-20201209112109135"></p><ol start="3"><li>修改配置文件</li></ol><ul><li>从正在运行中的nginx服务可以知道当前生效的配置文件。</li></ul><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/etc/</span>nginx/nginx.conf</span><br></pre></td></tr></table></figure><ol start="4"><li>在http节点下添加server节点，并完成重定向</li></ol><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line"><span class="keyword">server</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>具体配置如下：</p><ul><li>http节点中可以添加多个server节点。</li></ul><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">    <span class="attr">server&#123;</span></span><br><span class="line"><span class="comment">        #监听443端口</span></span><br><span class="line">        <span class="attr">listen</span> <span class="string">443 ssl;</span></span><br><span class="line"><span class="comment">        #对应的域名，把www.asimok.com改成你们自己的域名就可以了</span></span><br><span class="line">        <span class="attr">server_name</span> <span class="string">www.asimok.com;</span></span><br><span class="line"><span class="comment">        #从腾讯云获取到的第一个文件的全路径</span></span><br><span class="line">        <span class="attr">ssl_certificate</span> <span class="string">/etc/ssl/1_www.asimok.site_bundle.crt;</span></span><br><span class="line"><span class="comment">        #从腾讯云获取到的第二个文件的全路径</span></span><br><span class="line">        <span class="attr">ssl_certificate_key</span> <span class="string">/etc/ssl/2_www.asimok.site.key;</span></span><br><span class="line">        <span class="attr">ssl_session_timeout</span> <span class="string">5m;</span></span><br><span class="line">        <span class="attr">ssl_protocols</span> <span class="string">TLSv1 TLSv1.1 TLSv1.2;</span></span><br><span class="line">        <span class="attr">ssl_ciphers</span> <span class="string">ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;</span></span><br><span class="line">        <span class="attr">ssl_prefer_server_ciphers</span> <span class="string">on;</span></span><br><span class="line"><span class="comment">        #这是我的主页访问地址，因为使用的是静态的html网页，所以直接使用location就可以完成了。</span></span><br><span class="line">        <span class="attr">location</span> <span class="string">/ &#123;</span></span><br><span class="line"><span class="comment">                #文件夹</span></span><br><span class="line">                <span class="attr">root</span> <span class="string">/root/mq_blog/public;</span></span><br><span class="line"><span class="comment">                #主页文件</span></span><br><span class="line">                <span class="attr">index</span> <span class="string">index.html;</span></span><br><span class="line">        <span class="attr">&#125;</span></span><br><span class="line">    <span class="attr">&#125;</span></span><br><span class="line"><span class="comment"># 如果用户使用的是http协议进行访问，那么默认打开的端口是80端口，所以我们需要做一个重定向，我们在上一个代码块的基础上增加一个server节点提供重定向服务。</span></span><br><span class="line"><span class="comment"># 将 HTTP 请求自动重定向到 HTTPS</span></span><br><span class="line">    <span class="attr">server&#123;</span></span><br><span class="line">        <span class="attr">listen</span> <span class="string">80;</span></span><br><span class="line">        <span class="attr">server_name</span> <span class="string">www.asimok.com;</span></span><br><span class="line">        <span class="attr">rewrite</span> <span class="string">^/(.*)$ https://www.asimok.com:443/$1 permanent;</span></span><br><span class="line">    <span class="attr">&#125;</span></span><br></pre></td></tr></table></figure><ol start="5"><li>对配置文件进行校验</li></ol><p>保存配置文件之后执行：</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">nginx -t</span></span><br></pre></td></tr></table></figure><p>susccessful即可</p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/night1/image-20201209112907309.png" alt="image-20201209112907309"></p><ol start="6"><li>重启nginx服务</li></ol><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service nginx <span class="literal">start</span></span><br></pre></td></tr></table></figure><ol start="7"><li>重新加载配置文件</li></ol><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">nginx -s reload</span></span><br></pre></td></tr></table></figure><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>使用https访问：<a href="https://asimok.site/">https://asimok.site</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> https </tag>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>anaconda更换清华源加快下载速度</title>
+      <link href="2020/12/08/anaconda%E6%9B%B4%E6%8D%A2%E6%B8%85%E5%8D%8E%E6%BA%90%E5%8A%A0%E5%BF%AB%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/"/>
+      <url>2020/12/08/anaconda%E6%9B%B4%E6%8D%A2%E6%B8%85%E5%8D%8E%E6%BA%90%E5%8A%A0%E5%BF%AB%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="anaconda更换清华源加快下载速度"><a href="#anaconda更换清华源加快下载速度" class="headerlink" title="anaconda更换清华源加快下载速度"></a>anaconda更换清华源加快下载速度</h1><p>终端执行以下代码：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>cloud<span class="regexp">/conda-forge/</span></span><br><span class="line">conda config --add channels https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>pkgs<span class="regexp">/free/</span></span><br><span class="line">conda config --add channels https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>pkgs<span class="regexp">/main/</span></span><br><span class="line">conda config --append channels https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>cloud<span class="regexp">/fastai/</span></span><br><span class="line">conda config --append channels https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>cloud<span class="regexp">/pytorch/</span></span><br><span class="line">conda config --append channels https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>cloud<span class="regexp">/bioconda/</span> </span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure><p>可以看到 ~/.condarc文件如下：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>pkgs<span class="regexp">/main/</span></span><br><span class="line">  - https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>pkgs<span class="regexp">/free/</span></span><br><span class="line">  - https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>cloud<span class="regexp">/conda-forge/</span></span><br><span class="line">  - defaults</span><br><span class="line">  - https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>cloud<span class="regexp">/fastai/</span></span><br><span class="line">  - https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>cloud<span class="regexp">/pytorch/</span></span><br><span class="line">  - https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/anaconda/</span>cloud<span class="regexp">/bioconda/</span></span><br><span class="line">show_channel_urls: true</span><br></pre></td></tr></table></figure><p>配置完成后，下载速度会提升很多。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> conda </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux挂载移动硬盘出现错误：mount:unknown filesystem type &#39;exfat&#39;</title>
       <link href="2020/12/07/Linux%E6%8C%82%E8%BD%BD%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF/"/>
       <url>2020/12/07/Linux%E6%8C%82%E8%BD%BD%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF/</url>
@@ -188,13 +240,13 @@
       
         <tags>
             
-            <tag> emqx </tag>
-            
-            <tag> MQTT </tag>
-            
             <tag> https </tag>
             
             <tag> nginx </tag>
+            
+            <tag> emqx </tag>
+            
+            <tag> MQTT </tag>
             
             <tag> ssl </tag>
             
