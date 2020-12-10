@@ -1,3 +1,4 @@
+http://www.asimok.site/2020/12/10/%E6%99%BA%E8%83%BD%E5%BC%80%E5%85%B3(Android)/
 http://www.asimok.site/2020/12/09/Nginx%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E5%AE%89%E8%A3%85%EF%BC%88%E9%85%8D%E7%BD%AEhttps%EF%BC%89/
 http://www.asimok.site/2020/12/08/anaconda%E6%9B%B4%E6%8D%A2%E6%B8%85%E5%8D%8E%E6%BA%90%E5%8A%A0%E5%BF%AB%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/
 http://www.asimok.site/2020/12/07/Linux%E6%8C%82%E8%BD%BD%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF/
@@ -20,7 +21,6 @@ http://www.asimok.site/2020/11/06/jupyter_%E9%85%8D%E7%BD%AE/
 http://www.asimok.site/2020/11/05/HOLE/
 http://www.asimok.site/2020/11/03/PyTorch%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC/
 http://www.asimok.site/2020/11/03/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/
-http://www.asimok.site/2020/11/03/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/
 http://www.asimok.site/2020/10/29/TransE/
 http://www.asimok.site/2020/10/26/dyjw/
 http://www.asimok.site/2020/10/14/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E5%B5%8C%E5%85%A5%EF%BC%9A%E6%96%B9%E6%B3%95%E5%92%8C%E5%BA%94%E7%94%A8%E7%9A%84%E7%BB%BC%E8%BF%B0/
