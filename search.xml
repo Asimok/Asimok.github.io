@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>智能门锁</title>
+      <link href="2020/12/13/%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81/"/>
+      <url>2020/12/13/%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81/</url>
+      
+        <content type="html"><![CDATA[<h1 id="智能门锁"><a href="#智能门锁" class="headerlink" title="智能门锁"></a>智能门锁</h1><p>演示视频：<a href="https://www.bilibili.com/video/BV1Z5411V7Gh/">https://www.bilibili.com/video/BV1Z5411V7Gh/</a></p><p>安装效果图</p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201213161946.JPG" alt="IMG_0115"></p><h2 id="清单"><a href="#清单" class="headerlink" title="清单"></a>清单</h2><p><strong>NodeMCU</strong>：ESP8266串口wifi模块 NodeMCU Lua V3物联网开发板 CH340 CP2102(淘宝搜索)</p><p><strong>Arduino uno r3</strong>(可选)</p><p><strong>RFID-RC522</strong></p><p><strong>舵机</strong>：MG996R</p><p><strong>蜂鸣器（有源）</strong></p><p><strong>触摸按键模块</strong>（TTP223/224/226/229皆可）</p><p><strong>电源模块</strong>：提供5v,3.3v输出</p><p><strong>杜邦线</strong> ：公对公  公对母  母对母</p><blockquote><p>esp8266库：<code>https://arduino.esp8266.com/stable/package_esp8266com_index.json</code></p></blockquote><h2 id="接线"><a href="#接线" class="headerlink" title="接线"></a>接线</h2><h3 id="ESP8266-——-MFRC522"><a href="#ESP8266-——-MFRC522" class="headerlink" title="ESP8266 —— MFRC522"></a>ESP8266 —— MFRC522</h3><ul><li>D1 —— RST</li><li>D2 —— NSS(SDA) </li><li>3V3 ——3V3</li><li>GND —— GND</li><li>D5 —— SCK</li><li>D6 —— MIS0</li><li>D7 —— MIS1</li></ul><h3 id="ESP8266-——-舵机"><a href="#ESP8266-——-舵机" class="headerlink" title="ESP8266 —— 舵机"></a>ESP8266 —— 舵机</h3><ul><li>D4</li></ul><h3 id="ESP8266-——-uno-r3"><a href="#ESP8266-——-uno-r3" class="headerlink" title="ESP8266 —— uno r3"></a>ESP8266 —— uno r3</h3><ul><li>D0 —— 3</li><li>D3 —— 2</li></ul><h3 id="uno-r3-——-蜂鸣器"><a href="#uno-r3-——-蜂鸣器" class="headerlink" title="uno r3 —— 蜂鸣器"></a>uno r3 —— 蜂鸣器</h3><ul><li>4</li></ul><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>esp8266代码：<a href="https://github.com/Asimok/unoproject_backup/blob/master/smartlock208/smartlock208/smartlock208.ino">https://github.com/Asimok/unoproject_backup/blob/master/smartlock208/smartlock208/smartlock208.ino</a></p><p>uno r3代码：<a href="https://github.com/Asimok/unoproject_backup/blob/master/smartlock208/smartlock_unor3/smartlock_unor3.ino">https://github.com/Asimok/unoproject_backup/blob/master/smartlock208/smartlock_unor3/smartlock_unor3.ino</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 硬件开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Arduino </tag>
+            
+            <tag> C </tag>
+            
+            <tag> ESP8266 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering</title>
       <link href="2020/12/12/Learning%20to%20Retrieve%20Reasoning%20Paths%20over%20Wikipedia%20Graph%20for%20Question%20Answering/"/>
       <url>2020/12/12/Learning%20to%20Retrieve%20Reasoning%20Paths%20over%20Wikipedia%20Graph%20for%20Question%20Answering/</url>
