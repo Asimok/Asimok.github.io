@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.asimok.site/2020/12/18/Semantic%20Graphs%20for%20Generating%20Deep%20Questions/</loc>
+    
+    <lastmod>2020-12-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.asimok.site/2020/12/03/Semantic%20Role%20Labeling%20Graph%20Reasoning%20Network/</loc>
     
     <lastmod>2020-12-18</lastmod>
@@ -425,6 +432,13 @@
   
   <url>
     <loc>https://www.asimok.site/tags/PyTorch/</loc>
+    <lastmod>2020-12-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.asimok.site/tags/DQG/</loc>
     <lastmod>2020-12-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

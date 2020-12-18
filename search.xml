@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Semantic Graphs for Generating Deep Questions</title>
+      <link href="2020/12/18/Semantic%20Graphs%20for%20Generating%20Deep%20Questions/"/>
+      <url>2020/12/18/Semantic%20Graphs%20for%20Generating%20Deep%20Questions/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Semantic-Graphs-for-Generating-Deep-Questions"><a href="#Semantic-Graphs-for-Generating-Deep-Questions" class="headerlink" title="Semantic Graphs for Generating Deep Questions"></a>Semantic Graphs for Generating Deep Questions</h1><blockquote><p>论文：EMNLP2020-Semantic Role Labeling Graph Reasoning Network</p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>生成需要对多条输入段落进行推理的复杂问题。</p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><h3 id="Methodology（方法）："><a href="#Methodology（方法）：" class="headerlink" title="Methodology（方法）："></a>Methodology（方法）：</h3><p>$$<br>Q = {}\underset{Q} {arg \  max}P(Q|D, A)<br>$$</p><ul><li>其中文档$D$和答案$A$都是单词的序列。</li><li>目标是生成一个涉及多个证据句子$E =  ^n_{i = 1}$的推理，其中$s_i$是m中的一个句子。而且，与传统情况不同，$A$可能不是$D$范围一个子句 ，因为涉及推理来获得答案。</li></ul><p>模型结构：</p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201217193314.png" alt="image-20201217193314325"></p><h3 id="Semantic-Graph-Construction"><a href="#Semantic-Graph-Construction" class="headerlink" title="Semantic Graph Construction"></a>Semantic Graph Construction</h3><ul><li>语意图构造的两种方法：<strong>Semantic Role Labeling</strong> &amp; <strong>Dependency Parsing</strong></li></ul><h4 id="SRL-based-Semantic-Graph"><a href="#SRL-based-Semantic-Graph" class="headerlink" title="SRL-based Semantic Graph"></a>SRL-based Semantic Graph</h4><ul><li><p>SRL：语义角色标记</p><blockquote><p>任务是识别谓词及其关联的参与者和属性之间的语义关系。</p></blockquote></li><li><p>对于每个句子，通过SRL工具包提取谓词参数元组。 </p><blockquote><p>每个元组形成一个子图，其中每个元组元素（例如，参数，位置和时间）是一个节点。 如果来自不同元组的节点具有包含关系或可能提及同一实体，则在它们之间添加元组边。</p></blockquote></li></ul><h4 id="DP-based-Semantic-Graph"><a href="#DP-based-Semantic-Graph" class="headerlink" title="DP-based Semantic Graph"></a>DP-based Semantic Graph</h4><ul><li>我们对每个句子采用biaffine注意模型以获得其依存关系分析树，通过删除不重要的组成部分（例如标点符号）并合并形成完整语义单元的连续节点来对其进行进一步修订。 然后，在来自不同解析树的相似节点之间添加树间边缘，以构建连接的语义图。</li><li>与基于SRL的图相比，基于DP的图通常建模更细粒度和稀疏的语义关系。</li></ul><h3 id="Semantic-Enriched-Document-Representations"><a href="#Semantic-Enriched-Document-Representations" class="headerlink" title="Semantic-Enriched Document Representations"></a>Semantic-Enriched Document Representations</h3><h4 id="Document-Encoding"><a href="#Document-Encoding" class="headerlink" title="Document Encoding"></a>Document Encoding</h4><ul><li>使用双向GRU编码上下文。</li></ul><h4 id="Node-Initialization"><a href="#Node-Initialization" class="headerlink" title="Node Initialization"></a>Node Initialization</h4><ul><li>语义图是一个异质多关系图。</li></ul><p>$$<br>v = {w_j}^{n_v} _{j=m_v}<br>$$</p><blockquote><p>节点$v$是$D$中的text span。</p><p>$m_v / n_v$表示text span的开始/结束位置。</p><p>每条边也有一个边类型，表示节点之间的语义关系。</p></blockquote><h4 id="Graph-Encoding"><a href="#Graph-Encoding" class="headerlink" title="Graph Encoding"></a>Graph Encoding</h4><ul><li><p>提出<strong>AttGGNN</strong>，通过汇聚其邻居的信息来更新节点表示。</p></li><li><p>为了表示边中的多个关系，基于多关系门控图神经网络（<strong>GGNN</strong>）建立模型。</p></li><li><p>对于DQG，执行不同类型的推理时，每个节点必须注意不同的相邻节点，为此，本文采用图注意力网络的思想，使用注意力机制动态确定消息传递中相邻节点的权重。</p></li></ul><h4 id="Feature-Aggregation"><a href="#Feature-Aggregation" class="headerlink" title="Feature Aggregation"></a>Feature Aggregation</h4><ul><li>把文档向量和语义图表示向量融合起来获得最终的表示。</li></ul><p>$$<br>E_D= Fuse(X_D, H_K)<br>$$</p><h3 id="Joint-Task-Question-Generation"><a href="#Joint-Task-Question-Generation" class="headerlink" title="Joint Task Question Generation"></a>Joint Task Question Generation</h3><ul><li>基于语义丰富的输入表示，本文通过共同训练两个任务来生成问题：<strong>问题解码</strong>和<strong>内容选择</strong>。</li></ul><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p><strong>HotpotQA</strong></p><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201218092216.png" alt="image-20201217223841458"></p><ul><li>SRL和DP两种方法构造的语意图在BLEU测试下都表现出了较好的效果，并且DP效果要更好一点。</li><li>消融实验也表明上下文，语义图，Att-GGNN，联合训练对模型性能都是有显著作用的。</li></ul><p><strong>人类评价：</strong></p><blockquote><p>从程度，关联性，复杂程度三个方面评价。</p></blockquote><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201218092140.png" alt="image-20201217225202520"></p><ul><li>从人类评价中可以看出，本文提出的模型提出的问题优于基线模型。</li><li>但当输入文档变长，所有指标都下降，模型对长文档处理性能不足。</li></ul><p><strong>错误分析：</strong></p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201218092137.png" alt="image-20201217225722689"></p><ul><li>“语义错误”，“冗余”和“无法回答”对于所有模型都是明显的错误。</li><li>本文提出的模型语意正确率较高，生成的可回答问题占比较高。</li></ul><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>​        本文提出了DQG问题来生成需要对多个不相交的信息进行推理的问题。 提出的框架结合了语义图以增强输入文档的表示率，并通过与内容选择任务共同训练来产生问题。 在HotpotQA数据集上进行的实验表明，引入语义图可以显着减少语义错误，并且内容选择比不相干的相关内容更有利于选择和推理，从而可以提高质量。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> 机器阅读理解 </tag>
+            
+            <tag> MRC </tag>
+            
+            <tag> DQG </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>智能门锁</title>
       <link href="2020/12/13/%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81/"/>
       <url>2020/12/13/%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81/</url>

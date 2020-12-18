@@ -1,3 +1,4 @@
+https://www.asimok.site/2020/12/18/Semantic%20Graphs%20for%20Generating%20Deep%20Questions/
 https://www.asimok.site/2020/12/13/%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81/
 https://www.asimok.site/2020/12/12/Learning%20to%20Retrieve%20Reasoning%20Paths%20over%20Wikipedia%20Graph%20for%20Question%20Answering/
 https://www.asimok.site/2020/12/10/%E6%99%BA%E8%83%BD%E5%BC%80%E5%85%B3(Android)/
