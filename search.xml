@@ -284,6 +284,35 @@
     
     
     <entry>
+      <title>SRLGRN</title>
+      <link href="2020/12/03/Semantic%20Role%20Labeling%20Graph%20Reasoning%20Network/"/>
+      <url>2020/12/03/Semantic%20Role%20Labeling%20Graph%20Reasoning%20Network/</url>
+      
+        <content type="html"><![CDATA[<h1 id="SRLGRN"><a href="#SRLGRN" class="headerlink" title="SRLGRN"></a>SRLGRN</h1><blockquote><p>论文：EMNLP2020-Semantic Role Labeling Graph Reasoning Network</p><p>语义角色标注图推理网络</p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>生成需要对多条输入段落进行推理的复杂问题。</p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><h3 id="Methodology（方法）："><a href="#Methodology（方法）：" class="headerlink" title="Methodology（方法）："></a>Methodology（方法）：</h3><p>$$<br>Q = {}\underset{Q} {arg \  max}P(Q|D, A)<br>$$</p><ul><li>其中文档$D$和答案$A$都是单词的序列。</li><li>目标是生成一个涉及多个证据句子$E =  ^n_{i = 1}$的推理，其中$s_i$是m中的一个句子。而且，与传统情况不同，$A$可能不是$D$范围一个子句 ，因为涉及推理来获得答案。</li></ul><p>模型结构：</p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201217193314.png" alt="image-20201217193314325"></p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><h2 id="不足和改进"><a href="#不足和改进" class="headerlink" title="不足和改进"></a>不足和改进</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> 机器阅读理解 </tag>
+            
+            <tag> MRC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MemNN</title>
       <link href="2020/11/26/MemNN/"/>
       <url>2020/11/26/MemNN/</url>
