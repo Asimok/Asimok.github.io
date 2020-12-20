@@ -298,6 +298,27 @@
 
   
   <url>
+    <loc>https://www.asimok.site/tags/Argparse/</loc>
+    <lastmod>2020-12-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.asimok.site/tags/python/</loc>
+    <lastmod>2020-12-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.asimok.site/tags/pytorch/</loc>
+    <lastmod>2020-12-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.asimok.site/tags/Transformer/</loc>
     <lastmod>2020-12-20</lastmod>
     <changefreq>daily</changefreq>
@@ -313,13 +334,6 @@
   
   <url>
     <loc>https://www.asimok.site/tags/%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2020-12-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.asimok.site/tags/pytorch/</loc>
     <lastmod>2020-12-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -606,6 +620,13 @@
   </url>
   
 
+  
+  <url>
+    <loc>https://www.asimok.site/categories/ptyorch/</loc>
+    <lastmod>2020-12-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>https://www.asimok.site/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/</loc>
