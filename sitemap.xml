@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.asimok.site/2020/12/20/%E5%B8%B8%E7%94%A8python%E5%BA%93/</loc>
+    
+    <lastmod>2020-12-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.asimok.site/2020/12/20/Argparse%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2020-12-20</lastmod>
@@ -622,7 +629,7 @@
 
   
   <url>
-    <loc>https://www.asimok.site/categories/ptyorch/</loc>
+    <loc>https://www.asimok.site/categories/PyTorch/</loc>
     <lastmod>2020-12-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -637,13 +644,6 @@
   
   <url>
     <loc>https://www.asimok.site/categories/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2020-12-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.asimok.site/categories/PyTorch/</loc>
     <lastmod>2020-12-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

@@ -13,7 +13,7 @@
       
       <categories>
           
-          <category> ptyorch </category>
+          <category> PyTorch </category>
           
       </categories>
       
@@ -21,6 +21,33 @@
         <tags>
             
             <tag> Argparse </tag>
+            
+            <tag> python </tag>
+            
+            <tag> pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>常用python库</title>
+      <link href="2020/12/20/%E5%B8%B8%E7%94%A8python%E5%BA%93/"/>
+      <url>2020/12/20/%E5%B8%B8%E7%94%A8python%E5%BA%93/</url>
+      
+        <content type="html"><![CDATA[<h1 id="常用python库"><a href="#常用python库" class="headerlink" title="常用python库"></a>常用python库</h1><ol><li><strong>tqdm</strong>：进度条</li></ol><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line">pbar = tqdm([<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>])</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">char</span> in pbar:</span><br><span class="line">    pbar.set_description(<span class="string">&quot;Processing %s&quot;</span> % <span class="keyword">char</span>)</span><br></pre></td></tr></table></figure><p>效果：</p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201220184527.png" alt="image-20201220184518149"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> PyTorch </category>
+          
+      </categories>
+      
+      
+        <tags>
             
             <tag> python </tag>
             
