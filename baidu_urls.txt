@@ -1,3 +1,4 @@
+https://www.asimok.site/2020/12/31/SRLGRN/
 https://www.asimok.site/2020/12/20/Argparse%E6%95%99%E7%A8%8B/
 https://www.asimok.site/2020/12/20/%E5%B8%B8%E7%94%A8python%E5%BA%93/
 https://www.asimok.site/2020/12/18/Semantic%20Graphs%20for%20Generating%20Deep%20Questions/
@@ -11,7 +12,6 @@ https://www.asimok.site/2020/12/07/Bert%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9
 https://www.asimok.site/2020/12/07/Linux(Ubuntu)%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/
 https://www.asimok.site/2020/12/06/%E6%99%BA%E8%83%BD%E5%BC%80%E5%85%B3/
 https://www.asimok.site/2020/12/03/Is%20Graph%20Structure%20Necessary%20for%20Multi-hop%20Question%20Answering/
-https://www.asimok.site/2020/12/03/SRLGRN/
 https://www.asimok.site/2020/12/03/Semantic%20Role%20Labeling%20Graph%20Reasoning%20Network/
 https://www.asimok.site/2020/11/26/MemNN/
 https://www.asimok.site/2020/11/21/emqx%E9%85%8D%E7%BD%AEhttps%E5%B9%B6%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/

@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>SRLGRN</title>
+      <link href="2020/12/31/SRLGRN/"/>
+      <url>2020/12/31/SRLGRN/</url>
+      
+        <content type="html"><![CDATA[<h1 id="SRLGRN"><a href="#SRLGRN" class="headerlink" title="SRLGRN"></a>SRLGRN</h1><blockquote><p>论文：EMNLP2020-Semantic Role Labeling Graph Reasoning Network</p><p>语义角色标注图推理网络</p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>​        提出了一个基于句子语义结构的图推理网络来学习跨段落推理路径，并联合寻找支持事实和答案。</p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><h3 id="SRLGRN-1"><a href="#SRLGRN-1" class="headerlink" title="SRLGRN"></a>SRLGRN</h3><blockquote><p>该框架在构建推理图网络时会考虑句子的语义结构。 不仅利用节点的语义角色，而且会利用边缘的语义。</p></blockquote><ul><li><p>训练一个段落选择模块来检索gold documents并最小化干扰因素。</p></li><li><p>构建了一个异类文档级图，其中包含以句子为节点以及SRL子图，其中SRL子图包括语义角色标签参数作为节点，谓词作为边。</p></li><li><p>训练图编码器来获得图节点表示，该图节点表示在学习的表示中结合了参数类型和谓词边的语义。</p></li><li><p>最后，共同训练一个multi-hop supporting fact prediction module和answer prediction module。</p><blockquote><p>multi-hop supporting fact prediction module可以找到跨段落推理路径，answer prediction module可以得到最终答案。</p><p>based on contextual semantics graph representations as well as token-level BERT pre-trained representations.</p></blockquote></li></ul><p>模型结构：</p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201230205729.png" alt="image-20201230205718629"></p><blockquote><p>SRLGRN由段落选择，图形构造，图形编码器，支持事实预测和答案跨度预测模块组成。</p></blockquote><h3 id="Paragraph-Selection"><a href="#Paragraph-Selection" class="headerlink" title="Paragraph Selection"></a>Paragraph Selection</h3><ul><li>based on the pre-trained BERT model</li></ul><p>两轮解释：</p><h4 id="First-Round-Paragraph-Selection"><a href="#First-Round-Paragraph-Selection" class="headerlink" title="First Round Paragraph Selection"></a>First Round Paragraph Selection</h4><p>input:$Q_1$<br>$$<br>Q_1= [[CLS]; q; [SEP]; C]<br>$$</p><blockquote><p>q: question</p><p>C: paragraph content</p></blockquote><p>$$<br>C = {t, s_1, . . . , s_n}<br>$$</p><blockquote><p>t: title</p><p>$s_n$: sentences</p></blockquote><ul><li>将$Q_1$输入到预训练的BERT编码器以获得token表示。</li><li>使用$BERT_{[CLS]}$作为该段的摘要表示。</li><li>利用两层MLP输出相关性得分。</li><li>选择获得最高相关性得分的段落作为第一相关上下文。</li><li>将$q$连接到所选段落作为$q_{new}$，以进行下一轮段落选择。</li></ul><h4 id="Second-Round-Paragraph-Selection"><a href="#Second-Round-Paragraph-Selection" class="headerlink" title="Second Round Paragraph Selection"></a>Second Round Paragraph Selection</h4><ul><li>对于剩余的N-1个候选段落，使用与第一轮段落选择相同的模型来生成相关性得分，该相关性得分以$q_{new}$和段落内容为输入。</li><li>将问题和两个选定的段落连接起来，形成一个新的上下文，用作图形构造的输入文本。</li></ul><h3 id="Heterogeneous-SRL-Graph-Construction"><a href="#Heterogeneous-SRL-Graph-Construction" class="headerlink" title="Heterogeneous SRL Graph Construction"></a>Heterogeneous SRL Graph Construction</h3><p>每个数据实例构建一个包含document-level子图$S$和argument- predicate SRL 子图$Arg$的异构图。</p><ul><li>$S$ </li></ul><blockquote><p>includes question q, title $t_1$and sentences $s_1^{1,…,n}$  from first round se- lected paragraph.and title $t_2$and sentences $s_2^{1,…,n}$ from the second round selected paragraph.</p></blockquote><ul><li>$Arg$</li></ul><blockquote><p>包含使用AllenNLP-SRL模型生成的参数作为节点，谓词作为边。</p></blockquote><p>$$<br>{q, t_1, s_1 1, . . . , s_n 1, t_2, s_1 2, . . . , sn_ 2} ∈ S.<br>$$</p><p>![image-20201230214154969](/Users/maqi/Library/Application Support/typora-user-images/image-20201230214154969.png)</p><p>异构图的边添加规则：</p><ol><li>如果在该句子中有一个argument，则该句子和argument之间将存在一条边（图3中的黑色虚线）</li><li>$s_i$和$s$两个句子，如果他们通过精确匹配共享一个参数，则存在一条边（红色虚线）</li><li>两个argument节点$Arg_i$ 和$Arg_j$之间存在谓词，则存在一条边（黑色实线）</li><li>如果它们共享一个argument，则问题和句子之间会有一条边（红色虚线）</li></ol><p>建立了一个基于谓词的语义边缘矩阵$K$和一个异构边缘权重矩阵$A$。</p><blockquote><p>语义边缘矩阵$K$是一个存储谓词单词索引的矩阵。 </p><p>异构边缘权重矩阵$A$是存储不同类型边权重的矩阵。</p></blockquote><h3 id="Supporting-Fact-Prediction"><a href="#Supporting-Fact-Prediction" class="headerlink" title="Supporting Fact Prediction"></a>Supporting Fact Prediction</h3><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201231111925.png" alt="image-20201231111925399" style="zoom: 67%;" /><ol><li>$G_S$: graph sentence embedding(蓝色圆圈)。</li><li>BERT’s [CLS] token representation： 橙色圆圈。</li><li>$X_S^{cand}$: 候选句子。</li><li>$S_{cand}$:候选句子的相邻句子。</li></ol><p>$$<br>X_S^{cand}  = [G_S^{cand} ; BERT[CLS](q, S_{cand})]<br>$$</p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>HotpotQA</p><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201231113847.png" alt="image-20201231113847927"></p><blockquote><p>EM：完全匹配</p><p>F1：部分匹配</p></blockquote><p>在Distractor setting下的测试结果：</p><p>​        该模型在Joint上获得了39.41％的完全精确匹配分数和66.37％的部分匹配分数,远超基线模型，相比其他模型也有明显的提升。这得益于token-level BERT和graph-level SRL node的结合。</p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><h3 id="Ablation-study"><a href="#Ablation-study" class="headerlink" title="Ablation study"></a>Ablation study</h3><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201231115716.png" alt="image-20201231115716017" style="zoom:50%;" /><p>Graph:</p><ul><li><p>删除整个SRL图。 </p><p>与完整的SRLGRN模型相比，在F1评分上下降了8.46％。 如果删除SRL图，而仅使用BERT进行答案预测，则该模型将失去用于多跳推理的连接。</p></li><li><p>从SRL图中删除了基于谓词的边缘信息。</p><p>如果不合并语义边缘信息和参数类型，则答案跨度预测的F1分数降低2.9％。删除谓词边和参数类型将破坏SRL图中的参数-谓词关系，并打破推理链。</p></li></ul><p>Joint:</p><p>​    如果不共同训练模型，性能将下降4.56％。</p><p>Language Models：</p><p>​    尽管BERT获得了相对更好的性能，但ALBERT架构的参数少18X，并且比BERT更快。</p><h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>​        语义角色标注 (Semantic Role Labeling, SRL) 是一种浅层的语义分析技术，标注句子中某些短语为给定谓词的论元 (语义角色) ，如施事、受事、时间和地点等。其能够对问答系统、信息抽取和机器翻译等应用产生推动作用。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> 机器阅读理解 </tag>
+            
+            <tag> MRC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Argparse 教程</title>
       <link href="2020/12/20/Argparse%E6%95%99%E7%A8%8B/"/>
       <url>2020/12/20/Argparse%E6%95%99%E7%A8%8B/</url>
@@ -363,35 +392,6 @@
             <tag> MC </tag>
             
             <tag> 机器阅读理解 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>SRLGRN</title>
-      <link href="2020/12/03/SRLGRN/"/>
-      <url>2020/12/03/SRLGRN/</url>
-      
-        <content type="html"><![CDATA[<h1 id="SRLGRN"><a href="#SRLGRN" class="headerlink" title="SRLGRN"></a>SRLGRN</h1><blockquote><p>论文：EMNLP2020-Semantic Role Labeling Graph Reasoning Network</p><p>语义角色标注图推理网络</p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>​        提出了一个基于句子语义结构的图推理网络来学习跨段落推理路径，并联合寻找支持事实和答案。</p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><h3 id="SRLGRN-1"><a href="#SRLGRN-1" class="headerlink" title="SRLGRN"></a>SRLGRN</h3><blockquote><p>该框架在构建推理图网络时会考虑句子的语义结构。 不仅利用节点的语义角色，而且会利用边缘的语义。</p></blockquote><ul><li><p>训练一个段落选择模块来检索gold documents并最小化干扰因素。</p></li><li><p>构建了一个异类文档级图，其中包含以句子为节点以及SRL子图，其中SRL子图包括语义角色标签参数作为节点，谓词作为边。</p></li><li><p>训练图编码器来获得图节点表示，该图节点表示在学习的表示中结合了参数类型和谓词边的语义。</p></li><li><p>最后，共同训练一个multi-hop supporting fact prediction module和answer prediction module。</p><blockquote><p>multi-hop supporting fact prediction module可以找到跨段落推理路径，answer prediction module可以得到最终答案。</p><p>based on contextual semantics graph representations as well as token-level BERT pre-trained representations.</p></blockquote></li></ul><p>模型结构：</p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201230205729.png" alt="image-20201230205718629"></p><blockquote><p>SRLGRN由段落选择，图形构造，图形编码器，支持事实预测和答案跨度预测模块组成。</p></blockquote><h3 id="Paragraph-Selection"><a href="#Paragraph-Selection" class="headerlink" title="Paragraph Selection"></a>Paragraph Selection</h3><ul><li>based on the pre-trained BERT model</li></ul><p>两轮解释：</p><h4 id="First-Round-Paragraph-Selection"><a href="#First-Round-Paragraph-Selection" class="headerlink" title="First Round Paragraph Selection"></a>First Round Paragraph Selection</h4><p>input:$Q_1$<br>$$<br>Q_1= [[CLS]; q; [SEP]; C]<br>$$</p><blockquote><p>q: question</p><p>C: paragraph content</p></blockquote><p>$$<br>C = {t, s_1, . . . , s_n}<br>$$</p><blockquote><p>t: title</p><p>$s_n$: sentences</p></blockquote><ul><li>将$Q_1$输入到预训练的BERT编码器以获得token表示。</li><li>使用$BERT_{[CLS]}$作为该段的摘要表示。</li><li>利用两层MLP输出相关性得分。</li><li>选择获得最高相关性得分的段落作为第一相关上下文。</li><li>将$q$连接到所选段落作为$q_{new}$，以进行下一轮段落选择。</li></ul><h4 id="Second-Round-Paragraph-Selection"><a href="#Second-Round-Paragraph-Selection" class="headerlink" title="Second Round Paragraph Selection"></a>Second Round Paragraph Selection</h4><ul><li>对于剩余的N-1个候选段落，使用与第一轮段落选择相同的模型来生成相关性得分，该相关性得分以$q_{new}$和段落内容为输入。</li><li>将问题和两个选定的段落连接起来，形成一个新的上下文，用作图形构造的输入文本。</li></ul><h3 id="Heterogeneous-SRL-Graph-Construction"><a href="#Heterogeneous-SRL-Graph-Construction" class="headerlink" title="Heterogeneous SRL Graph Construction"></a>Heterogeneous SRL Graph Construction</h3><p>每个数据实例构建一个包含document-level子图$S$和argument- predicate SRL 子图$Arg$的异构图。</p><ul><li>$S$ </li></ul><blockquote><p>includes question q, title $t_1$and sentences $s_1^{1,…,n}$  from first round se- lected paragraph.and title $t_2$and sentences $s_2^{1,…,n}$ from the second round selected paragraph.</p></blockquote><ul><li>$Arg$</li></ul><blockquote><p>包含使用AllenNLP-SRL模型生成的参数作为节点，谓词作为边。</p></blockquote><p>$$<br>{q, t_1, s_1 1, . . . , s_n 1, t_2, s_1 2, . . . , sn_ 2} ∈ S.<br>$$</p><p>![image-20201230214154969](/Users/maqi/Library/Application Support/typora-user-images/image-20201230214154969.png)</p><p>异构图的边添加规则：</p><ol><li>如果在该句子中有一个argument，则该句子和argument之间将存在一条边（图3中的黑色虚线）</li><li>$s_i$和$s$两个句子，如果他们通过精确匹配共享一个参数，则存在一条边（红色虚线）</li><li>两个argument节点$Arg_i$ 和$Arg_j$之间存在谓词，则存在一条边（黑色实线）</li><li>如果它们共享一个argument，则问题和句子之间会有一条边（红色虚线）</li></ol><p>建立了一个基于谓词的语义边缘矩阵$K$和一个异构边缘权重矩阵$A$。</p><blockquote><p>语义边缘矩阵$K$是一个存储谓词单词索引的矩阵。 </p><p>异构边缘权重矩阵$A$是存储不同类型边权重的矩阵。</p></blockquote><h3 id="Supporting-Fact-Prediction"><a href="#Supporting-Fact-Prediction" class="headerlink" title="Supporting Fact Prediction"></a>Supporting Fact Prediction</h3><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201231111925.png" alt="image-20201231111925399" style="zoom: 67%;" /><ol><li>$G_S$: graph sentence embedding(蓝色圆圈)。</li><li>BERT’s [CLS] token representation： 橙色圆圈。</li><li>$X_S^{cand}$: 候选句子。</li><li>$S_{cand}$:候选句子的相邻句子。</li></ol><p>$$<br>X_S^{cand}  = [G_S^{cand} ; BERT[CLS](q, S_{cand})]<br>$$</p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>HotpotQA</p><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201231113847.png" alt="image-20201231113847927"></p><blockquote><p>EM：完全匹配</p><p>F1：部分匹配</p></blockquote><p>在Distractor setting下的测试结果：</p><p>​        该模型在Joint上获得了39.41％的完全精确匹配分数和66.37％的部分匹配分数,远超基线模型，相比其他模型也有明显的提升。这得益于token-level BERT和graph-level SRL node的结合。</p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><h3 id="Ablation-study"><a href="#Ablation-study" class="headerlink" title="Ablation study"></a>Ablation study</h3><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201231115716.png" alt="image-20201231115716017" style="zoom:50%;" /><p>Graph:</p><ul><li><p>删除整个SRL图。 </p><p>与完整的SRLGRN模型相比，在F1评分上下降了8.46％。 如果删除SRL图，而仅使用BERT进行答案预测，则该模型将失去用于多跳推理的连接。</p></li><li><p>从SRL图中删除了基于谓词的边缘信息。</p><p>如果不合并语义边缘信息和参数类型，则答案跨度预测的F1分数降低2.9％。删除谓词边和参数类型将破坏SRL图中的参数-谓词关系，并打破推理链。</p></li></ul><p>Joint:</p><p>​    如果不共同训练模型，性能将下降4.56％。</p><p>Language Models：</p><p>​    尽管BERT获得了相对更好的性能，但ALBERT架构的参数少18X，并且比BERT更快。</p><h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>​        语义角色标注 (Semantic Role Labeling, SRL) 是一种浅层的语义分析技术，标注句子中某些短语为给定谓词的论元 (语义角色) ，如施事、受事、时间和地点等。其能够对问答系统、信息抽取和机器翻译等应用产生推动作用。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 论文阅读 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> NLP </tag>
-            
-            <tag> 机器阅读理解 </tag>
-            
-            <tag> MRC </tag>
             
         </tags>
       
