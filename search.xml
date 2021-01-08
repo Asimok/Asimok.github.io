@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>谷歌翻译接口</title>
+      <link href="2021/01/08/%E8%B0%B7%E6%AD%8C%E7%BF%BB%E8%AF%91%E6%8E%A5%E5%8F%A3/"/>
+      <url>2021/01/08/%E8%B0%B7%E6%AD%8C%E7%BF%BB%E8%AF%91%E6%8E%A5%E5%8F%A3/</url>
+      
+        <content type="html"><![CDATA[<h1 id="谷歌翻译接口"><a href="#谷歌翻译接口" class="headerlink" title="谷歌翻译接口"></a>谷歌翻译接口</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> google_trans_new</span><br></pre></td></tr></table></figure><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google_trans_new import  google_translator  </span><br><span class="line"></span><br><span class="line">translator = google_translator()  </span><br><span class="line">translate_text = translator.translate(<span class="string">&#x27;美国下一届总统将会是谁？&#x27;</span>,<span class="attribute">lang_src</span>=<span class="string">&#x27;zh-cn&#x27;</span>,lang_tgt=&#x27;en&#x27;)  </span><br><span class="line"><span class="builtin-name">print</span>(translate_text)</span><br></pre></td></tr></table></figure><blockquote><p>默认自动检测语种</p></blockquote><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Who will be <span class="keyword">the</span> next president <span class="keyword">of</span> <span class="keyword">the</span> United States? </span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SRLGRN</title>
       <link href="2020/12/31/SRLGRN/"/>
       <url>2020/12/31/SRLGRN/</url>
@@ -459,8 +484,8 @@
     
     <entry>
       <title>emqx配置https并使用nginx反向代理</title>
-      <link href="2020/11/21/emqx%E9%85%8D%E7%BD%AEhttps%E5%B9%B6%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
-      <url>2020/11/21/emqx%E9%85%8D%E7%BD%AEhttps%E5%B9%B6%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+      <link href="2020/11/20/emqx%E9%85%8D%E7%BD%AEhttps%E5%B9%B6%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+      <url>2020/11/20/emqx%E9%85%8D%E7%BD%AEhttps%E5%B9%B6%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
       
         <content type="html"><![CDATA[<h1 id="emqx配置https并使用nginx反向代理"><a href="#emqx配置https并使用nginx反向代理" class="headerlink" title="emqx配置https并使用nginx反向代理"></a>emqx配置https并使用nginx反向代理</h1><ol><li>下载域名证书，找到.crt或.key，编辑器打开，复制秘钥文本，找在线转pem工具，生成.pem文件。</li></ol><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105009.jpg" alt="621605869569_.pic_hd"></p><ol start="2"><li>在emq中启动ssl</li></ol><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105109.jpg" alt="641605869642_.pic_hd"></p><ol start="3"><li>配置nginx的反向代理</li></ol><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105124.jpg" alt="661605869702_.pic_hd"></p><ul><li>用ngix反向代理后，wss连接端口就成了443，不是8084。</li></ul><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105147.jpg" alt="681605869823_.pic_hd"></p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105159.jpg" alt="691605869841_.pic_hd"></p><ol start="4"><li>配置文件</li></ol><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105227.jpg" alt="711605869889_.pic_hd"></p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105245.jpg" alt="721605869914_.pic_hd"></p><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105709.jpg" alt="751605870352_.pic_hd"></p><ul><li>查看安装路径</li></ul><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201121105423.jpg" alt="761605870415_.pic_hd"></p><blockquote><p>但不知道什么原因，不使用nginx做反向代理的话，用wss 8084 是无法连接的。</p></blockquote>]]></content>
       
