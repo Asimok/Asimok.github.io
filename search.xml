@@ -47,9 +47,9 @@
             
             <tag> NLP </tag>
             
-            <tag> 机器阅读理解 </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> 机器阅读理解 </tag>
             
         </tags>
       
@@ -132,9 +132,9 @@
             
             <tag> NLP </tag>
             
-            <tag> 机器阅读理解 </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> 机器阅读理解 </tag>
             
             <tag> DQG </tag>
             
@@ -192,9 +192,9 @@
             
             <tag> NLP </tag>
             
-            <tag> 机器阅读理解 </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> 机器阅读理解 </tag>
             
         </tags>
       
@@ -414,9 +414,9 @@
             
             <tag> NLP </tag>
             
-            <tag> MC </tag>
-            
             <tag> 机器阅读理解 </tag>
+            
+            <tag> MC </tag>
             
         </tags>
       
@@ -443,9 +443,9 @@
             
             <tag> NLP </tag>
             
-            <tag> 机器阅读理解 </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> 机器阅读理解 </tag>
             
         </tags>
       
@@ -962,6 +962,33 @@
             <tag> NLP </tag>
             
             <tag> KG </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GRAPH-BASED RECURRENT RETRIEVER</title>
+      <link href="2020/01/09/GRAPH-BASED%20RECURRENT%20RETRIEVER/"/>
+      <url>2020/01/09/GRAPH-BASED%20RECURRENT%20RETRIEVER/</url>
+      
+        <content type="html"><![CDATA[<h2 id="GRAPH-BASED-RECURRENT-RETRIEVER"><a href="#GRAPH-BASED-RECURRENT-RETRIEVER" class="headerlink" title="GRAPH-BASED RECURRENT RETRIEVER"></a>GRAPH-BASED RECURRENT RETRIEVER</h2><blockquote><p>a new graph-based recurrent retrieval method</p><p>查找证据文档作为回答复杂问题的推理路径。</p></blockquote><p>$$<br>w_i=BERT_{CLS}(q,p_i) \in \R^d<br>$$</p><p>$$<br>P(p_i|h_t)=\sigma(w_i·h_t+b)<br>$$</p><p>$$<br>h_{t=1}=RNN(h_t,w_i) \in \R^d<br>$$</p><blockquote><p>b：偏置项</p></blockquote><ul><li>使用RNN建模问题$Q$的推理路径。</li><li>给定问题$q$，在时间步$t$时，模型从候选段落集$C_t$中找出$p_i$ ，与$q$拼接计算$p_i$的概率。</li><li>遇到$[EOE]$时结束推理，允许它在给定每个问题的情况下捕获具有任意长度的推理路径。</li></ul><h3 id="本文BERT结构："><a href="#本文BERT结构：" class="headerlink" title="本文BERT结构："></a>本文BERT结构：</h3><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210108150704.png" alt="image-20210108150704041" style="zoom:50%;" /><h3 id="RNN结构："><a href="#RNN结构：" class="headerlink" title="RNN结构："></a>RNN结构：</h3><p>$P(p_i|h_t)$：表示在时间步$t$选择段落$p_i$的概率。</p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210108151355.png" alt="image-20210108151355616" style="zoom:50%;" /><p>最终得到推理路径【$p_1,p_2$】</p><p>beam search </p><ul><li>通过束搜索得到给定时间步长的有限数量的最可能推理路径，减小输入BERT的数据量，减小计算量。</li><li>$C_1$是用在输入问题上 TF-IDF 得分最高的段落。</li><li>$C_t$是在C_1基础上，拓展的连接段落，用输入到BERT。</li><li>推理路径$E = [p_i, . . . , p_k]$乘段落概率$P(p_i|h_1) . . . P(p_k|h_{|E|})$得到beam search 的输出，即得到top B 推理路径 $E = {E_1, . . . , E_B}$作为BERT输入，再将BERT输出作为RNN输入。</li></ul><h2 id="BERT相关"><a href="#BERT相关" class="headerlink" title="BERT相关"></a>BERT相关</h2><blockquote><p>Bidirectional Encoder Representations from Transformers</p><p>是Google以无监督的方式利用大量无标注文本训练的的语言代表模型，其架构为Transformer中的Encoder。</p></blockquote><ul><li><a href="https://youtu.be/UYPa347-DdE">讲解视频</a>：<a href="https://youtu.be/UYPa347-DdE">https://youtu.be/UYPa347-DdE</a></li></ul><iframe         width="900"         height="675"         src="https://www.youtube.com/embed/UYPa347-DdE"         frameborder="0"         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"         allowfullscreen></iframe><ul><li>使用BERT预训练模型<code>bert-base-uncased</code>不区分大小写。</li></ul><p>BERT 里5个特殊tokens：</p><ol><li>[CLS]：在做分类任务时其最后一层的repr. 会被视为整个输入序列的repr。</li></ol><blockquote><p>repr指的都是一个可以用来代表某词汇（在某个语境下）的多维连续向量（continuous vector）。</p></blockquote><ol><li>[SEP]：有两个句子的文本会被串接成一个输入序列，并在两句之间插入这个token 以做区隔。</li><li>[UNK]：没出现在BERT 字典里头的字会被这个token 取代。</li><li>[PAD]：zero padding 遮罩，将长度不一的输入序列补齐方便做batch 运算。</li><li>[MASK]：未知遮罩，仅在预训练阶段会用到。</li></ol><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>加载BERT预训练模型</p><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = <span class="module-access"><span class="module"><span class="identifier">BertForGraphRetriever</span>.</span></span>from<span class="constructor">_pretrained(<span class="params">args</span>.<span class="params">bert_model</span>,<span class="params">cache_dir</span>=PYTORCH_PRETRAINED_BERT_CACHE <span class="operator">/</span> &#x27;<span class="params">distributed_</span>&#123;&#125;&#x27;.<span class="params">format</span>(-1)</span>,graph_retriever_config=graph_retriever_config)</span><br></pre></td></tr></table></figure><blockquote><p>默认从缓存中加载，下载之后源码中替换自己本地路径即可。</p></blockquote><ul><li>any() 函数用于判断给定的可迭代参数 iterable 是否全部为 False，则返回 False，如果有一个为 True，则返回 True。</li></ul><p>使用BertAdam自定义Adam优化器</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">optimizer</span> = BertAdam(optimizer_grouped_parameters,</span><br><span class="line">                             <span class="attr">lr</span>=args.learning_rate,</span><br><span class="line">                             <span class="attr">warmup</span>=args.warmup_proportion,</span><br><span class="line">                             <span class="attr">t_total</span>=t_total,</span><br><span class="line">                             <span class="attr">max_grad_norm</span>=<span class="number">1.0</span>)</span><br></pre></td></tr></table></figure><blockquote><p>在前10%的steps中，lr从0线性增加到 init_learning_rate，这个阶段又叫 warmup，然后，lr又从 init_learning_rate 线性衰减到0（完成所有steps）。</p></blockquote><p>对问题和段落加上[CLS],[SEP]</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tokenize_question</span>(<span class="params">question, tokenizer</span>):</span></span><br><span class="line">    tokens_q = tokenizer.tokenize(question)</span><br><span class="line">    tokens_q = [<span class="string">&#x27;[CLS]&#x27;</span>] + tokens_q + [<span class="string">&#x27;[SEP]&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> tokens_q</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tokenize_paragraph</span>(<span class="params">p, tokens_q, max_seq_length, tokenizer</span>):</span></span><br><span class="line">    tokens_p = tokenizer.tokenize(p)[:max_seq_length - <span class="built_in">len</span>(tokens_q) - <span class="number">1</span>]</span><br><span class="line">    tokens_p = tokens_p + [<span class="string">&#x27;[SEP]&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    padding = [<span class="number">0</span>] * (max_seq_length - <span class="built_in">len</span>(tokens_p) - <span class="built_in">len</span>(tokens_q))</span><br><span class="line"></span><br><span class="line">    input_ids_ = tokenizer.convert_tokens_to_ids(tokens_q + tokens_p)</span><br><span class="line">    input_masks_ = [<span class="number">1</span>] * <span class="built_in">len</span>(input_ids_)</span><br><span class="line">    segment_ids_ = [<span class="number">0</span>] * <span class="built_in">len</span>(tokens_q) + [<span class="number">1</span>] * <span class="built_in">len</span>(tokens_p)</span><br><span class="line"></span><br><span class="line">    input_ids_ += padding</span><br><span class="line">    input_masks_ += padding</span><br><span class="line">    segment_ids_ += padding</span><br><span class="line"></span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">len</span>(input_ids_) == max_seq_length</span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">len</span>(input_masks_) == max_seq_length</span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">len</span>(segment_ids_) == max_seq_length</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> input_ids_, input_masks_, segment_ids_</span><br></pre></td></tr></table></figure><p>RNN初始化</p><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.rw = nn.<span class="constructor">Linear(2 <span class="operator">*</span> <span class="params">config</span>.<span class="params">hidden_size</span>, <span class="params">config</span>.<span class="params">hidden_size</span>)</span></span><br></pre></td></tr></table></figure><p>通过beam search 找出top B 推理路径</p><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">b = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> b &lt; beam:</span><br><span class="line">    s, p = torch.<span class="built_in">max</span>(score.<span class="built_in">view</span>(score.size(<span class="number">0</span>) * score.size(<span class="number">1</span>)), <span class="built_in">dim</span>=<span class="number">0</span>)</span><br><span class="line">    s = s.item()</span><br><span class="line">    p = p.item()</span><br><span class="line">    <span class="built_in">row</span> = p // score.size(<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">col</span> = p <span class="symbol">%</span> score.size(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> j == <span class="number">0</span>:</span><br><span class="line">        score[:, <span class="built_in">col</span>] = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        score[<span class="built_in">row</span>, <span class="built_in">col</span>] = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    p = [[index <span class="keyword">for</span> index <span class="keyword">in</span> pred_[<span class="built_in">row</span>][<span class="number">0</span>]] + [<span class="built_in">col</span>],</span><br><span class="line">         output[<span class="built_in">row</span>].topk(k=<span class="number">2</span>, <span class="built_in">dim</span>=<span class="number">0</span>)[<span class="number">1</span>].tolist(),</span><br><span class="line">         s]</span><br><span class="line">    new_pred_.<span class="built_in">append</span>(p)</span><br><span class="line"></span><br><span class="line">    p = [[p_ <span class="keyword">for</span> p_ <span class="keyword">in</span> prb] <span class="keyword">for</span> prb <span class="keyword">in</span> prob_[<span class="built_in">row</span>]] + [output[<span class="built_in">row</span>].tolist()]</span><br><span class="line">    new_prob_.<span class="built_in">append</span>(p)</span><br><span class="line"></span><br><span class="line">    state_tmp[b].copy_(state_[<span class="built_in">row</span>])</span><br><span class="line">    b += <span class="number">1</span></span><br></pre></td></tr></table></figure><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>下载程序：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">!git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/AkariAsai/</span>learning_to_retrieve_reasoning_paths.git</span><br><span class="line">%cd <span class="regexp">/content/</span>learning_to_retrieve_reasoning_paths</span><br><span class="line">!pip install -r requirements.txt</span><br></pre></td></tr></table></figure><p>下载数据集</p><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">%<span class="keyword">cd</span> /content/learning_to_retrieve_reasoning_paths</span><br><span class="line">!<span class="keyword">mkdir</span> data</span><br><span class="line">%<span class="keyword">cd</span> data</span><br><span class="line">!<span class="keyword">mkdir</span> hotpot</span><br><span class="line">%<span class="keyword">cd</span> hotpot</span><br><span class="line">!gdown https:<span class="comment">//drive.google.com/uc?id=1AIRo66I2Izs80nNLt4MaLu7kqhTuIQ0u</span></span><br><span class="line">!unzip hotpotqa_new_selector_train_data_db_2017_10_12_fix.<span class="keyword">zip</span>.zip____</span><br><span class="line">!<span class="keyword">rm</span> hotpotqa_new_selector_train_data_db_2017_10_12_fix.<span class="keyword">zip</span>.zip____</span><br></pre></td></tr></table></figure><p>训练模型</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%cd <span class="regexp">/content/</span>learning_to_retrieve_reasoning_paths/graph_retriever</span><br></pre></td></tr></table></figure><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!python3 run_graph_retriever.py \</span><br><span class="line"><span class="params">--task</span> hotpot_distractor \</span><br><span class="line"><span class="params">--bert_model</span> bert-base-uncased <span class="params">--do_lower_case</span> \</span><br><span class="line"><span class="params">--train_file_path</span> <span class="string">/content/learning_to_retrieve_reasoning_paths/data/hotpot/hotpotqa_new_selector_train_data_db_2017_10_12_fix/db=wiki_hotpotqa.db_hotpotqa_new_test_tfidf_k=50.pruning_l=100_tag_me=True.prune_after_agg=False.prune_in_article=False_use_link=True_start=0_end=5000.json</span> \</span><br><span class="line"><span class="params">--output_dir</span> graph_retriever/ \</span><br><span class="line"><span class="params">--max_para_num</span> 10 \</span><br><span class="line"><span class="params">--neg_chunk</span> 8 <span class="params">--train_batch_size</span> 4 <span class="params">--gradient_accumulation_steps</span> 4 \</span><br><span class="line"><span class="params">--learning_rate</span> 3e-5 <span class="params">--num_train_epochs</span> 3 \</span><br><span class="line"><span class="params">--max_select_num</span> 3</span><br></pre></td></tr></table></figure><blockquote><ul><li><p>–max_para_num：与问题相关的段落数量。如果–max_para_num是n，问题的基础真实段落数量是k(2)，那么有n-2个段落作为训练的反例。此时反例数量为8。</p></li><li><p>–neg_chunk：为了控制GPU内存消耗，将负例拆分为小块。</p></li><li><p>–max_select_num：指定模型推理步骤的最大数量，如果问题的基础真实段落数量是k，这个值应该为k+1，1表示结束符号EOE，此时k+1=3。</p></li></ul></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> MRC </tag>
+            
+            <tag> 机器阅读理解 </tag>
+            
+            <tag> BERT </tag>
+            
+            <tag> RNN </tag>
             
         </tags>
       
