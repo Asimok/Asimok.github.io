@@ -1,3 +1,5 @@
+https://www.asimok.site/2021/01/15/READING%20AND%20ANSWERING%20GIVEN%20REASONING%20PATHS/
+https://www.asimok.site/2021/01/09/GRAPH-BASED%20RECURRENT%20RETRIEVER/
 https://www.asimok.site/2021/01/08/%E8%B0%B7%E6%AD%8C%E7%BF%BB%E8%AF%91%E6%8E%A5%E5%8F%A3/
 https://www.asimok.site/2020/12/31/SRLGRN/
 https://www.asimok.site/2020/12/20/Argparse%E6%95%99%E7%A8%8B/
@@ -32,4 +34,3 @@ https://www.asimok.site/2020/11/03/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/
 https://www.asimok.site/2020/10/29/TransE/
 https://www.asimok.site/2020/10/26/dyjw/
 https://www.asimok.site/2020/10/14/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E5%B5%8C%E5%85%A5%EF%BC%9A%E6%96%B9%E6%B3%95%E5%92%8C%E5%BA%94%E7%94%A8%E7%9A%84%E7%BB%BC%E8%BF%B0/
-https://www.asimok.site/2020/01/09/GRAPH-BASED%20RECURRENT%20RETRIEVER/
