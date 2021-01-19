@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title>A Simple and Effective Model for Answering Multi-span Questions</title>
+      <link href="2021/01/20/A%20Simple%20and%20Effective%20Model%20for%20Answering%20Multi-span%20Questions/"/>
+      <url>2021/01/20/A%20Simple%20and%20Effective%20Model%20for%20Answering%20Multi-span%20Questions/</url>
+      
+        <content type="html"><![CDATA[<h1 id="A-Simple-and-Effective-Model-for-Answering-Multi-span-Questions"><a href="#A-Simple-and-Effective-Model-for-Answering-Multi-span-Questions" class="headerlink" title="A Simple and Effective Model for Answering Multi-span Questions"></a>A Simple and Effective Model for Answering Multi-span Questions</h1><blockquote><p>论文：EMNLP20-A Simple and Effective Model for Answering Multi-span Questions</p><p>代码：<a href="https://github.com/eladsegal/tag-based-multi-span-extraction">https://github.com/eladsegal/tag-based-multi-span-extraction</a></p><p>multi-span architecture (TASE: TAg-based Span Extraction)</p><p>traditional single-span extraction (SSE)</p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>​        传统的阅读理解模型将问题的答案限制在单个跨度，对于答案处于多跨度的问题会有限制，本文提出了一个简单的体系结构，通过将任务转换为序列标记问题来回答多跨度问题，为每个输入token预测是否应该将其作为输出的一部分。</p><p>阅读理解(RC)任务：</p><ul><li>在给定一个问题和上下文的情况下提供答案。</li></ul><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><h3 id="Single-span-Model"><a href="#Single-span-Model" class="headerlink" title="Single-span Model"></a>Single-span Model</h3><p>question-context-answer triplets $(q_i, c_i, a_i)^N_{i=1}$</p><p>目标：学习一个函数将一个question-context对映射到answer。</p><p>将question and context编码：<br>$$<br>h = Encoder([q, c])<br>$$<br>$h$是所有输入token的上下文表示序列:<br>$$<br>h = (h_1, . . . , h_m)<br>$$<br>前馈网络:<br>$$<br>p_{start}^ i = softmax (f_{start}(h_1), . . . , f_{start}(h_m))_i<br>$$</p><p>$$<br>p_{end}^ i = softmax (f_{end}(h_1), . . . , f_{end}(h_m))_i<br>$$</p><blockquote><p>通过$f_{start}(hi) and f_{end}(hi)$计算每个token的得分，再通过softmax得到概率分布。</p></blockquote><p>提取答案范围：<br>$$<br>(s, e) = \underset {s \le e} {arg max}  \ p_s^{start}  p_e^{end}<br>$$</p><h3 id="Multi-span-Model"><a href="#Multi-span-Model" class="headerlink" title="Multi-span Model"></a>Multi-span Model</h3><h4 id="Span-Extraction-as-Sequence-Tagging"><a href="#Span-Extraction-as-Sequence-Tagging" class="headerlink" title="Span Extraction as Sequence Tagging"></a>Span Extraction as Sequence Tagging</h4><p>与Single-span Model相同的是：使用相同的上下文表示$h$</p><p>不同的是：不是预测开始和结束概率，而是为每个标记在一组标签上输出概率分布。</p><p>two tagging schemes：</p><ul><li><p>BIO</p><blockquote><p>B：表示输出范围的第一个标记</p><p>I：表示范围中的后续标记</p><p>O：表示不属于输出范围的标记</p></blockquote></li><li><p>IO</p><blockquote><p>I：单词被标记为答案的一部分</p><p>O：单词未被标记为答案的一部分</p></blockquote></li></ul><blockquote><p>本文选择较为简单的<strong>IO</strong></p></blockquote><p><em>这里给一个例子：</em></p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210118200430.png" alt="image-20210118200430617" style="zoom:50%;" /><p>第i个token的标签的概率：<br>$$<br>p_i= softmax(f(h_i))<br>$$</p><h4 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h4><p>给定的答案跨度在输入中多次出现的情况：</p><blockquote><p>input：“X Y Z Y Z”</p><p>answer span：{“X”, “Z”},</p><p>taggings：B O B O B, B O B O O, and B O O O B.</p><ul><li>X必然会出现</li><li>Y必然不会出现</li><li>Z至少出现1次</li></ul></blockquote><p><strong>在这种情况下不能明确确定基本事实BIO。</strong></p><p>为了处理这种情况，列举了所有可能出现的标签组合：<br>$$<br>possibly-correct taggings, \tau<br>$$<br>通过最大化所有可能的正确标记的边界概率来训练模型<br>$$<br>\log\ p(\tau | h) = log \sum_{T ∈ \tau}(\Pi^m_{i=1}(p_i[T_i]))<br>$$</p><blockquote><p>$p_i[T_i]$是token i拥有标签$T_i$的概率。</p><p>当p为1是损失最小。</p></blockquote><h4 id="Decoding-Spans-from-a-Tagging"><a href="#Decoding-Spans-from-a-Tagging" class="headerlink" title="Decoding Spans from a Tagging"></a>Decoding Spans from a Tagging</h4><p>$$<br>\hat{T} = \underset{T∈\nu}{arg\max} (\Pi^m_{i=1}(p_i[T_i]))<br>$$</p><blockquote><p>$\hat{T}$：最有可能的标记</p><p>$\nu$：所有有效标记的集合 </p></blockquote><p>对于<strong>IO</strong>标签，所有标签均有效，并且通过独立预测每个token中概率最高的标签来实现最大化。</p><blockquote><p>由于答案跨度在RC任务中从不相邻，因此<strong>IO</strong>标记通过选择所有以<strong>I</strong>连续标记的最大跨度来生成一组跨度。</p></blockquote><h3 id="“Multi-Head”-Models"><a href="#“Multi-Head”-Models" class="headerlink" title="“Multi-Head” Models"></a>“Multi-Head” Models</h3><p>一些RC数据集包含的一些问题，其输出不一定是跨度的，例如：通过算术运算获取答案。</p><p>对此一些模型使用了**<em>multi-head architecture**</em><br>$$<br>p_z(a | q, c) = p_z(a | h)<br>$$</p><blockquote><p>每个head z是一个小模块，将上下文表示h作为输入并计算答案的概率分布。</p></blockquote><p>为了确定哪个问题需要使用哪个头，需要训练一个附加模型：<br>$$<br>p_{head}(z | q, c) = p_{head}(z | h)<br>$$<br>答案的概率分布：<br>$$<br>p(a | q, c) = \sum_z p_{head}(z | q, c) · p_z(a | q, c)<br>$$</p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><ul><li><p>DROP</p><blockquote><p>DROP’s leaderboard：<a href="https://leaderboard.allenai.org/drop/submissions/public">https://leaderboard.allenai.org/drop/submissions/public</a></p></blockquote></li><li><p>QUOREF</p></li></ul><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210119092212.png" alt="image-20210119092212691"></p><ul><li><p>模型比较：</p><p>在DROP上:</p><p>​        使用$BERT_{LARGE}$作为encoder的$TASE_{BIO}+SSE (BERT_{LARGE})$超越所有处理multi-span questions的模型。相比$BERT-C_{ALC}$和$MTMSN$效果较为显著。</p><p>在QUOREF上:</p><p>​        处理multi-span questions是性能远超$CorefRoBERTa_{LARGE}$ 20个百分点。</p></li><li><p>跨度提取架构比较</p><p>​        在DROP和QUOREF中，用多跨度提取替换单跨度提取可以显著改善多跨度问题的性能，而单跨度问题的性能较之前变化不大。这表明多跨度架构本身可以用作通用跨度提取方法。</p></li><li><p>tagging方案的效果比较</p><p>​        <strong>BIO</strong>和<strong>IO</strong>方案，结果非常相似。<strong>IO</strong>略占优势。</p></li></ul><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>​        本文提出的的$TASE_{IO} + SSE$模型在整个测试集上都取得了较高的得分。</p><p>​        本文将回答多跨度问题的任务作为序列标记问题，并提出了一个简单的对应多跨度体系结构。 使用多跨度体系结构替换标准的单跨</p><p>度体系结构可以显著改善多跨度问题的结果，而不会损害单跨度问题的性能，从而获得较好的QUOREF结果。 将多跨度架构集成到现有模</p><p>型中可以进一步提高DROP的性能。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> NLP </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MRC </tag>
+            
+            <tag> NLP </tag>
+            
+            <tag> RC </tag>
+            
+            <tag> 机器阅读理解 </tag>
+            
+            <tag> DROP </tag>
+            
+            <tag> QUOREF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>READING AND ANSWERING GIVEN REASONING PATHS</title>
       <link href="2021/01/15/READING%20AND%20ANSWERING%20GIVEN%20REASONING%20PATHS/"/>
       <url>2021/01/15/READING%20AND%20ANSWERING%20GIVEN%20REASONING%20PATHS/</url>
@@ -20,9 +55,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -53,9 +88,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -111,9 +146,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -196,9 +231,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -256,9 +291,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -507,9 +542,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -600,9 +635,9 @@
       
         <tags>
             
-            <tag> Transformer </tag>
-            
             <tag> NLP </tag>
+            
+            <tag> Transformer </tag>
             
             <tag> 机器翻译 </tag>
             
