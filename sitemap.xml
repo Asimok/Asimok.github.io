@@ -699,7 +699,7 @@
 
   
   <url>
-    <loc>https://www.asimok.site/categories/NLP/</loc>
+    <loc>https://www.asimok.site/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/</loc>
     <lastmod>2021-01-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -713,14 +713,14 @@
   </url>
   
   <url>
-    <loc>https://www.asimok.site/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/</loc>
+    <loc>https://www.asimok.site/categories/%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2021-01-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.asimok.site/categories/%E6%95%99%E7%A8%8B/</loc>
+    <loc>https://www.asimok.site/categories/NLP/</loc>
     <lastmod>2021-01-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
