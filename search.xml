@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>AllenNLP实践</title>
+      <link href="2021/01/26/allennlp/"/>
+      <url>2021/01/26/allennlp/</url>
+      
+        <content type="html"><![CDATA[<h1 id="AllenNLP"><a href="#AllenNLP" class="headerlink" title="AllenNLP"></a>AllenNLP</h1><ul><li><a href="https://allennlp.org/">https://allennlp.org/</a></li></ul><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="keyword">create</span> -n allennlp python=<span class="number">3.7</span></span><br><span class="line">pip <span class="keyword">install</span> allennlp</span><br><span class="line">pip <span class="keyword">install</span> allennlp-models</span><br><span class="line">pip <span class="keyword">install</span> allennlp_optuna</span><br><span class="line">git <span class="keyword">clone</span> https://github.com/allenai/allennlp-<span class="keyword">server</span></span><br><span class="line">cd allennlp-<span class="keyword">server</span></span><br><span class="line">pip <span class="keyword">install</span> <span class="comment">--editable .</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AllenNLP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>A Simple and Effective Model for Answering Multi-span Questions</title>
       <link href="2021/01/20/A%20Simple%20and%20Effective%20Model%20for%20Answering%20Multi-span%20Questions/"/>
       <url>2021/01/20/A%20Simple%20and%20Effective%20Model%20for%20Answering%20Multi-span%20Questions/</url>
@@ -31,6 +56,31 @@
             <tag> DROP </tag>
             
             <tag> QUOREF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>conda创建新环境</title>
+      <link href="2021/01/19/conda%E5%88%9B%E5%BB%BA%E6%96%B0%E7%8E%AF%E5%A2%83/"/>
+      <url>2021/01/19/conda%E5%88%9B%E5%BB%BA%E6%96%B0%E7%8E%AF%E5%A2%83/</url>
+      
+        <content type="html"><![CDATA[<h1 id="conda创建新环境"><a href="#conda创建新环境" class="headerlink" title="conda创建新环境"></a>conda创建新环境</h1><h2 id="创建新环境"><a href="#创建新环境" class="headerlink" title="创建新环境"></a>创建新环境</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n <span class="string">&#x27;环境名&#x27;</span> <span class="attribute">python</span>=3.6</span><br></pre></td></tr></table></figure><h2 id="删除环境"><a href="#删除环境" class="headerlink" title="删除环境"></a>删除环境</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">remove</span> -n <span class="string">&#x27;环境名&#x27;</span> <span class="comment">--all</span></span><br></pre></td></tr></table></figure><h2 id="重命名环境"><a href="#重命名环境" class="headerlink" title="重命名环境"></a>重命名环境</h2><p>conda 其实没有重命名指令，实现重命名是通过 clone 完成的，分两步：</p><ol><li>先 clone 一份 new name 的环境</li><li>删除 old name 的环境</li></ol><p>例：比如，想把环境env1 重命名成env2</p><ul><li>第1步</li></ul><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n env2 --<span class="keyword">clone</span> <span class="title">env1</span></span><br></pre></td></tr></table></figure><ul><li>第2步</li></ul><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">conda</span> remove -n env<span class="number">1</span> --<span class="literal">all</span></span><br></pre></td></tr></table></figure><ul><li>结果</li></ul><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">conda</span> <span class="literal">info</span> -e</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> conda </tag>
             
         </tags>
       

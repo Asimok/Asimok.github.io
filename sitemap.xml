@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.asimok.site/2021/01/26/allennlp/</loc>
+    
+    <lastmod>2021-01-26</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.asimok.site/2021/01/20/A%20Simple%20and%20Effective%20Model%20for%20Answering%20Multi-span%20Questions/</loc>
+    
+    <lastmod>2021-01-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.asimok.site/2021/01/19/conda%E5%88%9B%E5%BB%BA%E6%96%B0%E7%8E%AF%E5%A2%83/</loc>
     
     <lastmod>2021-01-19</lastmod>
     
@@ -333,7 +347,7 @@
 
   <url>
     <loc>https://www.asimok.site/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -341,357 +355,364 @@
   
   <url>
     <loc>https://www.asimok.site/tags/MRC/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/NLP/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/RC/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E6%9C%BA%E5%99%A8%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/DROP/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/QUOREF/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/Argparse/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/python/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/pytorch/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/Transformer/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/bert/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/GCN/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/KGE/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/KG/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/BERT/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/RNN/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/HOLE/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/MC/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/Liunx/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/Ubuntu/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/Linux/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/MemNN/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/https/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/nginx/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/PyTorch/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/DQG/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/TransE/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.asimok.site/tags/AllenNLP/</loc>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/conda/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/emqx/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/MQTT/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/ssl/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/wss/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/Jupyter/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/centos/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/nodejs/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/Numpy/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/Android/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/Arduino/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/C/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/ESP8266/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E6%AD%A3%E5%88%99%E5%8C%96/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E4%BC%98%E5%8C%96%E5%99%A8/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -700,56 +721,56 @@
   
   <url>
     <loc>https://www.asimok.site/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/categories/PyTorch/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/categories/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/categories/NLP/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/categories/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.asimok.site/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
