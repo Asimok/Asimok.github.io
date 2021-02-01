@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>常见报错汇总 | 没有胡子的猫</title><meta name="keywords" content="报错,经验"><meta name="author" content="没有胡子的猫"><meta name="copyright" content="没有胡子的猫"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="常见报错汇总PyTorch报错： 1RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_locat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见报错汇总">
+<meta property="og:url" content="https://www.asimok.site/2020/11/18/%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="没有胡子的猫">
+<meta property="og:description" content="常见报错汇总PyTorch报错： 1RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_locat">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://asimov-1258043582.cos.ap-nanjing.myqcloud.com/img/20201202174343.jpeg">
+<meta property="article:published_time" content="2020-11-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-02-01T07:59:52.929Z">
+<meta property="article:author" content="没有胡子的猫">
+<meta property="article:tag" content="报错">
+<meta property="article:tag" content="经验">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://asimov-1258043582.cos.ap-nanjing.myqcloud.com/img/20201202174343.jpeg"><link rel="shortcut icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/20201101224837.jpg"><link rel="canonical" href="https://www.asimok.site/2020/11/18/%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E6%B1%87%E6%80%BB/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f7b2db71f36e01a6dd398521e7c633ca";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="/Asimok"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-01 15:59:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'true'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/mouse.css"><link rel="stylesheet" href="/css/scrollbar.css"><link rel="stylesheet" href="/gitcalendar/css/gitcalendar.css"/><link rel="stylesheet" href="/magnet/css/catalogMagnet.css"/><link rel="stylesheet" href="/clock/css/clock.css"/><meta name="generator" content="Hexo 5.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://gitee.com/Asimok/picgo/raw/master/img/night1/20201101224837.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">59</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://asimov-1258043582.cos.ap-nanjing.myqcloud.com/img/20201202174343.jpeg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">没有胡子的猫</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">常见报错汇总</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-11-17T16:00:00.000Z" title="发表于 2020-11-18 00:00:00">2020-11-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-01T07:59:52.929Z" title="更新于 2021-02-01 15:59:52">2021-02-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">137</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2020/11/18/%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E6%B1%87%E6%80%BB/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2020/11/18/%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E6%B1%87%E6%80%BB/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="常见报错汇总"><a href="#常见报错汇总" class="headerlink" title="常见报错汇总"></a>常见报错汇总</h1><h2 id="PyTorch"><a href="#PyTorch" class="headerlink" title="PyTorch"></a>PyTorch</h2><p>报错：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RuntimeError: Attempting <span class="keyword">to</span> deserialize <span class="keyword">object</span> <span class="keyword">on</span> a CUDA device but torch.cuda.is_available() <span class="keyword">is</span> <span class="keyword">False</span>. <span class="keyword">If</span> you are running <span class="keyword">on</span> a CPU-<span class="keyword">only</span> machine, please use torch.<span class="keyword">load</span> <span class="keyword">with</span> map_location=torch.device(<span class="string">&#x27;cpu&#x27;</span>) <span class="keyword">to</span> map your storages <span class="keyword">to</span> the CPU.</span><br></pre></td></tr></table></figure>
+
+<p>解决：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">torch</span><span class="selector-class">.load</span>(xxx)改成 <span class="selector-tag">torch</span><span class="selector-class">.load</span>(xxx,map_location=<span class="string">&#x27;cpu&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>报错：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx: [emerg] bind() <span class="keyword">to</span> 0.0.0.0:443 failed (98:<span class="built_in"> Address </span>already <span class="keyword">in</span> use)</span><br></pre></td></tr></table></figure>
+
+<p>解决：</p>
+<ol>
+<li>查看443端口是否被占用？是哪个占用的？</li>
+</ol>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anon <span class="string">| grep 443</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>杀掉占用的443端口的进程</li>
+</ol>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fuser -k <span class="number">443</span>/tcp</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>重启nginx</li>
+</ol>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service nginx <span class="literal">start</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>重新加载配置文件</li>
+</ol>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">nginx -s reload</span></span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">没有胡子的猫</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.asimok.site/2020/11/18/%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E6%B1%87%E6%80%BB/">https://www.asimok.site/2020/11/18/常见报错汇总/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.asimok.site" target="_blank">没有胡子的猫</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%8A%A5%E9%94%99/">报错</a><a class="post-meta__tags" href="/tags/%E7%BB%8F%E9%AA%8C/">经验</a></div><div class="post_share"><div class="social-share" data-image="https://asimov-1258043582.cos.ap-nanjing.myqcloud.com/img/20201202174343.jpeg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/11/19/Attention%20Is%20All%20You%20Need/"><img class="prev-cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201117211209.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Attention Is All You Need</div></div></a></div><div class="next-post pull-right"><a href="/2020/11/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/"><img class="next-cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201117103456.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">机器学习基础</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://gitee.com/Asimok/picgo/raw/master/img/night1/20201101224837.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"><div class="author-info__name">没有胡子的猫</div><div class="author-info__description">记录自己的成长历程</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">59</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Asimok"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Asimok" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maqi_nepu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_39827677" target="_blank" title="CSDN"><i class="fab fa-internet-explorer"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/mmqrcode1605604352215.png" target="_blank" title="wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/qrcode_1605604361959.jpg" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div></div><div class="sticky_layout"><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎访问我的博客<br/>目前会写一些关于人工智能基础的博客，记录自己学习过程！<br/>做过的软件，硬件项目有空会逐一开源！</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/" title="PyTorch学习笔记(一)"><img src="https://gitee.com/Asimok/picgo/raw/master/img/night1/20201113165119.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PyTorch学习笔记(一)"></a><div class="content"><a class="title" href="/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/" title="PyTorch学习笔记(一)">PyTorch学习笔记(一)</a><time datetime="2021-01-31T16:00:00.000Z" title="发表于 2021-02-01 00:00:00">2021-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%89)/" title="PyTorch学习笔记(三)"><img src="https://gitee.com/Asimok/picgo/raw/master/img/night1/20201113165119.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PyTorch学习笔记(三)"></a><div class="content"><a class="title" href="/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%89)/" title="PyTorch学习笔记(三)">PyTorch学习笔记(三)</a><time datetime="2021-01-31T16:00:00.000Z" title="发表于 2021-02-01 00:00:00">2021-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/" title="PyTorch学习笔记(二)"><img src="https://gitee.com/Asimok/picgo/raw/master/img/night1/20201113165119.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PyTorch学习笔记(二)"></a><div class="content"><a class="title" href="/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/" title="PyTorch学习笔记(二)">PyTorch学习笔记(二)</a><time datetime="2021-01-31T16:00:00.000Z" title="发表于 2021-02-01 00:00:00">2021-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E5%9B%9B)/" title="PyTorch学习笔记(四)"><img src="https://gitee.com/Asimok/picgo/raw/master/img/night1/20201113165119.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PyTorch学习笔记(四)"></a><div class="content"><a class="title" href="/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E5%9B%9B)/" title="PyTorch学习笔记(四)">PyTorch学习笔记(四)</a><time datetime="2021-01-31T16:00:00.000Z" title="发表于 2021-02-01 00:00:00">2021-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/01/%E4%BD%BF%E7%94%A8Nginx%E9%85%8D%E7%BD%AE%E5%90%8C%E4%B8%80%E7%AB%AF%E5%8F%A3%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6/" title="使用Nginx配置同一端口访问不同路径下的文件"><img src="https://gitee.com/Asimok/picgo/raw/master/img/night1/image-20201209112109135.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Nginx配置同一端口访问不同路径下的文件"></a><div class="content"><a class="title" href="/2021/02/01/%E4%BD%BF%E7%94%A8Nginx%E9%85%8D%E7%BD%AE%E5%90%8C%E4%B8%80%E7%AB%AF%E5%8F%A3%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6/" title="使用Nginx配置同一端口访问不同路径下的文件">使用Nginx配置同一端口访问不同路径下的文件</a><time datetime="2021-01-31T16:00:00.000Z" title="发表于 2021-02-01 00:00:00">2021-02-01</time></div></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="card-content"><div class="item-headline"><i class="fas fa-bolt"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/NLP/"><span class="card-category-list-name">NLP</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PyTorch/"><span class="card-category-list-name">PyTorch</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%99%E7%A8%8B/"><span class="card-category-list-name">教程</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">机器学习</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">硬件开发</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"><span class="card-category-list-name">论文阅读</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">软件开发</span><span class="card-category-list-count">1</span></a></li>
+            
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/MRC/" style="font-size: 1.33em; color: rgb(39, 176, 20)">MRC</a><a href="/tags/NLP/" style="font-size: 1.5em; color: rgb(114, 196, 138)">NLP</a><a href="/tags/RC/" style="font-size: 1.16em; color: rgb(95, 125, 63)">RC</a><a href="/tags/%E6%9C%BA%E5%99%A8%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3/" style="font-size: 1.39em; color: rgb(99, 89, 79)">机器阅读理解</a><a href="/tags/DROP/" style="font-size: 1.1em; color: rgb(13, 88, 120)">DROP</a><a href="/tags/QUOREF/" style="font-size: 1.1em; color: rgb(23, 74, 197)">QUOREF</a><a href="/tags/Transformer/" style="font-size: 1.1em; color: rgb(65, 193, 187)">Transformer</a><a href="/tags/%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91/" style="font-size: 1.1em; color: rgb(170, 86, 118)">机器翻译</a><a href="/tags/pytorch/" style="font-size: 1.21em; color: rgb(47, 13, 135)">pytorch</a><a href="/tags/bert/" style="font-size: 1.1em; color: rgb(4, 27, 168)">bert</a><a href="/tags/GCN/" style="font-size: 1.1em; color: rgb(37, 165, 140)">GCN</a><a href="/tags/KGE/" style="font-size: 1.21em; color: rgb(197, 54, 48)">KGE</a><a href="/tags/KG/" style="font-size: 1.27em; color: rgb(15, 28, 72)">KG</a><a href="/tags/BERT/" style="font-size: 1.16em; color: rgb(183, 14, 46)">BERT</a><a href="/tags/RNN/" style="font-size: 1.16em; color: rgb(35, 162, 200)">RNN</a><a href="/tags/HOLE/" style="font-size: 1.1em; color: rgb(181, 124, 49)">HOLE</a><a href="/tags/MC/" style="font-size: 1.1em; color: rgb(34, 118, 156)">MC</a><a href="/tags/Liunx/" style="font-size: 1.1em; color: rgb(120, 146, 83)">Liunx</a><a href="/tags/Ubuntu/" style="font-size: 1.1em; color: rgb(112, 150, 178)">Ubuntu</a><a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 1.16em; color: rgb(186, 179, 41)">配置</a><a href="/tags/Linux/" style="font-size: 1.1em; color: rgb(170, 164, 153)">Linux</a><a href="/tags/MemNN/" style="font-size: 1.1em; color: rgb(28, 90, 116)">MemNN</a><a href="/tags/%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3/" style="font-size: 1.1em; color: rgb(185, 92, 66)">阅读理解</a><a href="/tags/HotpotQA/" style="font-size: 1.1em; color: rgb(7, 172, 83)">HotpotQA</a><a href="/tags/https/" style="font-size: 1.16em; color: rgb(16, 115, 51)">https</a><a href="/tags/nginx/" style="font-size: 1.21em; color: rgb(66, 115, 53)">nginx</a><a href="/tags/PyTorch/" style="font-size: 1.44em; color: rgb(76, 6, 172)">PyTorch</a><a href="/tags/DQG/" style="font-size: 1.1em; color: rgb(69, 109, 122)">DQG</a><a href="/tags/TransE/" style="font-size: 1.1em; color: rgb(47, 36, 192)">TransE</a><a href="/tags/AllenNLP/" style="font-size: 1.1em; color: rgb(41, 136, 92)">AllenNLP</a><a href="/tags/conda/" style="font-size: 1.16em; color: rgb(39, 140, 40)">conda</a><a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 1.16em; color: rgb(40, 9, 73)">教程</a><a href="/tags/emqx/" style="font-size: 1.1em; color: rgb(32, 163, 116)">emqx</a><a href="/tags/MQTT/" style="font-size: 1.21em; color: rgb(120, 71, 196)">MQTT</a><a href="/tags/ssl/" style="font-size: 1.1em; color: rgb(13, 128, 82)">ssl</a><a href="/tags/wss/" style="font-size: 1.1em; color: rgb(68, 139, 34)">wss</a><a href="/tags/Jupyter/" style="font-size: 1.1em; color: rgb(55, 4, 57)">Jupyter</a><a href="/tags/centos/" style="font-size: 1.1em; color: rgb(95, 86, 198)">centos</a><a href="/tags/nodejs/" style="font-size: 1.1em; color: rgb(171, 23, 98)">nodejs</a><a href="/tags/Argparse/" style="font-size: 1.1em; color: rgb(48, 82, 87)">Argparse</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/02/"><span class="card-archive-list-date">二月 2021</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/01/"><span class="card-archive-list-date">一月 2021</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/12/"><span class="card-archive-list-date">十二月 2020</span><span class="card-archive-list-count">15</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">15</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">3</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">48</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-10-31T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">34.7k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-02-01T10:28:21.526Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 没有胡子的猫</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>陇ICP备2020004364号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    $.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js', function () {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 's9Q5IR3GAoHuTBuyinsspaJt-gzGzoHsz',
+      appKey: 'jvJgND4vgRgNqafpzCY9LXgO',
+      placeholder: '记得留下你的昵称和邮箱....可以快速收到回复',
+      avatar: 'monsterid',
+      meta: '昵称,邮箱,主页'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('昵称,邮箱'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/js/hideMobileSidebar.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/gitcalendar/js/gitcalendar.js"></script><script src="/magnet/js/catalogMagnet.js"></script><script src="/magnet/js/vue.min.js"></script><script src="/clock/js/vue.min.js"></script><script data-pjax src="/clock/js/clock.js"></script><script data-pjax src="/gitcalendar/js/gitcalendar.js"></script><script data-pjax src="/magnet/js/catalogMagnet.js"></script><script data-pjax src="/magnet/js/vue.min.js"></script><script data-pjax src="/clock/js/vue.min.js"></script><script data-pjax src="/clock/js/clock.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>
