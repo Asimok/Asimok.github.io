@@ -1,3 +1,5 @@
+https://www.asimok.site/2021/02/07/tag-based-multi-span-extraction/
+https://www.asimok.site/2021/02/05/HOTPOTQA%20A%20Dataset%20for%20Diverse,%20Explainable%20Multi-hop%20Question%20Answering/
 https://www.asimok.site/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/
 https://www.asimok.site/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%89)/
 https://www.asimok.site/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C)/
