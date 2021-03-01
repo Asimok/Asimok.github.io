@@ -1,3 +1,9 @@
+https://www.asimok.site/2021/03/01/PID%E5%8F%82%E6%95%B0%E8%B0%83%E8%8A%82/
+https://www.asimok.site/2021/03/01/PyTorch%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/
+https://www.asimok.site/2021/03/01/Typora+PicGo-core%20%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0/
+https://www.asimok.site/2021/03/01/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/
+https://www.asimok.site/2021/03/01/linux%20top%20%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/
+https://www.asimok.site/2021/02/27/Asking%20Complex%20Questions%20with%20Multi-hop%20Answer-focused%20Reasoning/
 https://www.asimok.site/2021/02/19/tag-based-multi-span-extraction/
 https://www.asimok.site/2021/02/05/HOTPOTQA%20A%20Dataset%20for%20Diverse,%20Explainable%20Multi-hop%20Question%20Answering/
 https://www.asimok.site/2021/02/01/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)/
@@ -39,7 +45,7 @@ https://www.asimok.site/2020/11/16/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD
 https://www.asimok.site/2020/11/15/%E5%88%A9%E7%94%A8%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%8C%E6%88%90%E5%AF%B9%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E8%AF%86%E5%88%AB/
 https://www.asimok.site/2020/11/14/%E4%BD%BF%E7%94%A8Tensor%E5%8F%8AAutograd%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/
 https://www.asimok.site/2020/11/12/GCN/
-https://www.asimok.site/2020/11/10/nodejs%E5%AE%89%E8%A3%85/
+https://www.asimok.site/2020/11/10/Linux%E5%AE%89%E8%A3%85nodejs&%E5%8D%87%E7%BA%A7/
 https://www.asimok.site/2020/11/08/%E4%BD%BF%E7%94%A8Numpy%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/
 https://www.asimok.site/2020/11/08/%E7%94%A8tensorboardX%E5%8F%AF%E8%A7%86%E5%8C%96%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/
 https://www.asimok.site/2020/11/06/jupyter_%E9%85%8D%E7%BD%AE/
