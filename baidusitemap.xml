@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.asimok.site/2021/03/18/ACL2019-Answering%20while%20Summarizing%20Multi-task%20Learning%20for%20Multi-hop%20QA%20with%20Evidence%20Extraction/</loc>
+    <lastmod>2021-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.asimok.site/2021/03/16/%E5%B8%B8%E7%94%A8%E4%B8%93%E4%B8%9A%E6%9C%AF%E8%AF%AD/</loc>
+    <lastmod>2021-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.asimok.site/2021/03/15/%E6%B3%A2%E5%A3%AB%E9%A1%BF%E6%88%BF%E4%BB%B7%E9%A2%84%E6%B5%8B/</loc>
+    <lastmod>2021-03-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.asimok.site/2021/03/12/%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%9A%84markdown%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0Mathjax%E6%95%88%E6%9E%9C/</loc>
+    <lastmod>2021-03-12</lastmod>
+  </url>
+  <url>
+    <loc>https://www.asimok.site/2021/03/12/Select%20Answer%20and%20Explain%20Interpretable%20Multi-hop%20Reading%20Comprehension%20over%20Multiple%20Documents/</loc>
+    <lastmod>2021-03-11</lastmod>
+  </url>
+  <url>
     <loc>https://www.asimok.site/2021/03/05/DDRQA%20Dynamic%20Document%20Reranking%20for%20Open-domain%20Multi-hop%20Question%20Answering/</loc>
     <lastmod>2021-03-05</lastmod>
   </url>
