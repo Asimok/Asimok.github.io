@@ -1,4 +1,8 @@
+https://www.asimok.site/2021/04/10/Answering%20Complex%20Open-domain%20Questions%20Through%20Iterative%20Query%20Generation/
+https://www.asimok.site/2021/04/01/Multi-hop%20Question%20Generation%20with%20Graph%20Convolutional%20Network/
+https://www.asimok.site/2021/03/26/ACL2019-Avoiding%20Reasoning%20Shortcuts%20Adversarial%20Evaluation,%20Training,%20and%20Model%20Development%20for%20Multi-HopQA/
 https://www.asimok.site/2021/03/18/ACL2019-Answering%20while%20Summarizing%20Multi-task%20Learning%20for%20Multi-hop%20QA%20with%20Evidence%20Extraction/
+https://www.asimok.site/2021/03/18/%E4%BD%BF%E7%94%A8%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%AF%B9%E9%B8%A2%E5%B0%BE%E8%8A%B1%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB/
 https://www.asimok.site/2021/03/16/%E5%B8%B8%E7%94%A8%E4%B8%93%E4%B8%9A%E6%9C%AF%E8%AF%AD/
 https://www.asimok.site/2021/03/15/%E6%B3%A2%E5%A3%AB%E9%A1%BF%E6%88%BF%E4%BB%B7%E9%A2%84%E6%B5%8B/
 https://www.asimok.site/2021/03/12/Select%20Answer%20and%20Explain%20Interpretable%20Multi-hop%20Reading%20Comprehension%20over%20Multiple%20Documents/
@@ -30,7 +34,7 @@ https://www.asimok.site/2021/01/09/GRAPH-BASED%20RECURRENT%20RETRIEVER/
 https://www.asimok.site/2021/01/08/%E8%B0%B7%E6%AD%8C%E7%BF%BB%E8%AF%91%E6%8E%A5%E5%8F%A3/
 https://www.asimok.site/2020/12/31/SRLGRN/
 https://www.asimok.site/2020/12/20/python%E2%80%94%E2%80%94Argparse%20%E6%95%99%E7%A8%8B/
-https://www.asimok.site/2020/12/20/%E5%B8%B8%E7%94%A8python%E5%BA%93/
+https://www.asimok.site/2020/12/20/python%E7%9F%A5%E8%AF%86%E7%82%B9/
 https://www.asimok.site/2020/12/18/Semantic%20Graphs%20for%20Generating%20Deep%20Questions/
 https://www.asimok.site/2020/12/13/%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81/
 https://www.asimok.site/2020/12/12/Learning%20to%20Retrieve%20Reasoning%20Paths%20over%20Wikipedia%20Graph%20for%20Question%20Answering/
