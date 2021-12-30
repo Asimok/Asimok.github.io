@@ -1,0 +1,671 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>最优化方法 | 没有胡子的猫Asimok</title><meta name="keywords" content="算法"><meta name="author" content="没有胡子的猫Asimok"><meta name="copyright" content="没有胡子的猫Asimok"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最优化方法极小点判定条件凸函数：Hessen矩阵 半正定 （正定时为严格凸函数） 凹函数：Hessen矩阵 半负定 线性规划线性规划的目标函数等值面是平行平面。 标准线性规划 主约束都是右端项非负的等式约束  结果要不是 最优解 要不是 解无界。（不会出现 无解） 标准线性规划有容许解，则必有基本容许解。 若有最优解，则必有最优基本容许解。 典范线性规划I阶段线性规划或存在最优基本容许解(W&#x3D;0)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最优化方法">
+<meta property="og:url" content="http://asimok.github.io/2021/12/30/%E6%9C%80%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="没有胡子的猫Asimok">
+<meta property="og:description" content="最优化方法极小点判定条件凸函数：Hessen矩阵 半正定 （正定时为严格凸函数） 凹函数：Hessen矩阵 半负定 线性规划线性规划的目标函数等值面是平行平面。 标准线性规划 主约束都是右端项非负的等式约束  结果要不是 最优解 要不是 解无界。（不会出现 无解） 标准线性规划有容许解，则必有基本容许解。 若有最优解，则必有最优基本容许解。 典范线性规划I阶段线性规划或存在最优基本容许解(W&#x3D;0)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img0.baidu.com/it/u=1276737122,2104015276&fm=26&fmt=auto">
+<meta property="article:published_time" content="2021-12-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-30T11:15:18.837Z">
+<meta property="article:author" content="没有胡子的猫Asimok">
+<meta property="article:tag" content="单纯形法">
+<meta property="article:tag" content="牛顿法">
+<meta property="article:tag" content="共轭梯度法">
+<meta property="article:tag" content="DFP算法">
+<meta property="article:tag" content="步长加速法">
+<meta property="article:tag" content="Z-容许方向法">
+<meta property="article:tag" content="H-乘子法">
+<meta property="article:tag" content="罚函数法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img0.baidu.com/it/u=1276737122,2104015276&fm=26&fmt=auto"><link rel="shortcut icon" href="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG"><link rel="canonical" href="http://asimok.github.io/2021/12/30/%E6%9C%80%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '最优化方法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-30 19:15:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">120</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">146</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">没有胡子的猫Asimok</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">最优化方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-29T16:00:00.000Z" title="发表于 2021-12-30 00:00:00">2021-12-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-30T11:15:18.837Z" title="更新于 2021-12-30 19:15:18">2021-12-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7-%E6%95%99%E7%A8%8B/">工具&amp;教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="最优化方法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2021/12/30/%E6%9C%80%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/2021/12/30/%E6%9C%80%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span></a></span></div></div></div><article class="post-content" id="article-container"><h1 id="最优化方法"><a href="#最优化方法" class="headerlink" title="最优化方法"></a>最优化方法</h1><h2 id="极小点判定条件"><a href="#极小点判定条件" class="headerlink" title="极小点判定条件"></a>极小点判定条件</h2><p>凸函数：Hessen矩阵 半正定 （正定时为严格凸函数）</p>
+<p>凹函数：Hessen矩阵 半负定</p>
+<h2 id="线性规划"><a href="#线性规划" class="headerlink" title="线性规划"></a>线性规划</h2><p><strong>线性规划</strong>的目标函数<strong>等值面</strong>是<strong>平行平面</strong>。</p>
+<h4 id="标准线性规划"><a href="#标准线性规划" class="headerlink" title="标准线性规划"></a>标准线性规划</h4><blockquote>
+<p>主约束都是右端项非负的等式约束</p>
+</blockquote>
+<p>结果要不是 最优解 要不是 解无界。（<strong>不会出现 无解</strong>）</p>
+<p>标准线性规划有容许解，则必有基本容许解。</p>
+<p>若有最优解，则必有最优基本容许解。</p>
+<h4 id="典范线性规划"><a href="#典范线性规划" class="headerlink" title="典范线性规划"></a>典范线性规划</h4><p>I阶段线性规划或存在最优基本容许解(W=0)，或 原问题无解(W&gt;0)。</p>
+<p>典范线性规划 或者 解无界 或者 有最优解 <strong>不会出现无解</strong>的情况。</p>
+<ul>
+<li><p>第一阶段</p>
+<p>解辅助线性规划，目的是求标准线性规划 主约束的一个 G-J方程组</p>
+</li>
+<li><p>第二阶段</p>
+<p>解标准线性规划，即解原线性规划</p>
+</li>
+</ul>
+<h3 id="单纯形"><a href="#单纯形" class="headerlink" title="单纯形"></a>单纯形</h3><blockquote>
+<p>本质上是解典范线性规划的算法</p>
+<p>根本目标是让人工变量全部退基</p>
+<p>具有有限终止性</p>
+</blockquote>
+<p>自由变量    $x_1 = x_2 -x_3$</p>
+<h4 id="最优性检验"><a href="#最优性检验" class="headerlink" title="最优性检验"></a>最优性检验</h4><p>最大判别数$\delta _l$</p>
+<ul>
+<li>最优解  $\delta _l \leq 0$</li>
+<li>无界  $\delta _l \gt 0 $  $a_l \leq0$    异号</li>
+<li>无解 <strong>第一阶段</strong> 最优值 $w&gt;0$</li>
+</ul>
+<blockquote>
+<p> $\delta _l \gt 0 $  $a_l \nleq0 $    可以继续迭代，典范线性规划不会出现无解的情况。</p>
+</blockquote>
+<h4 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h4><ul>
+<li>若所有判别数都 &lt;0 但是人工变量没有退基，任选一个非人工变量系数的<strong>非0</strong>元素作为主元，在进行一次换基运算，得到标准线性规划主约束的G-J方程组。</li>
+<li>若基变量中有人工变量，但非人工变量变量的系数都为0，b也为0，可以直接划掉，进入第二阶段。</li>
+<li>没有约束的变量是 自由变量，变为$x_1 = x_2 -x_3$</li>
+</ul>
+<h3 id="直线搜索"><a href="#直线搜索" class="headerlink" title="直线搜索"></a>直线搜索</h3><ul>
+<li>区间收缩法（黄金分割法 用于任何单谷函数求极小值）</li>
+<li>函数逼近法（抛物线插值法 适用于连续单谷函数）</li>
+</ul>
+<h3 id="最速下降法"><a href="#最速下降法" class="headerlink" title="最速下降法"></a>最速下降法</h3><blockquote>
+<p>不具备二次终止性，线性收敛算法，无限次迭代。</p>
+<p>如果初始点选在<strong>椭球等值面（椭圆等值线）</strong>上，<strong>迭代一次</strong>就会得到极小点，否则会无限次迭代。</p>
+</blockquote>
+<p>优点：直观 简单</p>
+<p>缺点：收敛速度慢 实用性差 锯齿现象</p>
+<p>基本思想：在点$x_k$处沿负梯度方向$p_k$进行直线搜索。</p>
+<p>直线搜索的性质：$g_{k+1}·g_k = 0$         相邻迭代点梯度正交。</p>
+<p>锯齿现象：最速下降法的迭代点在向极小点靠近的过程中，走的是曲折的路线，后一次搜索方向$p_{k+1}$与前一次搜索方向$p_k$垂直，称之为锯齿现象。</p>
+<h3 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h3><p>基本思想：从$x<em>k$到$x</em>{k+1}$的迭代过程中，在点$x_k$处对$f(x)$按Taylor级数展开到第三项，解出极小点。当目标函数$f(x)$是正定二次函数的时候，牛顿法迭代一次就会得到最优解。</p>
+<p>几何解释：在函数$f(x)$过点$x_k$的等值面方程，用一个与曲面最密切的二次曲面代替他。</p>
+<p><strong>Taylor展开</strong></p>
+<script type="math/tex; mode=display">
+f(x)=f(x_k)+g_x^T(x-x_k)+\frac{1}{2}(x-x_k)^TG_{x_k}(x-x_k)</script><h4 id="修正牛顿"><a href="#修正牛顿" class="headerlink" title="修正牛顿"></a>修正牛顿</h4><p>​        对于<strong>非正定二次函数</strong>，牛顿法一般不会有限步终止，原因：</p>
+<p><strong>1.Hesse矩阵奇异</strong></p>
+<script type="math/tex; mode=display">
+p_k = -g_k</script><p>直线搜索</p>
+<script type="math/tex; mode=display">
+x_{k+1}=x_k+t_k·p_k</script><p><strong>2.Hesse矩阵可逆</strong></p>
+<ul>
+<li><p>牛顿方向不存在（垂直）</p>
+<pre><code>1.    $p_k = -g_k$
+1.    直线搜索
+</code></pre></li>
+<li><p>步长为1不合适（下降方向）</p>
+<ol>
+<li>直线搜索</li>
+</ol>
+</li>
+<li>牛顿方向不是下降方向（上升方向）<ol>
+<li>$p_k = G_k^{-1}·g_k$</li>
+<li>直线搜索</li>
+</ol>
+</li>
+</ul>
+<h3 id="共轭方向法"><a href="#共轭方向法" class="headerlink" title="共轭方向法"></a>共轭方向法</h3><p>优点：<strong>克服了最速下降法的锯齿现象</strong>，从而提高了收敛速度，迭代公式简单，不必计算目标函数的二阶导数。与牛顿法相比，减少了计算量和存储量。</p>
+<p>二次终止性：对于n元正定二次函数，从任意点出发，顺次沿着n个共轭方向作最多n次直线搜索，就可以求得目标函数的极小点。</p>
+<p>共轭梯度法：初始共轭梯度向量$p<em>0$恰好取为初始点$x_0$的负梯度$-g_0$，而其余共轭向量$p_k$，由第$k$个迭代点$x_k$处的负梯度$-g_k$与已经得到的向量$p</em>{k-1}$的线性组合来确定，那么这个共轭方向法就称为共轭梯度法。</p>
+<h3 id="DFP算法"><a href="#DFP算法" class="headerlink" title="DFP算法"></a>DFP算法</h3><p>性质：若初始矩阵$H_0$对称正定，则$H_k$中每一个都对称正定。</p>
+<h3 id="步长加速法"><a href="#步长加速法" class="headerlink" title="步长加速法"></a>步长加速法</h3><p>不要求目标函数可导或可微。</p>
+<p>基本思想：步长加速法主要由交替进行的“探测搜索”和“模式移动”组成。</p>
+<ul>
+<li>探测搜索：为了<strong>寻找当前迭代点的下降方向</strong></li>
+<li>模式移动：沿着下降方向<strong>寻找新的迭代点</strong></li>
+</ul>
+<p>探测的出发点：<strong>参考点</strong></p>
+<p>周围比他更好的点：<strong>基点</strong></p>
+<p>得到的下降方向：<strong>模式</strong></p>
+<p>从基点沿模式作直线搜索：<strong>模式移动</strong></p>
+<p>I型探测：</p>
+<blockquote>
+<p> <strong>在基点周围构造一个模式</strong></p>
+<p>失败缩小步长</p>
+</blockquote>
+<p>II型探测：</p>
+<blockquote>
+<p> <strong>判别上次的模式移动是否成功</strong></p>
+<p>失败撤销上次模式移动，将上次的基点作为参考点，开始I型探测</p>
+<p>失败原因：前一次模式移动过大，离开了极小点所在区域</p>
+</blockquote>
+<h3 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h3><p>$y=x_1t+x_2$</p>
+<h4 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h4><script type="math/tex; mode=display">
+min ||Ax-b||^2</script><script type="math/tex; mode=display">
+min s(x_1,x_2) = \sum(x_1t+x_2-y)^2</script><p>等价于解 法方程组</p>
+<script type="math/tex; mode=display">
+A^TAX=A^Tb</script><p>最优解：$x^* = (A^TA)^{-1}A^Tb$</p>
+<p>检验</p>
+<h2 id="约束规划问题"><a href="#约束规划问题" class="headerlink" title="约束规划问题"></a>约束规划问题</h2><h3 id="等式约束"><a href="#等式约束" class="headerlink" title="等式约束"></a>等式约束</h3><ul>
+<li>Lagrange函数</li>
+</ul>
+<p>​        Lagrange乘子，使得求解等式约束问题，等价于求解无约束问题。</p>
+<p>几何表示：</p>
+<p>​        拉格朗日函数关于x的Hesse矩阵在$x^<em>$的<strong>约束曲面切平面的交集上正定</strong>，则$x^</em>$是等式约束问题的严格局部极小点。</p>
+<h3 id="不等式约束"><a href="#不等式约束" class="headerlink" title="不等式约束"></a>不等式约束</h3><p>不等式约束关于容许集的任意内点都是不起作用的约束，只有容许集的边界点才能使某个或某些不等式约束变成起作用约束。</p>
+<p>容许方向向量：</p>
+<ul>
+<li>对于起作用的约束</li>
+</ul>
+<script type="math/tex; mode=display">
+\nabla s_i(x)^Tp>0</script><h4 id="几何最优性条件"><a href="#几何最优性条件" class="headerlink" title="几何最优性条件"></a>几何最优性条件</h4><p>判断x* 是否为局部极小点：</p>
+<p>​        若$x^<em>$是局部最优点，则在点$x^</em>$处的<strong>容许方向锥和下降方向锥的交集是空集</strong>。</p>
+<script type="math/tex; mode=display">
+\nabla s_i(x)^Tp>0 \\
+\nabla f(x)^Tp<0</script><h4 id="K-T条件"><a href="#K-T条件" class="headerlink" title="K-T条件"></a>K-T条件</h4><p>几何表示：</p>
+<p>​        若$x^<em>$是最优点，则目标函数在该点的<strong>梯度</strong>必位于由<em>*起作用约束函数的梯度张成的凸锥中</em></em>。</p>
+<p>凸规划问题的<strong>最优性</strong>充分条件：</p>
+<p>​        $f$是可微凸函数，$s_i$是可微凹函数，$h_i$是线性函数，如果$x^*$是K-T点，那么是全局最优点。</p>
+<p>$u_0$不为0的充要条件：</p>
+<p>​        在$x^*$处，起作用的约束函数，梯度全都线性无关。</p>
+<h3 id="Z-容许方向法"><a href="#Z-容许方向法" class="headerlink" title="Z-容许方向法"></a>Z-容许方向法</h3><p>终止条件：</p>
+<ul>
+<li>$x^*$为K-T点的充要条件：</li>
+</ul>
+<script type="math/tex; mode=display">
+\nabla f(x)^Tp^*=0</script><p>​        <strong>并且</strong>：A’ 和 C的行向量线性无关。</p>
+<ul>
+<li>继续迭代，仍然是一个下降方向向量</li>
+</ul>
+<script type="math/tex; mode=display">
+\nabla f(x)^Tp^*<0</script><ul>
+<li>换点</li>
+</ul>
+<script type="math/tex; mode=display">
+\nabla f(x)^Tp^*>0</script><p>算法：</p>
+<ul>
+<li>确定当前迭代点的<strong>下降容许方向</strong></li>
+<li>通过<strong>直线搜索</strong>确定下一个迭代点  （在下降容许方向作ls 最佳步长因子有上界）</li>
+<li>判定新的迭代点是否为问题的解</li>
+</ul>
+<p>判断容许方向：</p>
+<ul>
+<li><p>非线性约束</p>
+<p><strong>$s(x)$为起作用的约束</strong></p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\nabla s(x)^Tp>0</script><ul>
+<li>线性约束</li>
+</ul>
+<script type="math/tex; mode=display">
+A'p \geq 0</script><script type="math/tex; mode=display">
+Cp=0</script><h3 id="外部罚函数法"><a href="#外部罚函数法" class="headerlink" title="外部罚函数法"></a>外部罚函数法</h3><p>惩罚策略：对容许点不予惩罚，对于非容许点给予无穷大的惩罚，将约束问题转化为无约束问题。</p>
+<p>惩罚项特点：</p>
+<ul>
+<li>包含有取值越来越大的正因子 $\mu$</li>
+<li>对于容许点，惩罚项取值为0，对于非容许点，惩罚项取值为正</li>
+</ul>
+<h3 id="H-乘子法"><a href="#H-乘子法" class="headerlink" title="H-乘子法"></a>H-乘子法</h3><blockquote>
+<p>H-乘子法罚因子不必趋于无穷大，而外部罚函数的罚因子要趋于无穷大，本质是为了防止Hesse矩阵条件数变得越来越坏，导致在计算中，数值稳定性变得越来越差。</p>
+<p>拉格朗日乘子$\lambda$与罚因子$\mu$取值无关，只要求$\mu$的取值保证乘子序列收敛即可，不然会有无数个拉格朗日乘子，这是不可能的。</p>
+</blockquote>
+<p><strong>改进：</strong></p>
+<ul>
+<li>解决了外部罚函数因罚因子增大，导致的数值计算不稳定的问题。</li>
+</ul>
+<blockquote>
+<p>乘子法是针对外部罚函数法的改进，外部罚函数法<strong>随着罚因子的增大</strong>，增广目标函数的Hesse矩阵条件数变得越来越坏，导致在计算中，<strong>数值稳定性变得越来越差</strong>，难以精确求解。</p>
+</blockquote>
+<p>​        乘子法是在<strong>约束</strong>问题的<strong>Lagrange函数</strong>中加入相应的<strong>惩罚项</strong>，使得在求解无约束问题的时候，<strong>罚因子不必趋于无穷大</strong>就能得到约束问题的最优解，保证数值计算的稳定性。</p>
+<h4 id="终止准则"><a href="#终止准则" class="headerlink" title="终止准则"></a>终止准则</h4><p>如果无约束问题的最优解$x^<em>$是原规划问题的<strong>容许点</strong>，那么也是原问题的<em>*最优解</em></em>。</p>
+<p><strong>等式约束</strong></p>
+<ul>
+<li>罚因子$\mu$的作用</li>
+</ul>
+<p>​    a.  乘子序列${\lambda_k}$不收敛    ${\mu} &lt;\mu^*$</p>
+<p>​    b. 收敛的慢        ${\mu}\geq \mu^*$但不够大</p>
+<p>​    c. $\frac{h(x<em>k)}{h(x</em>{k-1})} \geq 1$     乘子序列${\lambda_k}$发散</p>
+<p>​    d.$\frac{h(x<em>k)}{h(x</em>{k-1})}$介于$(0,1)$ 收敛，比值越小 ，收敛越快</p>
+<p>终止准则：$h(x)=0$</p>
+<p><strong>不等式约束</strong></p>
+<script type="math/tex; mode=display">
+min\{s(x),\frac{v^k}{2u}\}=0 \\ h(x)=0</script><p>一般形式算法中的终止条件：（平方和开根号）</p>
+<script type="math/tex; mode=display">
+\varphi_k=[\sum{(min\{s(x_k),\frac{v^k}{2\mu}\})^2}+\sum{h^2_i(x_k)}]^{1/2}</script><p>若$\varphi_k &lt; \epsilon$：终止</p>
+<p>若$\frac{\varphi<em>k}{\varphi</em>{k-1}}\geq\theta$：放大罚因子 $\mu = c*\mu$，其中 $\theta \in (0,1)$，比值太大说明收敛效果不好，要放大罚因子。</p>
+<blockquote>
+<p>只有等式约束时 $\frac{h(x<em>k)}{h(x</em>{k-1})}\geq\theta$放大罚因子</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">没有胡子的猫Asimok</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://asimok.github.io/2021/12/30/%E6%9C%80%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/">http://asimok.github.io/2021/12/30/%E6%9C%80%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://asimok.github.io" target="_blank">没有胡子的猫Asimok</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95/">单纯形法</a><a class="post-meta__tags" href="/tags/%E7%89%9B%E9%A1%BF%E6%B3%95/">牛顿法</a><a class="post-meta__tags" href="/tags/%E5%85%B1%E8%BD%AD%E6%A2%AF%E5%BA%A6%E6%B3%95/">共轭梯度法</a><a class="post-meta__tags" href="/tags/DFP%E7%AE%97%E6%B3%95/">DFP算法</a><a class="post-meta__tags" href="/tags/%E6%AD%A5%E9%95%BF%E5%8A%A0%E9%80%9F%E6%B3%95/">步长加速法</a><a class="post-meta__tags" href="/tags/Z-%E5%AE%B9%E8%AE%B8%E6%96%B9%E5%90%91%E6%B3%95/">Z-容许方向法</a><a class="post-meta__tags" href="/tags/H-%E4%B9%98%E5%AD%90%E6%B3%95/">H-乘子法</a><a class="post-meta__tags" href="/tags/%E7%BD%9A%E5%87%BD%E6%95%B0%E6%B3%95/">罚函数法</a></div><div class="post_share"><div class="social-share" data-image="https://img0.baidu.com/it/u=1276737122,2104015276&amp;fm=26&amp;fmt=auto" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/11/14/Knowledge%20Enhanced%20Fine-Tuning%20for%20Better%20Handling%20Unseen%20Entities%20in%20Dialogue%20Generation/"><img class="next-cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211114160558.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">没有胡子的猫Asimok</div><div class="author-info__description">记录自己的成长历程</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">120</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">146</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Asimok"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Asimok" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maqi_nepu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_39827677" target="_blank" title="CSDN"><i class="fab fa-internet-explorer"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/mmqrcode1605604352215.png" target="_blank" title="wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/qrcode_1605604361959.jpg" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">喜欢摄影的程序员</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">最优化方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%81%E5%B0%8F%E7%82%B9%E5%88%A4%E5%AE%9A%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">极小点判定条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="toc-number">1.2.</span> <span class="toc-text">线性规划</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">标准线性规划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B8%E8%8C%83%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">典范线性规划</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E7%BA%AF%E5%BD%A2"><span class="toc-number">1.2.1.</span> <span class="toc-text">单纯形</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E4%BC%98%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">最优性检验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">特殊情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E7%BA%BF%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.2.</span> <span class="toc-text">直线搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E9%80%9F%E4%B8%8B%E9%99%8D%E6%B3%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">最速下降法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="toc-number">1.2.4.</span> <span class="toc-text">牛顿法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%AD%A3%E7%89%9B%E9%A1%BF"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">修正牛顿</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E8%BD%AD%E6%96%B9%E5%90%91%E6%B3%95"><span class="toc-number">1.2.5.</span> <span class="toc-text">共轭方向法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DFP%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.6.</span> <span class="toc-text">DFP算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%95%BF%E5%8A%A0%E9%80%9F%E6%B3%95"><span class="toc-number">1.2.7.</span> <span class="toc-text">步长加速法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="toc-number">1.2.8.</span> <span class="toc-text">最小二乘法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.8.1.</span> <span class="toc-text">线性模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A6%E6%9D%9F%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">约束规划问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%89%E5%BC%8F%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.3.1.</span> <span class="toc-text">等式约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E7%AD%89%E5%BC%8F%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.3.2.</span> <span class="toc-text">不等式约束</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E6%9C%80%E4%BC%98%E6%80%A7%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">几何最优性条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#K-T%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">K-T条件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Z-%E5%AE%B9%E8%AE%B8%E6%96%B9%E5%90%91%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text">Z-容许方向法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E7%BD%9A%E5%87%BD%E6%95%B0%E6%B3%95"><span class="toc-number">1.3.4.</span> <span class="toc-text">外部罚函数法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#H-%E4%B9%98%E5%AD%90%E6%B3%95"><span class="toc-number">1.3.5.</span> <span class="toc-text">H-乘子法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%88%E6%AD%A2%E5%87%86%E5%88%99"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">终止准则</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/12/30/%E6%9C%80%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" title="最优化方法"><img src="https://img0.baidu.com/it/u=1276737122,2104015276&amp;fm=26&amp;fmt=auto" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="最优化方法"/></a><div class="content"><a class="title" href="/2021/12/30/%E6%9C%80%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" title="最优化方法">最优化方法</a><time datetime="2021-12-29T16:00:00.000Z" title="发表于 2021-12-30 00:00:00">2021-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/14/Knowledge%20Enhanced%20Fine-Tuning%20for%20Better%20Handling%20Unseen%20Entities%20in%20Dialogue%20Generation/" title="Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211114160558.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation"/></a><div class="content"><a class="title" href="/2021/11/14/Knowledge%20Enhanced%20Fine-Tuning%20for%20Better%20Handling%20Unseen%20Entities%20in%20Dialogue%20Generation/" title="Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation">Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation</a><time datetime="2021-11-13T16:00:00.000Z" title="发表于 2021-11-14 00:00:00">2021-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/Heterogeneous%20Graph%20Attention%20Network/" title="Heterogeneous Graph Attention Network"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Heterogeneous Graph Attention Network"/></a><div class="content"><a class="title" href="/2021/10/26/Heterogeneous%20Graph%20Attention%20Network/" title="Heterogeneous Graph Attention Network">Heterogeneous Graph Attention Network</a><time datetime="2021-10-25T16:00:00.000Z" title="发表于 2021-10-26 00:00:00">2021-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="leetcode每日一题（更新中）"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="leetcode每日一题（更新中）"/></a><div class="content"><a class="title" href="/2021/10/26/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="leetcode每日一题（更新中）">leetcode每日一题（更新中）</a><time datetime="2021-10-25T16:00:00.000Z" title="发表于 2021-10-26 00:00:00">2021-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法笔记（更新中）"/></a><div class="content"><a class="title" href="/2021/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）">算法笔记（更新中）</a><time datetime="2021-10-24T16:00:00.000Z" title="发表于 2021-10-25 00:00:00">2021-10-25</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 没有胡子的猫Asimok</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+      appKey: 't1nJqxp0EXl18EniOb74r4S6',
+      placeholder: '记得留下你的昵称和邮箱....可以快速收到回复',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://LHHLwaEB.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+        "X-LC-Key": 't1nJqxp0EXl18EniOb74r4S6',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/论文阅读/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 论文阅读 (45)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/工具-教程/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🪛 工具&教程 (30)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/PyTorch/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🔑 PyTorch (8)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/TensorFlow/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🚽 TensorFlow (11)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐍 Python (5)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/机器学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🖥 机器学习 (13)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/硬件开发/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎛 硬件开发 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/软件开发-模型/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📲 软件开发&模型复现 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://asimok.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?asimok";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="asimok";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><!-- hexo injector body_end end --></body></html>
