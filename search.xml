@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>hexo配置</title>
+      <link href="/2021/12/30/hexo%E9%85%8D%E7%BD%AE/"/>
+      <url>/2021/12/30/hexo%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="hexo配置"><a href="#hexo配置" class="headerlink" title="hexo配置"></a>hexo配置</h1><h2 id="正确的package-json"><a href="#正确的package-json" class="headerlink" title="正确的package.json"></a>正确的package.json</h2><blockquote><p>主要解决 mathjax 公式显示bug</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;hexo-site&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.0.0&quot;,</span><br><span class="line">  &quot;private&quot;: true,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build&quot;: &quot;hexo generate&quot;,</span><br><span class="line">    &quot;clean&quot;: &quot;hexo clean&quot;,</span><br><span class="line">    &quot;deploy&quot;: &quot;hexo deploy&quot;,</span><br><span class="line">    &quot;server&quot;: &quot;hexo server&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;hexo&quot;: &#123;</span><br><span class="line">    &quot;version&quot;: &quot;6.0.0&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;hexo&quot;: &quot;^6.0.0&quot;,</span><br><span class="line">    &quot;hexo-generator-archive&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">    &quot;hexo-generator-category&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">    &quot;hexo-generator-index&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">    &quot;hexo-generator-search&quot;: &quot;^2.4.3&quot;,</span><br><span class="line">    &quot;hexo-generator-tag&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">    &quot;hexo-renderer-ejs&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">    &quot;hexo-renderer-kramed&quot;: &quot;^0.1.4&quot;,</span><br><span class="line">    &quot;hexo-renderer-pug&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">    &quot;hexo-renderer-stylus&quot;: &quot;^2.0.1&quot;,</span><br><span class="line">    &quot;hexo-server&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">    &quot;hexo-theme-landscape&quot;: &quot;^0.0.3&quot;,</span><br><span class="line">    &quot;hexo-wordcount&quot;: &quot;^6.0.1&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="GitHub-443错误"><a href="#GitHub-443错误" class="headerlink" title="GitHub 443错误"></a>GitHub 443错误</h2><p>OpenSSL SSL_connect: Connection was reset in connection to github.com:443</p><ul><li><p>方法一</p><p>检查VPN端口号，并替换1087</p></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:1087</span><br><span class="line">git config --global https.proxy 127.0.0.1:1087</span><br></pre></td></tr></table></figure><p>​    若配置过，撤销上述配置</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure><blockquote><p>下面是几个常用的git配置查看命令：</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy #查看git的http代理配置</span><br><span class="line">git config --global https.proxy #查看git的https代理配置</span><br><span class="line">git config --global -l #查看git的所有配置</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具&amp;教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> GitHub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>最优化方法</title>
       <link href="/2021/12/30/optimal_method/"/>
       <url>/2021/12/30/optimal_method/</url>
