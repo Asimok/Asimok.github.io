@@ -1,0 +1,2763 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>简版-翻译、摘要、会话、文本生成任务顶会论文 | 没有胡子的猫Asimok</title><meta name="keywords" content="arxiv,ACL,NAACL,EMNLP,COLING"><meta name="author" content="没有胡子的猫Asimok"><meta name="copyright" content="没有胡子的猫Asimok"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="简版-翻译、摘要、会话、文本生成任务顶会论文机器翻译ACL    序号 会议&#x2F;期刊 论文 主要技术 代码 论文下载地址     1 ACL2019 Latent Variable Model for Multi-modal Translation  https:&#x2F;&#x2F;github.com&#x2F;iacercalixto&#x2F;variational_mmt https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1811.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简版-翻译、摘要、会话、文本生成任务顶会论文">
+<meta property="og:url" content="http://asimok.github.io/2021/08/13/%E7%AE%80%E7%89%88-%E7%BF%BB%E8%AF%91%E3%80%81%E6%91%98%E8%A6%81%E3%80%81%E4%BC%9A%E8%AF%9D%E3%80%81%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1%E9%A1%B6%E4%BC%9A%E8%AE%BA%E6%96%87/index.html">
+<meta property="og:site_name" content="没有胡子的猫Asimok">
+<meta property="og:description" content="简版-翻译、摘要、会话、文本生成任务顶会论文机器翻译ACL    序号 会议&#x2F;期刊 论文 主要技术 代码 论文下载地址     1 ACL2019 Latent Variable Model for Multi-modal Translation  https:&#x2F;&#x2F;github.com&#x2F;iacercalixto&#x2F;variational_mmt https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1811.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210811211153.png">
+<meta property="article:published_time" content="2021-08-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-29T08:15:41.692Z">
+<meta property="article:author" content="没有胡子的猫Asimok">
+<meta property="article:tag" content="arxiv">
+<meta property="article:tag" content="ACL">
+<meta property="article:tag" content="NAACL">
+<meta property="article:tag" content="EMNLP">
+<meta property="article:tag" content="COLING">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210811211153.png"><link rel="shortcut icon" href="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG"><link rel="canonical" href="http://asimok.github.io/2021/08/13/%E7%AE%80%E7%89%88-%E7%BF%BB%E8%AF%91%E3%80%81%E6%91%98%E8%A6%81%E3%80%81%E4%BC%9A%E8%AF%9D%E3%80%81%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1%E9%A1%B6%E4%BC%9A%E8%AE%BA%E6%96%87/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '简版-翻译、摘要、会话、文本生成任务顶会论文',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-29 16:15:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">119</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">138</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210811211153.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">没有胡子的猫Asimok</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">简版-翻译、摘要、会话、文本生成任务顶会论文</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-12T16:00:00.000Z" title="发表于 2021-08-13 00:00:00">2021-08-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-29T08:15:41.692Z" title="更新于 2021-12-29 16:15:41">2021-12-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>34分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="简版-翻译、摘要、会话、文本生成任务顶会论文"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2021/08/13/%E7%AE%80%E7%89%88-%E7%BF%BB%E8%AF%91%E3%80%81%E6%91%98%E8%A6%81%E3%80%81%E4%BC%9A%E8%AF%9D%E3%80%81%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1%E9%A1%B6%E4%BC%9A%E8%AE%BA%E6%96%87/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/2021/08/13/%E7%AE%80%E7%89%88-%E7%BF%BB%E8%AF%91%E3%80%81%E6%91%98%E8%A6%81%E3%80%81%E4%BC%9A%E8%AF%9D%E3%80%81%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1%E9%A1%B6%E4%BC%9A%E8%AE%BA%E6%96%87/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="简版-翻译、摘要、会话、文本生成任务顶会论文"><a href="#简版-翻译、摘要、会话、文本生成任务顶会论文" class="headerlink" title="简版-翻译、摘要、会话、文本生成任务顶会论文"></a>简版-翻译、摘要、会话、文本生成任务顶会论文</h1><h2 id="机器翻译"><a href="#机器翻译" class="headerlink" title="机器翻译"></a>机器翻译</h2><h3 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1811.00357&#39;]">Latent Variable Model for Multi-modal Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/iacercalixto/variational_mmt">https://github.com/iacercalixto/variational_mmt</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1811.00357">https://arxiv.org/pdf/1811.00357</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.05414&#39;]">Rewriter-Evaluator Architecture for Neural Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.05414">https://arxiv.org/pdf/2012.05414</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.08226&#39;]">Consistency Regularization for Cross-Lingual Fine-Tuning</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/bozheng-hit/xTune">https://github.com/bozheng-hit/xTune</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.08226">https://arxiv.org/pdf/2106.08226</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.06381&#39;]">Improving Pretrained Cross-Lingual Language Models via Self-Labeled Word Alignment</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/CZWin32768/XLM-Align">https://github.com/CZWin32768/XLM-Align</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.06381">https://arxiv.org/pdf/2106.06381</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.15127&#39;]">Improving Zero-Shot Translation by Disentangling Positional Information</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/nlp-dke/NMTGMinor/tree/master/recipes/zero-shot">https://github.com/nlp-dke/NMTGMinor/tree/master/recipes/zero-shot</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.15127">https://arxiv.org/pdf/2012.15127</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.15715&#39;]">Beyond Offline Mapping: Learning Cross-lingual Word Embeddings through Context Anchoring</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.15715">https://arxiv.org/pdf/2012.15715</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.15421&#39;]">Verb Knowledge Injection for Multilingual Event Processing</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.15421">https://arxiv.org/pdf/2012.15421</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.06937&#39;]">Common Sense Beyond English: Evaluating and Improving Multilingual Language Models for Commonsense Reasoning</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/INK-USC/XCSR">https://github.com/INK-USC/XCSR</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.06937">https://arxiv.org/pdf/2106.06937</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2101.00148&#39;]">Bilingual Lexicon Induction via Unsupervised Bitext Construction and Word Alignment</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2101.00148">https://arxiv.org/pdf/2101.00148</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.11867&#39;]">Improving Massively Multilingual Neural Machine Translation and Zero-Shot Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/bzhangGo/zero">https://github.com/bzhangGo/zero</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.11867">https://arxiv.org/pdf/2004.11867</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.13169&#39;]">Simultaneous Translation Policies: From Fixed to Adaptive</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.13169">https://arxiv.org/pdf/2004.13169</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.14021&#39;]">Multiscale Collaborative Deep Models for Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/pemywei/MSC-NMT">https://github.com/pemywei/MSC-NMT</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.14021">https://arxiv.org/pdf/2004.14021</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.14788&#39;]">Character-Level Translation with Self-attention</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.14788">https://arxiv.org/pdf/2004.14788</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.00850&#39;]">ENGINE: Energy-Based Inference Networks for Non-Autoregressive Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lifu-tu/ENGINE">https://github.com/lifu-tu/ENGINE</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.00850">https://arxiv.org/pdf/2005.00850</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.00308&#39;]">Selecting Backtranslated Data from Multiple Sources for Improved Neural Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.00308">https://arxiv.org/pdf/2005.00308</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.06606&#39;]">Dynamic Programming Encoding for Subword Segmentation in Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/xlhex/dpe">https://github.com/xlhex/dpe</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.06606">https://arxiv.org/pdf/2005.06606</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2006.02014&#39;]">Norm-Based Curriculum Learning for Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/NLP2CT/norm-nmt">https://github.com/NLP2CT/norm-nmt</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.02014">https://arxiv.org/pdf/2006.02014</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2007.02671&#39;]">Bilingual Dictionary Based Neural Machine Translation without Using Parallel Sentences</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/mttravel/Dictionary-based-MT">https://github.com/mttravel/Dictionary-based-MT</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2007.02671">https://arxiv.org/pdf/2007.02671</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.11867&#39;]">Improving Massively Multilingual Neural Machine Translation and Zero-Shot Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/bzhangGo/zero">https://github.com/bzhangGo/zero</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.11867">https://arxiv.org/pdf/2004.11867</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.00850&#39;]">ENGINE: Energy-Based Inference Networks for Non-Autoregressive Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lifu-tu/ENGINE">https://github.com/lifu-tu/ENGINE</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.00850">https://arxiv.org/pdf/2005.00850</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1902.01313&#39;]">An Effective Approach to Unsupervised Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/artetxem/monoses">https://github.com/artetxem/monoses</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1902.01313">https://arxiv.org/pdf/1902.01313</a></td>
+</tr>
+<tr>
+<td>22</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1905.05979&#39;]">When a Good Translation is Wrong in Context: Context-Aware Machine Translation Improves on Deixis, Ellipsis, and Lexical Cohesion</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lena-voita/good-translation-wrong-in-context">https://github.com/lena-voita/good-translation-wrong-in-context</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1905.05979">https://arxiv.org/pdf/1905.05979</a></td>
+</tr>
+<tr>
+<td>23</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.02780&#39;]">Syntactically Supervised Transformers for Faster Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/dojoteef/synst">https://github.com/dojoteef/synst</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.02780">https://arxiv.org/pdf/1906.02780</a></td>
+</tr>
+<tr>
+<td>24</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.08680&#39;, &#39;https://arxiv.org/abs/1906.00591&#39;]">Evaluating Gender Bias in Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.08680">https://arxiv.org/pdf/2106.08680</a></td>
+</tr>
+<tr>
+<td>25</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.01787&#39;]">Learning Deep Transformer Models for Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/wangqiangneu/dlcl">https://github.com/wangqiangneu/dlcl</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.01787">https://arxiv.org/pdf/1906.01787</a></td>
+</tr>
+<tr>
+<td>26</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.00376&#39;]">Domain Adaptation of Neural Machine Translation by Lexicon Induction</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.00376">https://arxiv.org/pdf/1906.00376</a></td>
+</tr>
+<tr>
+<td>27</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.09444&#39;]">Retrieving Sequential Information for Non-Autoregressive Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ictnlp/RSI-NAT">https://github.com/ictnlp/RSI-NAT</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.09444">https://arxiv.org/pdf/1906.09444</a></td>
+</tr>
+<tr>
+<td>28</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1810.06729&#39;]">Robust Neural Machine Translation with Joint Textual and Phonetic Embedding</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1810.06729">https://arxiv.org/pdf/1810.06729</a></td>
+</tr>
+<tr>
+<td>29</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.13872&#39;]">Simple and Effective Paraphrastic Similarity from Parallel Translations</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.13872">https://arxiv.org/pdf/1909.13872</a></td>
+</tr>
+<tr>
+<td>30</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.04980&#39;]">Unsupervised Question Answering by Cloze Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/UnsupervisedQA">https://github.com/facebookresearch/UnsupervisedQA</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.04980">https://arxiv.org/pdf/1906.04980</a></td>
+</tr>
+<tr>
+<td>31</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1907.10761&#39;]">Bilingual Lexicon Induction through Unsupervised Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/artetxem/monoses">https://github.com/artetxem/monoses</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1907.10761">https://arxiv.org/pdf/1907.10761</a></td>
+</tr>
+<tr>
+<td>32</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1905.10523&#39;]">Soft Contextual Data Augmentation for Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/teslacool/SCA">https://github.com/teslacool/SCA</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1905.10523">https://arxiv.org/pdf/1905.10523</a></td>
+</tr>
+<tr>
+<td>33</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.03785&#39;]">Generalized Data Augmentation for Low-Resource Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.03785">https://arxiv.org/pdf/1906.03785</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="EMNLP"><a href="#EMNLP" class="headerlink" title="EMNLP"></a>EMNLP</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/1910.10485&#39;]">Fully Quantized Transformer for Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.10485">https://arxiv.org/pdf/1910.10485</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2002.10260&#39;]">Fixed Encoder Self-Attention Patterns in Transformer-Based Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2002.10260">https://arxiv.org/pdf/2002.10260</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.14109&#39;]">Adversarial Subword Regularization for Robust Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/dmis-lab/AdvSR">https://github.com/dmis-lab/AdvSR</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.14109">https://arxiv.org/pdf/2004.14109</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.02353&#39;]">Participatory Research for Low-resourced Machine Translation: A Case Study in African Languages</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/masakhane-io/masakhane-mt">https://github.com/masakhane-io/masakhane-mt</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.02353">https://arxiv.org/pdf/2010.02353</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2009.14824&#39;]">On Romanization for Model Transfer Between Scripts in Neural Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2009.14824">https://arxiv.org/pdf/2009.14824</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.13781&#39;]">Graph-to-Tree Neural Networks for Learning Structured Input-Output Translation with Applications to Semantic Parsing and Math Word Problem</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/IBM/Graph2Tree">https://github.com/IBM/Graph2Tree</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.13781">https://arxiv.org/pdf/2004.13781</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.04924&#39;]">On Long-Tailed Phenomena in Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/vyraun/long-tailed">https://github.com/vyraun/long-tailed</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.04924">https://arxiv.org/pdf/2010.04924</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2002.02955&#39;]">A Multilingual View of Unsupervised Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2002.02955">https://arxiv.org/pdf/2002.02955</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.00180&#39;]">Explicit Cross-lingual Pre-training for Unsupervised Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.00180">https://arxiv.org/pdf/1909.00180</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.00157&#39;]">Improving Back-Translation with Uncertainty-based Confidence Estimation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/THUNLP-MT/UCE4BT">https://github.com/THUNLP-MT/UCE4BT</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.00157">https://arxiv.org/pdf/1909.00157</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1912.07239&#39;]">Iterative Dual Domain Adaptation for Neural Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1912.07239">https://arxiv.org/pdf/1912.07239</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.01383&#39;]">Context-Aware Monolingual Repair for Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lena-voita/good-translation-wrong-in-context">https://github.com/lena-voita/good-translation-wrong-in-context</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.01383">https://arxiv.org/pdf/1909.01383</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1904.09646&#39;]">Dynamic Past and Future for Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zhengzx-nlp/dynamic-nmt">https://github.com/zhengzx-nlp/dynamic-nmt</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1904.09646">https://arxiv.org/pdf/1904.09646</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.01559&#39;]">Simpler and Faster Learning of Adaptive Policies for Simultaneous Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.01559">https://arxiv.org/pdf/1909.01559</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1908.10430&#39;]">Unsupervised Domain Adaptation for Neural Machine Translation with Domain-Aware Feature Embeddings</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zdou0830/DAFE">https://github.com/zdou0830/DAFE</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.10430">https://arxiv.org/pdf/1908.10430</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1911.00835&#39;]">Controlling Text Complexity in Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/sweta20/ComplexityControlledMT">https://github.com/sweta20/ComplexityControlledMT</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1911.00835">https://arxiv.org/pdf/1911.00835</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1908.05731&#39;]">Simple and Effective Noisy Channel Modeling for Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/pytorch/fairseq">https://github.com/pytorch/fairseq</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.05731">https://arxiv.org/pdf/1908.05731</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.06708&#39;]">Hint-Based Training for Non-Autoregressive Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zhuohan123/hint-nart">https://github.com/zhuohan123/hint-nart</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.06708">https://arxiv.org/pdf/1909.06708</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="NAACL"><a href="#NAACL" class="headerlink" title="NAACL"></a>NAACL</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.04507&#39;]">Self-Training for Unsupervised Neural Machine Translation in Unbalanced Training Data Scenarios</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.04507">https://arxiv.org/pdf/2004.04507</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2009.11201&#39;]">Harnessing Multilinguality in Unsupervised Machine Translation for Rare Languages</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2009.11201">https://arxiv.org/pdf/2009.11201</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2103.06799&#39;]">Towards Continual Learning for Multilingual Machine Translation via Vocabulary Substitution</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.06799">https://arxiv.org/pdf/2103.06799</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2003.09586&#39;]">Probing Word Translations in the Transformer and Trading Decoder for Encoder Layers</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2003.09586">https://arxiv.org/pdf/2003.09586</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2103.06490&#39;, &#39;https://arxiv.org/abs/1911.00234&#39;]">Sequence Tagging and Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1911.00234">https://arxiv.org/pdf/1911.00234</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2008.09396&#39;]">Neural Machine Translation without Embeddings</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/UriSha/EmbeddinglessNMT">https://github.com/UriSha/EmbeddinglessNMT</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2008.09396">https://arxiv.org/pdf/2008.09396</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.07316&#39;]">From Masked Language Modeling to Translation: Non-English Auxiliary Tasks Improve Zero-shot Spoken Language Understanding</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://bitbucket.org/robvanderg/xsid">https://bitbucket.org/robvanderg/xsid</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.07316">https://arxiv.org/pdf/2105.07316</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2103.10531&#39;]">Improving the Lexical Ability of Pretrained Language Models for Unsupervised Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/alexandra-chron/lexical_xlm_relm">https://github.com/alexandra-chron/lexical_xlm_relm</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.10531">https://arxiv.org/pdf/2103.10531</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.12868&#39;]">Multi-Task Learning with Shared Encoder for Non-Autoregressive Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/yongchanghao/multi-task-nat">https://github.com/yongchanghao/multi-task-nat</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.12868">https://arxiv.org/pdf/2010.12868</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.05146&#39;]">Assessing Reference-Free Peer Evaluation for Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.05146">https://arxiv.org/pdf/2104.05146</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2009.09654&#39;]">Generative Imagination Elevates Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2009.09654">https://arxiv.org/pdf/2009.09654</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.12827&#39;]">Context-aware Decoder for Neural Machine Translation using a Target-side Document-Level Language Model</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.12827">https://arxiv.org/pdf/2010.12827</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.05964&#39;]">Restoring and Mining the Records of the Joseon Dynasty via Neural Language Modeling and Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.05964">https://arxiv.org/pdf/2104.05964</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.06683&#39;]">The Curious Case of Hallucinations in Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/vyraun/hallucinations">https://github.com/vyraun/hallucinations</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.06683">https://arxiv.org/pdf/2104.06683</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.08942&#39;]">Revisiting the Weaknesses of Reinforcement Learning for Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/samuki/reinforce-joey">https://github.com/samuki/reinforce-joey</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.08942">https://arxiv.org/pdf/2106.08942</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.03137&#39;]">Cross-lingual Supervision Improves Unsupervised Neural Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.03137">https://arxiv.org/pdf/2004.03137</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1904.02461&#39;]">ReWE: Regressing Word Embeddings for Regularization of Neural Machine Translation Systems</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1904.02461">https://arxiv.org/pdf/1904.02461</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1902.09514&#39;]">Lost in Machine Translation: A Method to Reduce Meaning Loss</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/reubenharry/pragmatic-translation">https://github.com/reubenharry/pragmatic-translation</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1902.09514">https://arxiv.org/pdf/1902.09514</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1905.02878&#39;]">Syntax-Enhanced Neural Machine Translation with Syntax-Aware Word Representations</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1905.02878">https://arxiv.org/pdf/1905.02878</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1902.09508&#39;, &#39;https://arxiv.org/abs/1902.01509&#39;]">Improving Robustness of Machine Translation with Synthetic Noise</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/MysteryVaibhav/robust_mtnt">https://github.com/MysteryVaibhav/robust_mtnt</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1902.09508">https://arxiv.org/pdf/1902.09508</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1904.04079&#39;]">Differentiable Sampling with Flexible Reference Word Order for Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Izecson/saml-nmt">https://github.com/Izecson/saml-nmt</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1904.04079">https://arxiv.org/pdf/1904.04079</a></td>
+</tr>
+<tr>
+<td>22</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.00556&#39;]">Fluent Translations from Disfluent Speech in End-to-End Speech Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.00556">https://arxiv.org/pdf/1906.00556</a></td>
+</tr>
+<tr>
+<td>23</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1903.08788&#39;]">Selective Attention for Context-aware Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/sameenmaruf/selective-attn">https://github.com/sameenmaruf/selective-attn</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1903.08788">https://arxiv.org/pdf/1903.08788</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="COLING"><a href="#COLING" class="headerlink" title="COLING"></a>COLING</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.00890&#39;]">Emergent Communication Pretraining for Few-Shot Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/cambridgeltl/ECNMT">https://github.com/cambridgeltl/ECNMT</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.00890">https://arxiv.org/pdf/2011.00890</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.00678&#39;]">Investigating Catastrophic Forgetting During Continual Training for Neural Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.00678">https://arxiv.org/pdf/2011.00678</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.01482&#39;]">Layer-wise Multi-view Learning for Neural Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.01482">https://arxiv.org/pdf/2011.01482</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.03732&#39;]">Leveraging Discourse Rewards for Document-Level Neural Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.03732">https://arxiv.org/pdf/2010.03732</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.02266&#39;]">Optimized Transformer for Low-resource Neural Machine Translation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.02266">https://arxiv.org/pdf/2011.02266</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2002.12549&#39;]">Robust Unsupervised Neural Machine Translation with Adversarial Denoising Training</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2002.12549">https://arxiv.org/pdf/2002.12549</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.11018&#39;]">Token Drop mechanism for Neural Machine Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zhajiahe/Token_Drop">https://github.com/zhajiahe/Token_Drop</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.11018">https://arxiv.org/pdf/2010.11018</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.03469&#39;]">Understanding Pure Character-Based Neural Machine Translation: The Case of Translating Finnish into English</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.03469">https://arxiv.org/pdf/2011.03469</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="会话-对话系统"><a href="#会话-对话系统" class="headerlink" title="会话/对话系统"></a>会话/对话系统</h2><h3 id="ACL-1"><a href="#ACL-1" class="headerlink" title="ACL"></a>ACL</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.12458&#39;]">TicketTalk: Toward human-level performance with end-to-end, transaction-based dialog systems</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.12458">https://arxiv.org/pdf/2012.12458</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.00162&#39;]">HERALD: An Annotation Efficient Method to Detect User Disengagement in Social Conversations</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Weixin-Liang/HERALD">https://github.com/Weixin-Liang/HERALD</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.00162">https://arxiv.org/pdf/2106.00162</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.13073&#39;]">Maria: A Visual Experience Powered Conversational Agent</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/jokieleung/Maria">https://github.com/jokieleung/Maria</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.13073">https://arxiv.org/pdf/2105.13073</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.14756&#39;]">Dialogue Response Selection with Hierarchical Curriculum Learning</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.14756">https://arxiv.org/pdf/2012.14756</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.14556&#39;]">Diversifying Dialog Generation via Adaptive Label Smoothing</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lemon234071/AdaLabel">https://github.com/lemon234071/AdaLabel</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.14556">https://arxiv.org/pdf/2105.14556</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.06169&#39;]">BoB: BERT Over BERT for Training Persona-based Dialogue Models from Limited Personalized Data</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/songhaoyu/BoB">https://github.com/songhaoyu/BoB</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.06169">https://arxiv.org/pdf/2106.06169</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.13391&#39;]">I like fish, especially dolphins: Addressing Contradictions in Dialogue Modeling</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.13391">https://arxiv.org/pdf/2012.13391</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.09553&#39;]">A Sequence-to-Sequence Approach to Dialogue State Tracking</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/sweetalyssum/Seq2Seq-DU">https://github.com/sweetalyssum/Seq2Seq-DU</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.09553">https://arxiv.org/pdf/2011.09553</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.03410&#39;]">Generating Relevant and Coherent Dialogue Responses using Self-Separated Conditional Variational AutoEncoders</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.03410">https://arxiv.org/pdf/2106.03410</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2101.00123&#39;]">Intent Classification and Slot Filling for Privacy Policies</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/wasiahmad/PolicyIE">https://github.com/wasiahmad/PolicyIE</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2101.00123">https://arxiv.org/pdf/2101.00123</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2107.12578&#39;]">Dual Slot Selector via Local Reliability Verification for Dialogue State Tracking</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/guojinyu88/DSSDST">https://github.com/guojinyu88/DSSDST</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2107.12578">https://arxiv.org/pdf/2107.12578</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.15171&#39;]">Learning from Perturbations: Diverse and Informative Dialogue Generation with Inverse Adversarial Training</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.15171">https://arxiv.org/pdf/2105.15171</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2107.11164&#39;]">Modeling Bilingual Conversational Characteristics for Neural Chat Translation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/XL2248/CPCC">https://github.com/XL2248/CPCC</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2107.11164">https://arxiv.org/pdf/2107.11164</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.11019&#39;]">Dynamic Fusion Network for Multi-Domain End-to-end Task-Oriented Dialog</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/LooperXX/DF-Net">https://github.com/LooperXX/DF-Net</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.11019">https://arxiv.org/pdf/2004.11019</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.11054&#39;]">Learning Dialog Policies from Weak Demonstrations</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.11054">https://arxiv.org/pdf/2004.11054</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.08866&#39;]">Span-ConveRT: Few-shot Span Extraction for Dialog with Pretrained Conversational Representations</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PolyAI-LDN/task-specific-datasets">https://github.com/PolyAI-LDN/task-specific-datasets</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.08866">https://arxiv.org/pdf/2005.08866</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.04346&#39;]">Diversifying Dialogue Generation with Non-Conversational Text</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chin-gyou/Div-Non-Conv">https://github.com/chin-gyou/Div-Non-Conv</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.04346">https://arxiv.org/pdf/2005.04346</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.09544&#39;]">Grounding Conversations with Improvised Dialogues</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/wise-east/spolin">https://github.com/wise-east/spolin</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.09544">https://arxiv.org/pdf/2004.09544</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.04908&#39;]">Designing Precise and Robust Dialogue Response Evaluators</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ZHAOTING/dialog-processing">https://github.com/ZHAOTING/dialog-processing</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.04908">https://arxiv.org/pdf/2004.04908</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/1910.07931&#39;]">PLATO: Pre-trained Dialogue Generation Model with Discrete Latent Variable</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/Research">https://github.com/PaddlePaddle/Research</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.07931">https://arxiv.org/pdf/1910.07931</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.00891&#39;]">Zero-Shot Transfer Learning with Synthesized Data for Multi-Domain Dialogue State Tracking</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/stanford-oval/zero-shot-multiwoz-acl2020">https://github.com/stanford-oval/zero-shot-multiwoz-acl2020</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.00891">https://arxiv.org/pdf/2005.00891</a></td>
+</tr>
+<tr>
+<td>22</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.03809&#39;]">Multi-Agent Task-Oriented Dialog Policy Learning with Role-Aware Reward Decomposition</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/truthless11/MADPL">https://github.com/truthless11/MADPL</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.03809">https://arxiv.org/pdf/2004.03809</a></td>
+</tr>
+<tr>
+<td>23</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.03954&#39;]">Towards Conversational Recommendation over Multi-Type Dialogs</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/models">https://github.com/PaddlePaddle/models</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.03954">https://arxiv.org/pdf/2005.03954</a></td>
+</tr>
+<tr>
+<td>24</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.04100&#39;]">KdConv: A Chinese Multi-domain Dialogue Dataset Towards Multi-turn Knowledge-driven Conversation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/thu-coai/KdConv">https://github.com/thu-coai/KdConv</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.04100">https://arxiv.org/pdf/2004.04100</a></td>
+</tr>
+<tr>
+<td>25</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1907.08854&#39;]">Incremental Transformer with Deliberation Decoder for Document Grounded Conversations</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lizekang/ITDD">https://github.com/lizekang/ITDD</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1907.08854">https://arxiv.org/pdf/1907.08854</a></td>
+</tr>
+<tr>
+<td>26</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.05373&#39;]">E3: Entailment-driven Extracting and Editing for Conversational Machine Reading</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/vzhong/e3">https://github.com/vzhong/e3</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.05373">https://arxiv.org/pdf/1906.05373</a></td>
+</tr>
+<tr>
+<td>27</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.07004&#39;]">Improving Multi-turn Dialogue Modelling with Utterance ReWriter</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.07004">https://arxiv.org/pdf/1906.07004</a></td>
+</tr>
+<tr>
+<td>28</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1905.12866&#39;]">Semantically Conditioned Dialog Response Generation via Hierarchical Disentangled Self-Attention</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/wenhuchen/HDSA-Dialog">https://github.com/wenhuchen/HDSA-Dialog</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1905.12866">https://arxiv.org/pdf/1905.12866</a></td>
+</tr>
+<tr>
+<td>29</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1907.00326&#39;]">Observing Dialogue in Therapy: Categorizing and Forecasting Behavioral Codes</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/utahnlp/therapist-observer">https://github.com/utahnlp/therapist-observer</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1907.00326">https://arxiv.org/pdf/1907.00326</a></td>
+</tr>
+<tr>
+<td>30</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1907.01166&#39;]">Multimodal Transformer Networks for End-to-End Video-Grounded Dialogue Systems</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/henryhungle/MTN">https://github.com/henryhungle/MTN</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1907.01166">https://arxiv.org/pdf/1907.01166</a></td>
+</tr>
+<tr>
+<td>31</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.06725&#39;]">Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://gitlab.com/ucdavisnlp/persuasionforgood">https://gitlab.com/ucdavisnlp/persuasionforgood</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.06725">https://arxiv.org/pdf/1906.06725</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="EMNLP-1"><a href="#EMNLP-1" class="headerlink" title="EMNLP"></a>EMNLP</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2009.09378&#39;]">Difference-aware Knowledge Selection for Knowledge-grounded Conversation Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chujiezheng/DiffKS">https://github.com/chujiezheng/DiffKS</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2009.09378">https://arxiv.org/pdf/2009.09378</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2002.12328&#39;]">Few-shot Natural Language Generation for Task-Oriented Dialog</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/pengbaolin/SC-GPT">https://github.com/pengbaolin/SC-GPT</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2002.12328">https://arxiv.org/pdf/2002.12328</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2009.13656&#39;]">Learning Knowledge Bases with Parameters for Task-Oriented Dialogue Systems</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/HLTCHKUST/ke-dialogue">https://github.com/HLTCHKUST/ke-dialogue</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2009.13656">https://arxiv.org/pdf/2009.13656</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.04344&#39;]">Plug-and-Play Conversational Models</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/andreamad8/PPCM">https://github.com/andreamad8/PPCM</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.04344">https://arxiv.org/pdf/2010.04344</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.02795&#39;]">COSMIC: COmmonSense knowledge for eMotion Identification in Conversations</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/declare-lab/conv-emotion">https://github.com/declare-lab/conv-emotion</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.02795">https://arxiv.org/pdf/2010.02795</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.03755&#39;]">Generalizable and Explainable Dialogue Generation via Explicit Action Learning</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.03755">https://arxiv.org/pdf/2010.03755</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.02260&#39;]">Effects of Naturalistic Variation in Goal-Oriented Dialog</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/IBM/naturalistic-variation-goal-oriented-dialog-datasets">https://github.com/IBM/naturalistic-variation-goal-oriented-dialog-datasets</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.02260">https://arxiv.org/pdf/2010.02260</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1908.11540&#39;]">DialogueGCN: A Graph Convolutional Neural Network for Emotion Recognition in Conversation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/SenticNet/conv-emotion">https://github.com/SenticNet/conv-emotion</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.11540">https://arxiv.org/pdf/1908.11540</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1908.11546&#39;]">Modeling Multi-Action Policy for Task-Oriented Dialogues</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.11546">https://arxiv.org/pdf/1908.11546</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.12868&#39;]">Automatically Learning Data Augmentation Policies for Dialogue Tasks</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/WolfNiu/AutoAugDialogue">https://github.com/WolfNiu/AutoAugDialogue</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.12868">https://arxiv.org/pdf/1909.12868</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.03317&#39;]">Dependency Parsing for Spoken Dialog Systems</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.03317">https://arxiv.org/pdf/1909.03317</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1908.05391&#39;]">Towards Knowledge-Based Recommender Dialog System</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/THUDM/KBRD">https://github.com/THUDM/KBRD</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.05391">https://arxiv.org/pdf/1908.05391</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1910.00610&#39;]">DyKgChat: Benchmarking Dialogue Generation Grounding on Dynamic Knowledge Graphs</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Pascalson/DyKGChat">https://github.com/Pascalson/DyKGChat</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.00610">https://arxiv.org/pdf/1910.00610</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.01388&#39;]">How to Build User Simulators to Train RL-based Dialog Systems</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/wyshi/user-simulator">https://github.com/wyshi/user-simulator</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.01388">https://arxiv.org/pdf/1909.01388</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1902.09368&#39;]">Dual Attention Networks for Visual Reference Resolution in Visual Dialog</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/gicheonkang/DAN-VisDial">https://github.com/gicheonkang/DAN-VisDial</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1902.09368">https://arxiv.org/pdf/1902.09368</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1908.11487&#39;]">Dialog Intent Induction with Deep Multi-View Clustering</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/asappresearch/dialog-intent-induction">https://github.com/asappresearch/dialog-intent-induction</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.11487">https://arxiv.org/pdf/1908.11487</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1910.05069&#39;]">Multi-Task Learning for Conversational Question Answering over a Large-Scale Knowledge Base</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/taoshen58/MaSP">https://github.com/taoshen58/MaSP</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.05069">https://arxiv.org/pdf/1910.05069</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="NAACL-1"><a href="#NAACL-1" class="headerlink" title="NAACL"></a>NAACL</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.04898&#39;]">Open-Domain Question Answering Goes Conversational via Question Rewriting</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/apple/ml-qrecc">https://github.com/apple/ml-qrecc</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.04898">https://arxiv.org/pdf/2010.04898</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.00783&#39;]">Action-Based Conversations Dataset: A Corpus for Building More In-Depth Task- Oriented Dialogue Systems</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/asappresearch/abcd">https://github.com/asappresearch/abcd</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.00783">https://arxiv.org/pdf/2104.00783</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.11230&#39;]">Self-Supervised Contrastive Learning for Efficient User Satisfaction Prediction in Conversational Agents</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.11230">https://arxiv.org/pdf/2010.11230</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.07831&#39;]">Human-like informative conversations: Better acknowledgements using conditional mutual information</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/AshwinParanjape/human-like-informative-conversations">https://github.com/AshwinParanjape/human-like-informative-conversations</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.07831">https://arxiv.org/pdf/2104.07831</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2102.02191&#39;]">DiSCoL: Toward Engaging Dialogue Systems through Conversational Line Guided Response Generation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2102.02191">https://arxiv.org/pdf/2102.02191</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.12757&#39;]">Adding Chit-Chat to Enhance Task-Oriented Dialogues</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.12757">https://arxiv.org/pdf/2010.12757</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.10663&#39;]">Fast and Scalable Dialogue State Tracking with Explicit Modular Decomposition</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.10663">https://arxiv.org/pdf/2004.10663</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1810.13327&#39;]">Cross-lingual Transfer Learning for Multilingual Task Oriented Dialog</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1810.13327">https://arxiv.org/pdf/1810.13327</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1904.03371&#39;]">Evaluating Coherence in Dialogue Systems using Entailment</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/nouhadziri/DialogEntailment">https://github.com/nouhadziri/DialogEntailment</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1904.03371">https://arxiv.org/pdf/1904.03371</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="COLING-1"><a href="#COLING-1" class="headerlink" title="COLING"></a>COLING</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.04080&#39;]">A Taxonomy of Empathetic Response Intents in Human Social Conversations</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/anuradha1992/EmpatheticIntents">https://github.com/anuradha1992/EmpatheticIntents</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.04080">https://arxiv.org/pdf/2012.04080</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.10606&#39;]">CEREC: A Corpus for Entity Resolution in Email Conversations</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/paragdakle/emailcoref">https://github.com/paragdakle/emailcoref</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.10606">https://arxiv.org/pdf/2105.10606</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2006.00671&#39;]">Conversational Machine Comprehension: a Literature Review</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.00671">https://arxiv.org/pdf/2006.00671</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.00615&#39;]">Improving Conversational Question Answering Systems after Deployment using Feedback-Weighted Learning</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/jjacampos/FeedbackWeightedLearning">https://github.com/jjacampos/FeedbackWeightedLearning</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.00615">https://arxiv.org/pdf/2011.00615</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.04125&#39;]">Towards Topic-Guided Conversational Recommender System</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/RUCAIBox/TG-ReDial">https://github.com/RUCAIBox/TG-ReDial</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.04125">https://arxiv.org/pdf/2010.04125</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.00483&#39;]">Deconstruct to Reconstruct a Configurable Evaluation Metric for Open-Domain Dialogue Systems</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/vitouphy/usl_dialogue_metric">https://github.com/vitouphy/usl_dialogue_metric</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.00483">https://arxiv.org/pdf/2011.00483</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.00564&#39;]">Recent Neural Methods on Slot Filling and Intent Classification for Task-Oriented Dialogue Systems: A Survey</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.00564">https://arxiv.org/pdf/2011.00564</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="文本生成"><a href="#文本生成" class="headerlink" title="文本生成"></a>文本生成</h2><h3 id="ACL-2"><a href="#ACL-2" class="headerlink" title="ACL"></a>ACL</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.03432&#39;]">Generalising Multilingual Concept-to-Text NLG with Language Agnostic Delexicalisation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.03432">https://arxiv.org/pdf/2105.03432</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2101.00190&#39;]">Prefix-Tuning: Optimizing Continuous Prompts for Generation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2101.00190">https://arxiv.org/pdf/2101.00190</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2101.00288&#39;]">Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/tongshuangwu/polyjuice">https://github.com/tongshuangwu/polyjuice</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2101.00288">https://arxiv.org/pdf/2101.00288</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.15786&#39;]">Conditional Generation of Temporally-ordered Event Sequences</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.15786">https://arxiv.org/pdf/2012.15786</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.06471&#39;]">Writing by Memorizing: Hierarchical Retrieval-based Medical Report Generation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.06471">https://arxiv.org/pdf/2106.06471</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.15053&#39;]">Factorising Meaning and Form for Intent-Preserving Paraphrasing</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/tomhosking/separator">https://github.com/tomhosking/separator</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.15053">https://arxiv.org/pdf/2105.15053</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.00210&#39;]">Improving Formality Style Transfer with Context-Aware Rule Injection</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.00210">https://arxiv.org/pdf/2106.00210</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2107.01875&#39;]">DeepRapper: Neural Rap Generation with Rhyme and Rhythm Modeling</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2107.01875">https://arxiv.org/pdf/2107.01875</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.15329&#39;]">Generating Landmark Navigation Instructions from Maps as a Graph-to-Text Problem</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.15329">https://arxiv.org/pdf/2012.15329</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.11134&#39;]">One2Set: Generating Diverse Keyphrases as a Set</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/jiacheng-ye/kg_one2set">https://github.com/jiacheng-ye/kg_one2set</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.11134">https://arxiv.org/pdf/2105.11134</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/1911.03829&#39;]">Distilling Knowledge Learned in BERT for Text Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ChenRocks/Distill-BERT-Textgen">https://github.com/ChenRocks/Distill-BERT-Textgen</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1911.03829">https://arxiv.org/pdf/1911.03829</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.08022&#39;]">Rigid Formats Controlled Text Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lipiji/SongNet">https://github.com/lipiji/SongNet</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.08022">https://arxiv.org/pdf/2004.08022</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.12704&#39;]">Semantic Graphs for Generating Deep Questions</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/WING-NUS/SG-Deep-Question-Generation">https://github.com/WING-NUS/SG-Deep-Question-Generation</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.12704">https://arxiv.org/pdf/2004.12704</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.14257&#39;]">Politeness Transfer: A Tag and Generate Approach</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.14257">https://arxiv.org/pdf/2004.14257</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.09123&#39;]">GPT-too: A language-model-first approach for AMR-to-text generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/IBM/GPT-too-AMR2text">https://github.com/IBM/GPT-too-AMR2text</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.09123">https://arxiv.org/pdf/2005.09123</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.04560&#39;]">Posterior Control of Blackbox Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/XiangLi1999/PosteriorControl-NLG">https://github.com/XiangLi1999/PosteriorControl-NLG</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.04560">https://arxiv.org/pdf/2005.04560</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.07522&#39;]">Parallel Data Augmentation for Formality Style Transfer</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lancopku/Augmented_Data_for_FST">https://github.com/lancopku/Augmented_Data_for_FST</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.07522">https://arxiv.org/pdf/2005.07522</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.01096&#39;]">Neural Data-to-Text Generation via Jointly Learning the Segmentation and Correspondence</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.01096">https://arxiv.org/pdf/2005.01096</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/1910.13461&#39;]">BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.13461">https://arxiv.org/pdf/1910.13461</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/1911.03882&#39;]">Pre-train and Plug-in: Flexible Conditional Text Generation with Variational Auto- Encoders</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/WHUIR/PPVAE">https://github.com/WHUIR/PPVAE</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1911.03882">https://arxiv.org/pdf/1911.03882</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.10158&#39;]">Two Birds, One Stone: A Simple, Unified Model for Text Generation from Structured and Unstructured Data</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/h-shahidi/2birds-gen">https://github.com/h-shahidi/2birds-gen</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.10158">https://arxiv.org/pdf/1909.10158</a></td>
+</tr>
+<tr>
+<td>22</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/1911.02247&#39;]">Unsupervised Opinion Summarization as Copycat-Review Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ixlan/CopyCat-abstractive-opinion-summarizer">https://github.com/ixlan/CopyCat-abstractive-opinion-summarizer</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1911.02247">https://arxiv.org/pdf/1911.02247</a></td>
+</tr>
+<tr>
+<td>23</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2006.08101&#39;]">Evidence-Aware Inferential Text Generation with Vector Quantised Variational AutoEncoder</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/microsoft/EA-VQ-VAE">https://github.com/microsoft/EA-VQ-VAE</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.08101">https://arxiv.org/pdf/2006.08101</a></td>
+</tr>
+<tr>
+<td>24</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.04696&#39;]">BLEURT: Learning Robust Metrics for Text Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/google-research/bleurt">https://github.com/google-research/bleurt</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.04696">https://arxiv.org/pdf/2004.04696</a></td>
+</tr>
+<tr>
+<td>25</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.01834&#39;]">Automatic Generation of High Quality CCGbanks for Parser Domain Adaptation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.01834">https://arxiv.org/pdf/1906.01834</a></td>
+</tr>
+<tr>
+<td>26</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1905.07870&#39;]">PaperRobot: Incremental Draft Generation of Scientific Ideas</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/EagleW/PaperRobot">https://github.com/EagleW/PaperRobot</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1905.07870">https://arxiv.org/pdf/1905.07870</a></td>
+</tr>
+<tr>
+<td>27</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.03221&#39;]">Data-to-text Generation with Entity Modeling</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ratishsp/data2text-entity-py">https://github.com/ratishsp/data2text-entity-py</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.03221">https://arxiv.org/pdf/1906.03221</a></td>
+</tr>
+<tr>
+<td>28</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1908.03067&#39;]">Key Fact as Pivot: A Two-Stage Model for Low Resource Table-to-Text Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lancopku/Pivot">https://github.com/lancopku/Pivot</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.03067">https://arxiv.org/pdf/1908.03067</a></td>
+</tr>
+<tr>
+<td>29</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1907.12667&#39;]">Reinforced Dynamic Reasoning for Conversational Question Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ZJULearning/ReDR">https://github.com/ZJULearning/ReDR</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1907.12667">https://arxiv.org/pdf/1907.12667</a></td>
+</tr>
+<tr>
+<td>30</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.04106&#39;]">Neural Keyphrase Generation via Reinforcement Learning with Adaptive Rewards</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/kenchan0226/keyphrase-generation-rl">https://github.com/kenchan0226/keyphrase-generation-rl</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.04106">https://arxiv.org/pdf/1906.04106</a></td>
+</tr>
+<tr>
+<td>31</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.03889&#39;]">Topic-Aware Neural Keyphrase Generation for Social Media Language</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/yuewang-cuhk/TAKG">https://github.com/yuewang-cuhk/TAKG</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.03889">https://arxiv.org/pdf/1906.03889</a></td>
+</tr>
+<tr>
+<td>32</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.03717&#39;]">Argument Generation with Retrieval, Planning, and Realization</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.03717">https://arxiv.org/pdf/1906.03717</a></td>
+</tr>
+<tr>
+<td>33</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1905.12866&#39;]">Semantically Conditioned Dialog Response Generation via Hierarchical Disentangled Self-Attention</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/wenhuchen/HDSA-Dialog">https://github.com/wenhuchen/HDSA-Dialog</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1905.12866">https://arxiv.org/pdf/1905.12866</a></td>
+</tr>
+<tr>
+<td>34</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.01231&#39;]">Coherent Comments Generation for Chinese Articles with a Graph-to-Sequence Model</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lancopku/Graph-to-seq-comment-generation">https://github.com/lancopku/Graph-to-seq-comment-generation</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.01231">https://arxiv.org/pdf/1906.01231</a></td>
+</tr>
+<tr>
+<td>35</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.02525&#39;]">Cross-Lingual Training for Automatic Question Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/vishwajeet93/clqg">https://github.com/vishwajeet93/clqg</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.02525">https://arxiv.org/pdf/1906.02525</a></td>
+</tr>
+<tr>
+<td>36</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1902.00756&#39;]">Graph Neural Networks with Generated Parameters for Relation Extraction</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1902.00756">https://arxiv.org/pdf/1902.00756</a></td>
+</tr>
+<tr>
+<td>37</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1907.09699&#39;]">Learning to Select, Track, and Generate for Data-to-Text</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/aistairc/rotowire-modified">https://github.com/aistairc/rotowire-modified</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1907.09699">https://arxiv.org/pdf/1907.09699</a></td>
+</tr>
+<tr>
+<td>38</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1907.08540&#39;]">Predicting Human Activities from User-Generated Content</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1907.08540">https://arxiv.org/pdf/1907.08540</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="EMNLP-2"><a href="#EMNLP-2" class="headerlink" title="EMNLP"></a>EMNLP</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2002.12328&#39;]">Few-shot Natural Language Generation for Task-Oriented Dialog</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/pengbaolin/SC-GPT">https://github.com/pengbaolin/SC-GPT</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2002.12328">https://arxiv.org/pdf/2002.12328</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/1911.03587&#39;]">How Decoding Strategies Affect the Verifiability of Generated Text</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1911.03587">https://arxiv.org/pdf/1911.03587</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.14983&#39;]">Control, Generate, Augment: A Scalable Framework for Multi-Attribute Text Generation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.14983">https://arxiv.org/pdf/2004.14983</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.07576&#39;]">Pretrained Language Models for Dialogue Generation with Multiple Input Sources</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/caoyu-noob/Multi-GPT2">https://github.com/caoyu-noob/Multi-GPT2</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.07576">https://arxiv.org/pdf/2010.07576</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.14579&#39;]">Logic2Text: High-Fidelity Natural Language Generation from Logical Forms</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/czyssrs/Logic2Text">https://github.com/czyssrs/Logic2Text</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.14579">https://arxiv.org/pdf/2004.14579</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2009.10056&#39;]">Composed Variational Natural Language Generation for Few-shot Intents</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2009.10056">https://arxiv.org/pdf/2009.10056</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.00910&#39;]">Continual Learning for Natural Language Generation in Task-oriented Dialog Systems</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.00910">https://arxiv.org/pdf/2010.00910</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.04246&#39;]">Dual Inference for Improving Language Understanding and Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/MiuLab/DuaLUG">https://github.com/MiuLab/DuaLUG</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.04246">https://arxiv.org/pdf/2010.04246</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1908.09022&#39;]">Neural data-to-text generation: A comparison between pipeline and end- to-end architectures</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ThiagoCF05/webnlg">https://github.com/ThiagoCF05/webnlg</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.09022">https://arxiv.org/pdf/1908.09022</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.02622&#39;]">MoverScore: Text Generation Evaluating with Contextualized Embeddings and Earth Mover Distance</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.02622">https://arxiv.org/pdf/1909.02622</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1909.04453&#39;]">Select and Attend: Towards Controllable Content Selection in Text Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chin-gyou/controllable-selection">https://github.com/chin-gyou/controllable-selection</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.04453">https://arxiv.org/pdf/1909.04453</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1903.10245&#39;]">Knowledge Aware Conversation Generation with Explainable Reasoning over Augmented Graphs</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/Research/tree/master/NLP/EMNLP2019-AKGCM">https://github.com/PaddlePaddle/Research/tree/master/NLP/EMNLP2019-AKGCM</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1903.10245">https://arxiv.org/pdf/1903.10245</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1908.11658&#39;]">Autoregressive Text Generation Beyond Feedback Loops</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/schmiflo/crf-generation">https://github.com/schmiflo/crf-generation</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.11658">https://arxiv.org/pdf/1908.11658</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1908.07195&#39;]">ARAML: A Stable Adversarial Training Framework for Text Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/kepei1106/ARAML">https://github.com/kepei1106/ARAML</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.07195">https://arxiv.org/pdf/1908.07195</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1901.00398&#39;]">Judge the Judges: A Large-Scale Evaluation Study of Neural Language Models for Online Review Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Crista23/JudgeTheJudges">https://github.com/Crista23/JudgeTheJudges</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1901.00398">https://arxiv.org/pdf/1901.00398</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="NAACL-2"><a href="#NAACL-2" class="headerlink" title="NAACL"></a>NAACL</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.00054&#39;]">APo-VAE: Text Generation in Hyperbolic Space</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.00054">https://arxiv.org/pdf/2005.00054</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.05218&#39;]">FUDGE: Controlled Text Generation With Future Discriminators</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/yangkevin2/naacl-2021-fudge-controlled-generation">https://github.com/yangkevin2/naacl-2021-fudge-controlled-generation</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.05218">https://arxiv.org/pdf/2104.05218</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.12884&#39;]">NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.12884">https://arxiv.org/pdf/2010.12884</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.05801&#39;]">Plot-guided Adversarial Example Construction for Evaluating Open-domain Story Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PlusLabNLP/Plot-guided-Coherence-Evaluation">https://github.com/PlusLabNLP/Plot-guided-Coherence-Evaluation</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.05801">https://arxiv.org/pdf/2104.05801</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2006.15720&#39;]">Progressive Generation of Long Text with Pretrained Language Models</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/tanyuqian/progressive-generation">https://github.com/tanyuqian/progressive-generation</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.15720">https://arxiv.org/pdf/2006.15720</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.02484&#39;]">OodGAN: Generative Adversarial Network for Out-of-Domain Data Generation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.02484">https://arxiv.org/pdf/2104.02484</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1902.11205&#39;]">Jointly Optimizing Diversity and Relevance in Neural Response Generation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1902.11205">https://arxiv.org/pdf/1902.11205</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1904.11564&#39;]">Neural Text Generation from Rich Semantic Representations</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/shlurbee/dmrs-text-generation-naacl2019">https://github.com/shlurbee/dmrs-text-generation-naacl2019</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1904.11564">https://arxiv.org/pdf/1904.11564</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1904.02342&#39;]">Text Generation from Knowledge Graphs with Graph Transformers</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/rikdz/GraphWriter">https://github.com/rikdz/GraphWriter</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1904.02342">https://arxiv.org/pdf/1904.02342</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1904.04428&#39;]">Text Generation with Exemplar-based Adaptive Decoding</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1904.04428">https://arxiv.org/pdf/1904.04428</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1809.01694&#39;]">Accelerated Reinforcement Learning for Sentence Generation by Vocabulary Prediction</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/hassyGo/NLG-RL">https://github.com/hassyGo/NLG-RL</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1809.01694">https://arxiv.org/pdf/1809.01694</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1903.09722&#39;]">Pre-trained language model representations for language generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/pytorch/fairseq">https://github.com/pytorch/fairseq</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1903.09722">https://arxiv.org/pdf/1903.09722</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1904.01301&#39;]">Pragmatically Informative Text Generation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1904.01301">https://arxiv.org/pdf/1904.01301</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>NAACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1806.08462&#39;]">Stochastic Wasserstein Autoencoder for Probabilistic Sentence Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/HareeshBahuleyan/probabilistic_nlg">https://github.com/HareeshBahuleyan/probabilistic_nlg</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1806.08462">https://arxiv.org/pdf/1806.08462</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="COLING-2"><a href="#COLING-2" class="headerlink" title="COLING"></a>COLING</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.04000&#39;, &#39;https://arxiv.org/abs/1911.03587&#39;, &#39;https://arxiv.org/abs/1704.06851&#39;]">Affective Text Generation</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ishikasingh/Affective-text-gen">https://github.com/ishikasingh/Affective-text-gen</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.04000">https://arxiv.org/pdf/2011.04000</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.13588&#39;]">Curious Case of Language Generation Evaluation Metrics: A Cautionary Tale</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.13588">https://arxiv.org/pdf/2010.13588</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.04332&#39;]">Facts2Story: Controlling Text Generation by Key Facts</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.04332">https://arxiv.org/pdf/2012.04332</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.00592&#39;]">Vec2Sent: Probing Sentence Embeddings with Natural Language Generation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.00592">https://arxiv.org/pdf/2011.00592</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><h3 id="ACL-3"><a href="#ACL-3" class="headerlink" title="ACL"></a>ACL</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.13648&#39;]">Cross-Lingual Abstractive Summarization with Limited Parallel Resources</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/WoodenWhite/MCLAS">https://github.com/WoodenWhite/MCLAS</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.13648">https://arxiv.org/pdf/2105.13648</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.04623&#39;]">Improving Factual Consistency of Abstractive Summarization via Question Answering</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.04623">https://arxiv.org/pdf/2105.04623</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.03801&#39;]">Long-Span Summarization via Local Attention and Content Selection</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/potsawee/longsum0">https://github.com/potsawee/longsum0</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.03801">https://arxiv.org/pdf/2105.03801</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.15135&#39;]">TWAG: A Topic-Guided Wikipedia Abstract Generator</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/THU-KEG/TWAG">https://github.com/THU-KEG/TWAG</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.15135">https://arxiv.org/pdf/2106.15135</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.12544&#39;]">Language Model as an Annotator: Exploring DialoGPT for Dialogue Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/xcfcode/PLM_annotator">https://github.com/xcfcode/PLM_annotator</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.12544">https://arxiv.org/pdf/2105.12544</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.12041&#39;]">BASS: Boosting Abstractive Summarization with Unified Semantic Graph</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.12041">https://arxiv.org/pdf/2105.12041</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.11921&#39;]">Focus Attention: Promoting Faithfulness and Diversity in Summarization</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.11921">https://arxiv.org/pdf/2105.11921</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2012.14774&#39;]">Generating Query Focused Summaries from Query-Free Resources</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/yumoxu/marge">https://github.com/yumoxu/marge</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.14774">https://arxiv.org/pdf/2012.14774</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>ACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.00829&#39;]">ConvoSumm: Conversation Summarization Benchmark and Improved Abstractive Summarization with Argument Mining</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Yale-LILY/ConvoSumm">https://github.com/Yale-LILY/ConvoSumm</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.00829">https://arxiv.org/pdf/2106.00829</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.00661&#39;]">On Faithfulness and Factuality in Abstractive Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/google-research-datasets/xsum_hallucination_annotations">https://github.com/google-research-datasets/xsum_hallucination_annotations</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.00661">https://arxiv.org/pdf/2005.00661</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.03754&#39;]">FEQA: A Question Answering Evaluation Framework for Faithfulness Assessment in Abstractive Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/esdurmus/summary-faithfulness">https://github.com/esdurmus/summary-faithfulness</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.03754">https://arxiv.org/pdf/2005.03754</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.00661&#39;]">On Faithfulness and Factuality in Abstractive Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/google-research-datasets/xsum_hallucination_annotations">https://github.com/google-research-datasets/xsum_hallucination_annotations</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.00661">https://arxiv.org/pdf/2005.00661</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.01159&#39;]">Knowledge Graph-Augmented Abstractive Summarization with Semantic-Driven Cloze Reward</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/luyang-huang96/GraphAugmentedSum">https://github.com/luyang-huang96/GraphAugmentedSum</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.01159">https://arxiv.org/pdf/2005.01159</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2105.05361&#39;]">The Summary Loop: Learning to Write Abstractive Summaries Without Examples</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/cannylab/summary_loop">https://github.com/cannylab/summary_loop</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.05361">https://arxiv.org/pdf/2105.05361</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>ACL2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2005.10043&#39;]">Leveraging Graph to Improve Abstractive Multi-Document Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/Research">https://github.com/PaddlePaddle/Research</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.10043">https://arxiv.org/pdf/2005.10043</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>ACL2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1906.00077&#39;]">Scoring Sentence Singletons and Pairs for Abstractive Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ucfnlp/summarization-sing-pair-mix">https://github.com/ucfnlp/summarization-sing-pair-mix</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.00077">https://arxiv.org/pdf/1906.00077</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="EMNLP-3"><a href="#EMNLP-3" class="headerlink" title="EMNLP"></a>EMNLP</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.02016&#39;]">A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/microsoft/HMNet">https://github.com/microsoft/HMNet</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.02016">https://arxiv.org/pdf/2004.02016</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2004.13983&#39;]">Conditional Neural Generation using Sub-Aspect Functions for Extractive News Summarization</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.13983">https://arxiv.org/pdf/2004.13983</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.08242&#39;]">Unsupervised Extractive Summarization by Pre-training Hierarchical Transformers</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/xssstory/STAS">https://github.com/xssstory/STAS</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.08242">https://arxiv.org/pdf/2010.08242</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.01786&#39;]">Corpora Evaluation and System Bias detection in Multi Document Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/LCS2-IIITD/summarization_bias">https://github.com/LCS2-IIITD/summarization_bias</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.01786">https://arxiv.org/pdf/2010.01786</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>EMNLP2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.05139&#39;]">An Empirical Study of Cross-Dataset Evaluation for Neural Summarization Systems</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zide05/CDEvalSumm">https://github.com/zide05/CDEvalSumm</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.05139">https://arxiv.org/pdf/2010.05139</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1910.13114&#39;]">Contrastive Attention Mechanism for Abstractive Sentence Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/travel-go/Abstractive-Text-Summarization">https://github.com/travel-go/Abstractive-Text-Summarization</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.13114">https://arxiv.org/pdf/1910.13114</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1910.08486&#39;]">Concept Pointer Network for Abstractive Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/wprojectsn/codes">https://github.com/wprojectsn/codes</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.08486">https://arxiv.org/pdf/1910.08486</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1910.13114&#39;]">Contrastive Attention Mechanism for Abstractive Sentence Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/travel-go/Abstractive-Text-Summarization">https://github.com/travel-go/Abstractive-Text-Summarization</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.13114">https://arxiv.org/pdf/1910.13114</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1902.00863&#39;]">Neural Extractive Text Summarization with Syntactic Compression</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1902.00863">https://arxiv.org/pdf/1902.00863</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>EMNLP2019</td>
+<td><a href="[&#39;https://arxiv.org/abs/1908.08345&#39;]">Text Summarization with Pretrained Encoders</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/nlpyang/PreSumm">https://github.com/nlpyang/PreSumm</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.08345">https://arxiv.org/pdf/1908.08345</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="NAACL-3"><a href="#NAACL-3" class="headerlink" title="NAACL"></a>NAACL</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.08014&#39;]">GSum: A General Framework for Guided Neural Abstractive Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/neulab/guided_summarization">https://github.com/neulab/guided_summarization</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.08014">https://arxiv.org/pdf/2010.08014</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2010.12836&#39;]">Improving Zero and Few-Shot Abstractive Summarization with Intermediate Fine- tuning and Data Augmentation</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.12836">https://arxiv.org/pdf/2010.12836</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.08400&#39;]">Structure-Aware Abstractive Conversation Summarization via Discourse and Action Graphs</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/GT-SALT/Structure-Aware-BART">https://github.com/GT-SALT/Structure-Aware-BART</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.08400">https://arxiv.org/pdf/2104.08400</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2103.11332&#39;]">AdaptSum: Towards Low-Resource Domain Adaptation for Abstractive Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/TysonYu/AdaptSum">https://github.com/TysonYu/AdaptSum</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.11332">https://arxiv.org/pdf/2103.11332</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.01726&#39;]">A New Approach to Overgenerating and Scoring Abstractive Summaries</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ucfnlp/varying-length-summ">https://github.com/ucfnlp/varying-length-summ</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.01726">https://arxiv.org/pdf/2104.01726</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.09061&#39;]">Improving Faithfulness in Abstractive Summarization with Contrast Candidate Generation and Selection</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.09061">https://arxiv.org/pdf/2104.09061</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2106.01317&#39;]">Enriching Transformers with Structured Tensor-Product Representations for Abstractive Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/jiangycTarheel/TPT-Summ">https://github.com/jiangycTarheel/TPT-Summ</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.01317">https://arxiv.org/pdf/2106.01317</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.02205&#39;]">Attention Head Masking for Inference Time Content Selection in Abstractive Summarization</a></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.02205">https://arxiv.org/pdf/2104.02205</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>NAACL2021</td>
+<td><a href="[&#39;https://arxiv.org/abs/2104.13346&#39;]">Understanding Factuality in Abstractive Summarization with FRANK: A Benchmark for Factuality Metrics</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/artidoro/frank">https://github.com/artidoro/frank</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.13346">https://arxiv.org/pdf/2104.13346</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="COLING-3"><a href="#COLING-3" class="headerlink" title="COLING"></a>COLING</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>会议/期刊</th>
+<th>论文</th>
+<th>主要技术</th>
+<th>代码</th>
+<th>论文下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.00692&#39;]">How Domain Terminology Affects Meeting Summarization Performance</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ucfnlp/meeting-domain-terminology">https://github.com/ucfnlp/meeting-domain-terminology</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.00692">https://arxiv.org/pdf/2011.00692</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.09739&#39;]">Fact-level Extractive Summarization with Hierarchical Graph Mask on BERT</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Ruifeng-paper/FactExsum-coling2020">https://github.com/Ruifeng-paper/FactExsum-coling2020</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.09739">https://arxiv.org/pdf/2011.09739</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>COLING2020</td>
+<td><a href="[&#39;https://arxiv.org/abs/2011.01421&#39;]">WSL-DS: Weakly Supervised Learning with Distant Supervision for Query Focused Multi-Document Abstractive Summarization</a></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/tahmedge/WSL-DS-COLING-2020">https://github.com/tahmedge/WSL-DS-COLING-2020</a></td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.01421">https://arxiv.org/pdf/2011.01421</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">没有胡子的猫Asimok</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://asimok.github.io/2021/08/13/%E7%AE%80%E7%89%88-%E7%BF%BB%E8%AF%91%E3%80%81%E6%91%98%E8%A6%81%E3%80%81%E4%BC%9A%E8%AF%9D%E3%80%81%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1%E9%A1%B6%E4%BC%9A%E8%AE%BA%E6%96%87/">http://asimok.github.io/2021/08/13/%E7%AE%80%E7%89%88-%E7%BF%BB%E8%AF%91%E3%80%81%E6%91%98%E8%A6%81%E3%80%81%E4%BC%9A%E8%AF%9D%E3%80%81%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1%E9%A1%B6%E4%BC%9A%E8%AE%BA%E6%96%87/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://asimok.github.io" target="_blank">没有胡子的猫Asimok</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/arxiv/">arxiv</a><a class="post-meta__tags" href="/tags/ACL/">ACL</a><a class="post-meta__tags" href="/tags/NAACL/">NAACL</a><a class="post-meta__tags" href="/tags/EMNLP/">EMNLP</a><a class="post-meta__tags" href="/tags/COLING/">COLING</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210811211153.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/13/MS-MARCO-NLG%E4%BB%BB%E5%8A%A1%E8%B0%83%E7%A0%94/"><img class="prev-cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210812121659.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MS MARCO NLG任务调研</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/13/%E5%AE%8C%E6%95%B4%E7%89%88-%E7%BF%BB%E8%AF%91%E3%80%81%E6%91%98%E8%A6%81%E3%80%81%E4%BC%9A%E8%AF%9D%E3%80%81%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1%E9%A1%B6%E4%BC%9A%E8%AE%BA%E6%96%87/"><img class="next-cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210811211335.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">完整版-翻译、摘要、会话、文本生成任务顶会论文</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/08/13/%E5%AE%8C%E6%95%B4%E7%89%88-%E7%BF%BB%E8%AF%91%E3%80%81%E6%91%98%E8%A6%81%E3%80%81%E4%BC%9A%E8%AF%9D%E3%80%81%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1%E9%A1%B6%E4%BC%9A%E8%AE%BA%E6%96%87/" title="完整版-翻译、摘要、会话、文本生成任务顶会论文"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210811211335.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-13</div><div class="title">完整版-翻译、摘要、会话、文本生成任务顶会论文</div></div></a></div><div><a href="/2021/08/10/arxiv%E8%AE%BA%E6%96%87%E6%95%B4%E7%90%86%E5%B7%A5%E5%85%B7/" title="arxiv论文整理工具"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210810235040.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-10</div><div class="title">arxiv论文整理工具</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">没有胡子的猫Asimok</div><div class="author-info__description">记录自己的成长历程</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">119</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">138</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Asimok"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Asimok" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maqi_nepu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_39827677" target="_blank" title="CSDN"><i class="fab fa-internet-explorer"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/mmqrcode1605604352215.png" target="_blank" title="wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/qrcode_1605604361959.jpg" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">喜欢摄影的程序员</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E7%89%88-%E7%BF%BB%E8%AF%91%E3%80%81%E6%91%98%E8%A6%81%E3%80%81%E4%BC%9A%E8%AF%9D%E3%80%81%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1%E9%A1%B6%E4%BC%9A%E8%AE%BA%E6%96%87"><span class="toc-number">1.</span> <span class="toc-text">简版-翻译、摘要、会话、文本生成任务顶会论文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91"><span class="toc-number">1.1.</span> <span class="toc-text">机器翻译</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ACL"><span class="toc-number">1.1.1.</span> <span class="toc-text">ACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EMNLP"><span class="toc-number">1.1.2.</span> <span class="toc-text">EMNLP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NAACL"><span class="toc-number">1.1.3.</span> <span class="toc-text">NAACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#COLING"><span class="toc-number">1.1.4.</span> <span class="toc-text">COLING</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D-%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.2.</span> <span class="toc-text">会话&#x2F;对话系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ACL-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">ACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EMNLP-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">EMNLP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NAACL-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">NAACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#COLING-1"><span class="toc-number">1.2.4.</span> <span class="toc-text">COLING</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90"><span class="toc-number">1.3.</span> <span class="toc-text">文本生成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ACL-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">ACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EMNLP-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">EMNLP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NAACL-2"><span class="toc-number">1.3.3.</span> <span class="toc-text">NAACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#COLING-2"><span class="toc-number">1.3.4.</span> <span class="toc-text">COLING</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.4.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ACL-3"><span class="toc-number">1.4.1.</span> <span class="toc-text">ACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EMNLP-3"><span class="toc-number">1.4.2.</span> <span class="toc-text">EMNLP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NAACL-3"><span class="toc-number">1.4.3.</span> <span class="toc-text">NAACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#COLING-3"><span class="toc-number">1.4.4.</span> <span class="toc-text">COLING</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/14/Knowledge%20Enhanced%20Fine-Tuning%20for%20Better%20Handling%20Unseen%20Entities%20in%20Dialogue%20Generation/" title="Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211114160558.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation"/></a><div class="content"><a class="title" href="/2021/11/14/Knowledge%20Enhanced%20Fine-Tuning%20for%20Better%20Handling%20Unseen%20Entities%20in%20Dialogue%20Generation/" title="Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation">Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation</a><time datetime="2021-11-13T16:00:00.000Z" title="发表于 2021-11-14 00:00:00">2021-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/Heterogeneous%20Graph%20Attention%20Network/" title="Heterogeneous Graph Attention Network"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Heterogeneous Graph Attention Network"/></a><div class="content"><a class="title" href="/2021/10/26/Heterogeneous%20Graph%20Attention%20Network/" title="Heterogeneous Graph Attention Network">Heterogeneous Graph Attention Network</a><time datetime="2021-10-25T16:00:00.000Z" title="发表于 2021-10-26 00:00:00">2021-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="leetcode每日一题（更新中）"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="leetcode每日一题（更新中）"/></a><div class="content"><a class="title" href="/2021/10/26/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="leetcode每日一题（更新中）">leetcode每日一题（更新中）</a><time datetime="2021-10-25T16:00:00.000Z" title="发表于 2021-10-26 00:00:00">2021-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法笔记（更新中）"/></a><div class="content"><a class="title" href="/2021/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）">算法笔记（更新中）</a><time datetime="2021-10-24T16:00:00.000Z" title="发表于 2021-10-25 00:00:00">2021-10-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/05/A%20Hierarchical%20Network%20for%20Abstractive%20Meeting%20Summarization%20with%20Cross-%20Domain%20Pretraining/" title="A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211003215719.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining"/></a><div class="content"><a class="title" href="/2021/10/05/A%20Hierarchical%20Network%20for%20Abstractive%20Meeting%20Summarization%20with%20Cross-%20Domain%20Pretraining/" title="A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining">A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining</a><time datetime="2021-10-04T16:00:00.000Z" title="发表于 2021-10-05 00:00:00">2021-10-05</time></div></div></div></div></div></div></main><footer id="footer" style="background: true - linear-gradient( 135deg,"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 没有胡子的猫Asimok</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+      appKey: 't1nJqxp0EXl18EniOb74r4S6',
+      placeholder: '记得留下你的昵称和邮箱....可以快速收到回复',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://LHHLwaEB.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+        "X-LC-Key": 't1nJqxp0EXl18EniOb74r4S6',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/论文阅读/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 论文阅读 (45)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/工具-教程/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🪛 工具&教程 (29)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/PyTorch/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🔑 PyTorch (8)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/TensorFlow/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🚽 TensorFlow (11)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐍 Python (5)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/机器学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🖥 机器学习 (13)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/硬件开发/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎛 硬件开发 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/软件开发-模型/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📲 软件开发&模型复现 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://asimok.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?asimok";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="asimok";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><!-- hexo injector body_end end --></body></html>

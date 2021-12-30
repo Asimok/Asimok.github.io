@@ -1,0 +1,559 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering | 没有胡子的猫Asimok</title><meta name="keywords" content="NLP,MRC,机器阅读理解,HotpotQA"><meta name="author" content="没有胡子的猫Asimok"><meta name="copyright" content="没有胡子的猫Asimok"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering 论文：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1911.10470 代码：https:&#x2F;&#x2F;github.com&#x2F;AkariAsai&#x2F;learning_to_retrieve_reasoning_paths 学习在维基百科中检索问题的推">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering">
+<meta property="og:url" content="http://asimok.github.io/2020/12/12/Learning%20to%20Retrieve%20Reasoning%20Paths%20over%20Wikipedia%20Graph%20for%20Question%20Answering/index.html">
+<meta property="og:site_name" content="没有胡子的猫Asimok">
+<meta property="og:description" content="Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering 论文：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1911.10470 代码：https:&#x2F;&#x2F;github.com&#x2F;AkariAsai&#x2F;learning_to_retrieve_reasoning_paths 学习在维基百科中检索问题的推">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201208143829.png">
+<meta property="article:published_time" content="2020-12-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-29T08:15:53.768Z">
+<meta property="article:author" content="没有胡子的猫Asimok">
+<meta property="article:tag" content="NLP">
+<meta property="article:tag" content="MRC">
+<meta property="article:tag" content="机器阅读理解">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201208143829.png"><link rel="shortcut icon" href="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG"><link rel="canonical" href="http://asimok.github.io/2020/12/12/Learning%20to%20Retrieve%20Reasoning%20Paths%20over%20Wikipedia%20Graph%20for%20Question%20Answering/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-29 16:15:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">119</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">138</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201208143829.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">没有胡子的猫Asimok</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-11T16:00:00.000Z" title="发表于 2020-12-12 00:00:00">2020-12-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-29T08:15:53.768Z" title="更新于 2021-12-29 16:15:53">2021-12-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2020/12/12/Learning%20to%20Retrieve%20Reasoning%20Paths%20over%20Wikipedia%20Graph%20for%20Question%20Answering/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/2020/12/12/Learning%20to%20Retrieve%20Reasoning%20Paths%20over%20Wikipedia%20Graph%20for%20Question%20Answering/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Learning-to-Retrieve-Reasoning-Paths-over-Wikipedia-Graph-for-Question-Answering"><a href="#Learning-to-Retrieve-Reasoning-Paths-over-Wikipedia-Graph-for-Question-Answering" class="headerlink" title="Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering"></a>Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1911.10470">论文：https://arxiv.org/abs/1911.10470</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/AkariAsai/learning_to_retrieve_reasoning_paths">代码：https://github.com/AkariAsai/learning_to_retrieve_reasoning_paths</a></p>
+<p>学习在维基百科中检索问题的推理路径</p>
+<ul>
+<li>基于推理路径</li>
+</ul>
+</blockquote>
+<h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>从维基百科中提取推理路径实现多轮问答。</p>
+<ul>
+<li><p>多轮问答：</p>
+<p>需要结合多篇文档的“知识推理”能得到最终答案。</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201208143543.png" alt="image-20201208143543082"></p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201208143557.png" alt="image-20201208143556977"></p>
+</li>
+</ul>
+<h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><ol>
+<li>通过维基百科的超链接构建一个维基百科图网络，在不同的文档之间建模。</li>
+<li>使用一个RNN给推理路径建模，从而找到最佳推理路径。</li>
+</ol>
+<h3 id="模型结构："><a href="#模型结构：" class="headerlink" title="模型结构："></a>模型结构：</h3><blockquote>
+<p>由一个提取器和阅读器组成</p>
+</blockquote>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201208143829.png" alt="image-20201208143829008"></p>
+<p>推理路径提取器（Reasoning Path Retrieval）：根据维基百科之间的超链接关系得到若干推理路径。</p>
+<p>阅读理解答案抽取器（Reading and Answering Reasoning Path）：基于这些路径找到最可能的一条路径作为最终的答案。</p>
+<blockquote>
+<p>将维基百科文章里的每个段落$p$作为基本单元。给定问题$q$，模型首先找到一条推理路径$E = [p<em>i, . . . , p_k]$，用$S</em>{retr}(q, E)$表示；然后在$E$中找到答案$a$，用$S_{read}(q, E, a)$表示。</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\underset{E,a}{arg \ max} \ S(q, E, a) \ \ \ \  s.t. \ \ S(q, E, a) = S_{retr}(q, E) + S_{read}(q, E, a)</script><h3 id="推理路径提取"><a href="#推理路径提取" class="headerlink" title="推理路径提取"></a>推理路径提取</h3><h4 id="Constructing-the-Wikipedia-graph"><a href="#Constructing-the-Wikipedia-graph" class="headerlink" title="Constructing the Wikipedia graph"></a>Constructing the Wikipedia graph</h4><p>直接使用维基百科中的超链接构建有向图$G$。</p>
+<h4 id="General-formulation-with-a-recurrent-retriever"><a href="#General-formulation-with-a-recurrent-retriever" class="headerlink" title="General formulation with a recurrent retriever"></a>General formulation with a recurrent retriever</h4><p>使用RNN建模问题$Q$的推理路径。</p>
+<p>给定问题$q$，在时间步$t$时，模型从候选段落集$C_t$中找出$p_i$ ，与$q$拼接计算$p_i$的概率。</p>
+<p>遇到$[EOE]$时结束推理，允许它在给定每个问题的情况下捕获具有任意长度的推理路径。</p>
+<script type="math/tex; mode=display">
+w_i=BERT_{CLS}(q,p_i) \in \R^d</script><script type="math/tex; mode=display">
+P(p_i|h_t)=\sigma(w_i·h_t+b)</script><script type="math/tex; mode=display">
+h_{t=1}=RNN(h_t,w_i) \in \R^d</script><h4 id="Beam-search-for-candidate-paragraphs"><a href="#Beam-search-for-candidate-paragraphs" class="headerlink" title="Beam search for candidate paragraphs"></a>Beam search for candidate paragraphs</h4><p>为防止计算量过大，使用Beam Search来构建多个检索路径。</p>
+<h4 id="Data-augmentation"><a href="#Data-augmentation" class="headerlink" title="Data augmentation"></a>Data augmentation</h4><p>对真实的推理路径$g = [p<em>1, . . . , p</em>{|g|}]$增加一条新的推理路径$g = [p<em>r,p_1, . . . , p</em>{|g|}]$，$p_r$是与$p_1$有联系的TF-IDF分最高的一个段落。</p>
+<h4 id="Negative-examples-for-robustness"><a href="#Negative-examples-for-robustness" class="headerlink" title="Negative examples for robustness"></a>Negative examples for robustness</h4><p>使用两种负采样策略：</p>
+<p>​    (1)基于TF-IDF</p>
+<p>​    (2)基于超链接</p>
+<p>单轮QA只用(1)，多轮QA两者都用，负采样数为50。</p>
+<h4 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h4><p>在 $C_t$上使用广泛使用的交叉熵损失和softmax归一化是不理想的，因为同时最大化$g$和增广的$g_r$是矛盾的。因此本文独立评估$P(p_i|h_t)$并使用 binary cross-entropy loss来最大化所有可能路径的概率值。</p>
+<script type="math/tex; mode=display">
+L_{retr}(p_t, h_t) = − log P(p_t|h_t) − \ \underset{\tilde{p}∈\tilde C_t} \sum log (1 − P(\tilde{p}|h_t))</script><ul>
+<li>$\tilde{p}∈\tilde C_t$是负样本集合。</li>
+</ul>
+<h3 id="READING-AND-ANSWERING-GIVEN-REASONING-PATHS"><a href="#READING-AND-ANSWERING-GIVEN-REASONING-PATHS" class="headerlink" title="READING AND ANSWERING GIVEN REASONING PATHS"></a>READING AND ANSWERING GIVEN REASONING PATHS</h3><p>使用Bert模型计算推理路径和答案概率。</p>
+<blockquote>
+<p>使用Bert模型对应于CLS标识符位的输出判断推理路径包括答案的概率。</p>
+</blockquote>
+<script type="math/tex; mode=display">
+P(E|q) = σ(w_n· u_E) \ \ s.t. \ \ u_E= BERT_{[CLS]}(q, E) ∈ \R^D</script><script type="math/tex; mode=display">
+E_{best}=\underset{E∈E} {arg\ max } \ P(E|q)</script><script type="math/tex; mode=display">
+S_{read}= \underset{i,j, i≤j}{arg \ max}\   P^{start}_i P^{end}_j</script><h3 id="Multi-task-loss-function"><a href="#Multi-task-loss-function" class="headerlink" title="Multi-task loss function"></a>Multi-task loss function</h3><script type="math/tex; mode=display">
+L_{read}= L_{span}+ L_{no\_answer}= (− log P^{start}_{y^{start}} − log P^{end}_{y^{end}}) − log P^r</script><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><ul>
+<li><strong>HotpotQA</strong></li>
+<li>SQuAD Open</li>
+<li>Natural Question Open</li>
+</ul>
+<h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p>HotpotQA验证集测试结果:</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201210141209.png" alt="image-20201210141209866"></p>
+<p>HotpotQA测试集测试结果:</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201210141630.png" alt="image-20201210141630169" style="zoom:50%;" /></p>
+<blockquote>
+<p>本文提出的模型在hotpot数据集上取得了非常优秀的测试结果。</p>
+</blockquote>
+<p>SQuAD Open测试结果:</p>
+<p><img src="/Users/maqi/Library/Application Support/typora-user-images/image-20201210141756755.png" alt="image-20201210141756755" style="zoom:50%;" /></p>
+<p>Natural Question Open测试结果:</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201210141817.png" alt="image-20201210141817154" style="zoom:50%;" /></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>不同的路径抽取方法比较：</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201210142007.png" alt="image-20201210142007831" style="zoom:50%;" /></p>
+<p><strong>消融实验：</strong></p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201210142257.png" alt="image-20201210142257828" style="zoom:50%;" /></p>
+<blockquote>
+<p>可以看到，移除任何一部分对模型的结果影响都比较大。</p>
+</blockquote>
+<p>实体链接：</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201210142511.png" alt="image-20201210142511733" style="zoom:50%;" /></p>
+<blockquote>
+<p>使用超链接和实体链接系统对实验结果影响不大，说明超链接并不是必要因素。</p>
+</blockquote>
+<p>推理路径长度：</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201210142637.png" alt="image-20201210142637317" style="zoom:50%;" /></p>
+<blockquote>
+<p>推理路径的长度对实验结果有显著的影响，推理路径较短时准确率较低。</p>
+</blockquote>
+<p>​        本文介绍了一种新的基于图的递归检索方法，该方法在维基百科图上检索推理路径，以回答开放领域多轮问答。使用推理路径提取器构建推理路径，使用阅读理解答案抽取器对推理路径进行重新排序，并将最终答案确定为从最佳推理路径中提取的答案。在多个数据集上都表现出了优秀的性能。</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><h3 id="搜索算法beam-search（束搜索）"><a href="#搜索算法beam-search（束搜索）" class="headerlink" title="搜索算法beam search（束搜索）"></a>搜索算法beam search（束搜索）</h3><blockquote>
+<p>是exhaustive search和greedy search的折中方案。</p>
+</blockquote>
+<p>​        beam search有一个超参数<strong>beam size</strong>（束宽），设为$k$ 。第一个时间步长，选取当前条件概率最大的 $k$个词，当做候选输出序列的第一个词。之后的每个时间步长，基于上个步长的输出序列，挑选出<strong>所有组合中</strong>条件概率最大的$k$ 个，作为该时间步长下的候选输出序列。始终保持$k$个候选。最后从$k$个候选中挑出最优的。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">没有胡子的猫Asimok</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://asimok.github.io/2020/12/12/Learning%20to%20Retrieve%20Reasoning%20Paths%20over%20Wikipedia%20Graph%20for%20Question%20Answering/">http://asimok.github.io/2020/12/12/Learning%20to%20Retrieve%20Reasoning%20Paths%20over%20Wikipedia%20Graph%20for%20Question%20Answering/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://asimok.github.io" target="_blank">没有胡子的猫Asimok</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NLP/">NLP</a><a class="post-meta__tags" href="/tags/MRC/">MRC</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3/">机器阅读理解</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201208143829.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/12/13/%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81/"><img class="prev-cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201213161946.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">智能门锁</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/10/%E6%99%BA%E8%83%BD%E5%BC%80%E5%85%B3(Android)/"><img class="next-cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20201206135913.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">智能开关(Android)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/20/A%20Simple%20and%20Effective%20Model%20for%20Answering%20Multi-span%20Questions/" title="A Simple and Effective Model for Answering Multi-span Questions"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210119092212.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-20</div><div class="title">A Simple and Effective Model for Answering Multi-span Questions</div></div></a></div><div><a href="/2021/03/18/ACL2019-Answering%20while%20Summarizing%20Multi-task%20Learning%20for%20Multi-hop%20QA%20with%20Evidence%20Extraction/" title="Answering while Summarizing Multi-task Learning for Multi-hop QA with Evidence Extraction"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210316152458.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-18</div><div class="title">Answering while Summarizing Multi-task Learning for Multi-hop QA with Evidence Extraction</div></div></a></div><div><a href="/2021/02/27/Asking%20Complex%20Questions%20with%20Multi-hop%20Answer-focused%20Reasoning/" title="Asking Complex Questions with Multi-hop Answer-focused Reasoning"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210225192912.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-27</div><div class="title">Asking Complex Questions with Multi-hop Answer-focused Reasoning</div></div></a></div><div><a href="/2021/03/05/DDRQA%20Dynamic%20Document%20Reranking%20for%20Open-domain%20Multi-hop%20Question%20Answering/" title="DDRQA:Dynamic Document Reranking for Open-domain Multi-hop Question Answering"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210302200608.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-05</div><div class="title">DDRQA:Dynamic Document Reranking for Open-domain Multi-hop Question Answering</div></div></a></div><div><a href="/2021/01/09/GRAPH-BASED%20RECURRENT%20RETRIEVER/" title="GRAPH-BASED RECURRENT RETRIEVER"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210108150704.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-09</div><div class="title">GRAPH-BASED RECURRENT RETRIEVER</div></div></a></div><div><a href="/2021/02/05/HOTPOTQA%20A%20Dataset%20for%20Diverse,%20Explainable%20Multi-hop%20Question%20Answering/" title="HOTPOTQA A Dataset for Diverse, Explainable Multi-hop Question Answering"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210131164223.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">HOTPOTQA A Dataset for Diverse, Explainable Multi-hop Question Answering</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">没有胡子的猫Asimok</div><div class="author-info__description">记录自己的成长历程</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">119</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">138</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Asimok"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Asimok" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maqi_nepu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_39827677" target="_blank" title="CSDN"><i class="fab fa-internet-explorer"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/mmqrcode1605604352215.png" target="_blank" title="wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/qrcode_1605604361959.jpg" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">喜欢摄影的程序员</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Learning-to-Retrieve-Reasoning-Paths-over-Wikipedia-Graph-for-Question-Answering"><span class="toc-number">1.</span> <span class="toc-text">Learning to Retrieve Reasoning Paths over Wikipedia Graph for Question Answering</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.1.</span> <span class="toc-text">任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%EF%BC%88%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">方法（模型）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">模型结构：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E8%B7%AF%E5%BE%84%E6%8F%90%E5%8F%96"><span class="toc-number">1.2.2.</span> <span class="toc-text">推理路径提取</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Constructing-the-Wikipedia-graph"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Constructing the Wikipedia graph</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#General-formulation-with-a-recurrent-retriever"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">General formulation with a recurrent retriever</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Beam-search-for-candidate-paragraphs"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Beam search for candidate paragraphs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data-augmentation"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">Data augmentation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Negative-examples-for-robustness"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">Negative examples for robustness</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Loss-function"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">Loss function</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#READING-AND-ANSWERING-GIVEN-REASONING-PATHS"><span class="toc-number">1.2.3.</span> <span class="toc-text">READING AND ANSWERING GIVEN REASONING PATHS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multi-task-loss-function"><span class="toc-number">1.2.4.</span> <span class="toc-text">Multi-task loss function</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.3.</span> <span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B0%B4%E5%B9%B3"><span class="toc-number">1.4.</span> <span class="toc-text">性能水平</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.5.</span> <span class="toc-text">结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">1.6.</span> <span class="toc-text">思考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95beam-search%EF%BC%88%E6%9D%9F%E6%90%9C%E7%B4%A2%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">搜索算法beam search（束搜索）</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/14/Knowledge%20Enhanced%20Fine-Tuning%20for%20Better%20Handling%20Unseen%20Entities%20in%20Dialogue%20Generation/" title="Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211114160558.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation"/></a><div class="content"><a class="title" href="/2021/11/14/Knowledge%20Enhanced%20Fine-Tuning%20for%20Better%20Handling%20Unseen%20Entities%20in%20Dialogue%20Generation/" title="Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation">Knowledge Enhanced Fine-Tuning for Better Handling Unseen Entities in Dialogue Generation</a><time datetime="2021-11-13T16:00:00.000Z" title="发表于 2021-11-14 00:00:00">2021-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/Heterogeneous%20Graph%20Attention%20Network/" title="Heterogeneous Graph Attention Network"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Heterogeneous Graph Attention Network"/></a><div class="content"><a class="title" href="/2021/10/26/Heterogeneous%20Graph%20Attention%20Network/" title="Heterogeneous Graph Attention Network">Heterogeneous Graph Attention Network</a><time datetime="2021-10-25T16:00:00.000Z" title="发表于 2021-10-26 00:00:00">2021-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="leetcode每日一题（更新中）"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="leetcode每日一题（更新中）"/></a><div class="content"><a class="title" href="/2021/10/26/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="leetcode每日一题（更新中）">leetcode每日一题（更新中）</a><time datetime="2021-10-25T16:00:00.000Z" title="发表于 2021-10-26 00:00:00">2021-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法笔记（更新中）"/></a><div class="content"><a class="title" href="/2021/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）">算法笔记（更新中）</a><time datetime="2021-10-24T16:00:00.000Z" title="发表于 2021-10-25 00:00:00">2021-10-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/05/A%20Hierarchical%20Network%20for%20Abstractive%20Meeting%20Summarization%20with%20Cross-%20Domain%20Pretraining/" title="A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211003215719.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining"/></a><div class="content"><a class="title" href="/2021/10/05/A%20Hierarchical%20Network%20for%20Abstractive%20Meeting%20Summarization%20with%20Cross-%20Domain%20Pretraining/" title="A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining">A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining</a><time datetime="2021-10-04T16:00:00.000Z" title="发表于 2021-10-05 00:00:00">2021-10-05</time></div></div></div></div></div></div></main><footer id="footer" style="background: true - linear-gradient( 135deg,"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 没有胡子的猫Asimok</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+      appKey: 't1nJqxp0EXl18EniOb74r4S6',
+      placeholder: '记得留下你的昵称和邮箱....可以快速收到回复',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://LHHLwaEB.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+        "X-LC-Key": 't1nJqxp0EXl18EniOb74r4S6',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/论文阅读/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 论文阅读 (45)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/工具-教程/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🪛 工具&教程 (29)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/PyTorch/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🔑 PyTorch (8)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/TensorFlow/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🚽 TensorFlow (11)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐍 Python (5)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/机器学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🖥 机器学习 (13)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/硬件开发/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎛 硬件开发 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/软件开发-模型/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📲 软件开发&模型复现 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://asimok.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?asimok";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="asimok";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><!-- hexo injector body_end end --></body></html>
