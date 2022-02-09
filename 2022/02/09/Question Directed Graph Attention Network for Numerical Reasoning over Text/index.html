@@ -1,0 +1,527 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Question Directed Graph Attention Network for Numerical Reasoning over Text | 没有胡子的猫Asimok</title><meta name="keywords" content="MRC,DROP,QDGAT"><meta name="author" content="没有胡子的猫Asimok"><meta name="copyright" content="没有胡子的猫Asimok"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Question Directed Graph Attention Network for Numerical Reasoning over Text  论文：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2009.07448  EMNLP2020  任务对文本进行数字推理，如加法、减法、排序和计数，是一项具有挑战性的机器阅读理解任务，因为它需要自然语言理解和算术计算。为了应对这一挑战，作者提出了一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Question Directed Graph Attention Network for Numerical Reasoning over Text">
+<meta property="og:url" content="http://asimok.github.io/2022/02/09/Question%20Directed%20Graph%20Attention%20Network%20for%20Numerical%20Reasoning%20over%20Text/index.html">
+<meta property="og:site_name" content="没有胡子的猫Asimok">
+<meta property="og:description" content="Question Directed Graph Attention Network for Numerical Reasoning over Text  论文：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2009.07448  EMNLP2020  任务对文本进行数字推理，如加法、减法、排序和计数，是一项具有挑战性的机器阅读理解任务，因为它需要自然语言理解和算术计算。为了应对这一挑战，作者提出了一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210010810.png">
+<meta property="article:published_time" content="2022-02-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-02-09T17:57:24.583Z">
+<meta property="article:author" content="没有胡子的猫Asimok">
+<meta property="article:tag" content="NLP">
+<meta property="article:tag" content="MRC">
+<meta property="article:tag" content="DROP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210010810.png"><link rel="shortcut icon" href="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG"><link rel="canonical" href="http://asimok.github.io/2022/02/09/Question%20Directed%20Graph%20Attention%20Network%20for%20Numerical%20Reasoning%20over%20Text/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Question Directed Graph Attention Network for Numerical Reasoning over Text',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-02-10 01:57:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">126</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">150</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210010810.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">没有胡子的猫Asimok</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Question Directed Graph Attention Network for Numerical Reasoning over Text</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-08T16:00:00.000Z" title="发表于 2022-02-09 00:00:00">2022-02-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-02-09T17:57:24.583Z" title="更新于 2022-02-10 01:57:24">2022-02-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Question Directed Graph Attention Network for Numerical Reasoning over Text"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/02/09/Question%20Directed%20Graph%20Attention%20Network%20for%20Numerical%20Reasoning%20over%20Text/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/2022/02/09/Question%20Directed%20Graph%20Attention%20Network%20for%20Numerical%20Reasoning%20over%20Text/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Question-Directed-Graph-Attention-Network-for-Numerical-Reasoning-over-Text"><a href="#Question-Directed-Graph-Attention-Network-for-Numerical-Reasoning-over-Text" class="headerlink" title="Question Directed Graph Attention Network for Numerical Reasoning over Text"></a>Question Directed Graph Attention Network for Numerical Reasoning over Text</h1><blockquote>
+<p> 论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2009.07448">https://arxiv.org/abs/2009.07448</a></p>
+<p> EMNLP2020</p>
+</blockquote>
+<h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>对文本进行数字推理，如加法、减法、排序和计数，是一项具有挑战性的机器阅读理解任务，因为它需要自然语言理解和算术计算。为了应对这一挑战，作者提出了一种异构图表示，用于这种推理所需的文章和问题的上下文，并设计了一个问题导向图注意网络来驱动该上下文图上的多步数值推理。</p>
+<h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><p>作者认为QANET和NumNet对于复杂的数值推理是不够的，因为它们缺少数值推理的两个关键要素:</p>
+<ul>
+<li>Number Type and Entity Mention：NumNet中的数字比较图无法识别不同的数字类型，缺少文档中提到的连接数字节点的实体信息。</li>
+<li>Direct Interaction with Question：NumNet中的图推理模块忽略了直接的问题表示形式，这在定位问题所指向的重要数字作为数字推理的枢纽时可能会遇到困难。</li>
+</ul>
+<p>数字和实体之间的关联是学习数字推理模型的一个强有力的正则化：数字之间的比较和加/减法通常适用于那些具有相同类型或指代相同实体的数字。举两个例子：</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220209125818.png" alt="image-20220209125818672"></p>
+<p>​        其中有不同类型的实体和数字。两者都用不同的颜色强调:<code>实体（黄色）、数字（红色）、百分比（蓝色）、日期（深蓝）、序数（蓝绿）</code>。本文明确地将类型信息编码到模型中，并利用问题表示来进行推理过程。可以看到，第一段由5个”people counting“类型的数字，当给定数字类型时，如果模型学习提取以这个“population”问题为条件的“people counting”，推理难度将大大降低。<br>​        此外，图表中的实体提供了关于文章和问题之间相关性的明确信息。问题中的实体可能出现在文章中的几个句子中，表明每个数字如何通过这些桥接实体彼此关联，这有助于QA模型更好地收集和汇总信息以进行数字推理。 此外还可以观察到，当问题实体同时出现在一个句子中（第一段的最后一个句子）时，这可能暗示答案可以从该句子中得出。 第二个示例说明了跨度提取中的情况。 同样，当数字和“ Stephen Gostkowski”之间的相关关系明确时，该模型也会受益。</p>
+<p>​        为了明确地将类型和实体信息集成到模型中，作者构建了一个异构有向图（下图，对应上表），其中节点由实体和不同类型的数字组成，而边可以编码不同类型的关系。图的节点由问题和文章中的实体和数字组成。同一类型的数字彼此紧密相连。一个句子中共同出现的数字和实体也是相互联系的。</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210010018.png" alt="image-20220210010018594"></p>
+<p>​        红色节点是数字，深蓝色节点是日期，其他节点是实体。边编码数字和实体之间的关系：具有相同数字类型(例如日期)的数字被连接在一起。该图将数字和同一个句子中的实体连接起来，以表示它们的同现。</p>
+<p>​        在step-1中，模型关注包含Spanish 和 Portuguese实体的子图，因为它们在问题中被提及。在更新中，模型学习区分数字和日期，并提取与问题相关的数字。在step-2中，数字的表示由来自实体的消息以及进行推理的问题来更新。</p>
+<p>​        基于这种异构图，作者<strong>提出了一种问题导向图注意网络(QDGA T)</strong>，用于数值型MRC任务。由于与答案相关的数字可以由问题来引导，QDGAT在图推理过程中结合了问题的上下文编码。更具体地说，QDGAT使用上下文编码器，例如BERT和RoBERTa ，来提取问题和段落中的数字和实体的表示，作为图中每个节点的初始嵌入。通过异构图，QDGAT学会从以问题为条件的图中收集信息，用于数值推理。每个节点也由基于问题的上下文感知表示来描述，并且节点的表示通过消息传递迭代来更新。在用图神经网络进行多次消息传递迭代后，QDGAT逐渐聚合节点信息来回答问题。从这个意义上说，QDGAT以一种更符合人类感知和推理的方式抽象了段落和问题的表示，使模型产生了一种更可解释的推理模式。</p>
+<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><h4 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h4><p>在MRC任务中，每个数据样本由一个段落 $P$ 和一个相关的问题 $Q$ 组成。MRC模型的目标是根据 $P$ 回答问题 $Q$ ，给出答案 $A$ 。除了像标准MRC任务一样预测文本跨度之外，在数字推理的情况下，答案 $A$ 也可以是从算术计算(如排序、计数、加法和减法)中导出的数字。</p>
+<h4 id="Overall-Framework"><a href="#Overall-Framework" class="headerlink" title="Overall Framework"></a>Overall Framework</h4><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210010810.png" alt="image-20220210010810801"></p>
+<p>​        该模型由三个主要组件组成，representation extractor module, reasoning module, prediction module。representation extractor 负责语义理解。在extractor上，构造了一个具有类型化数字和相关实体的异构图。</p>
+<h4 id="Word-Representation-Extractor"><a href="#Word-Representation-Extractor" class="headerlink" title="Word Representation Extractor"></a>Word Representation Extractor</h4><p>RoBERTa处理passage和question，输入形式<code>[CLS] Q [SEP] P [SEP]</code>串联：</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210010942.png" alt="image-20220210010942220" style="zoom:33%;" /></p>
+<h4 id="Graph-Construction"><a href="#Graph-Construction" class="headerlink" title="Graph Construction"></a>Graph Construction</h4><p>​        该模块从文本数据构建异构类型的图形。图 $G=(V,E)$包含数字 $N$和实体 $T$，两者都由外部<strong>命名实体识别系统（CoreNLP）</strong>识别，节点 $V  = {undefined N ,T}$，其边 $E$ 编码数字类型的信息和数字与实体的关系。</p>
+<p>​        具体来说，NER将文本中的每个token标记为21个预定义类别之一。标记为NUMBER, PERCENT, MONEY, TIME, DATE, DURATION, ORDINAL 的被视为数字。此外，作者增加了一个额外的标记YARD并且利用了一个数字提取器去提取剩余的数字，它们也被标记为NUMBER。</p>
+<blockquote>
+<p>数字提取器word2num：<a target="_blank" rel="noopener" href="https://pypi.org/project/word2number/">https://pypi.org/project/word2number/</a></p>
+</blockquote>
+<p>​        所有这些标记用8种数字类型 $V_N=(NUMBER,PERCENT,MONEY,TIME,DATE, DURATION,ORDINAL,YARD)$构成数字集 $N$。至于其他已识别的标记，将它们映射到标签ENTIT_Y中，以构建类型集为 $V_T  = {undefined  \ ENTIT_Y }$的实体集 $T$，来表示节点的类型。类型信息可以直接通知模型找到与问题相关的数字，从而降低推理难度。边$E$编码数字和实体之间的关系，对应两种情况。</p>
+<ol>
+<li>The edge between the numbers</li>
+<li>The edge between the entity and the number</li>
+</ol>
+<p>​        第一种情况的边将相同类型的数字聚集在一起，这提供了一个明显的线索来帮助对这些数字进行推理。在第二种边大致表示数字和实体之间的相关性。总的来说，该图有9个关系$R$，即8个数字类型关系和1个ENT+DIGIT关系。</p>
+<h4 id="Numerical-Reasoning-Module"><a href="#Numerical-Reasoning-Module" class="headerlink" title="Numerical Reasoning Module"></a>Numerical Reasoning Module</h4><p>数字推理模块，即<strong>QDGAT</strong>，建立在表示和图提取器的基础上。基于图 $G=(V,E)$，QDGAT网络可以表示为:</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210012059.png" alt="image-20220210012059801" style="zoom:33%;" /></p>
+<blockquote>
+<p>$W^M$是投影矩阵</p>
+<p>$MEAN$表示为mean pooling<br>$W^c$投影问题表示的平均向量以导出$c$</p>
+<p>$c$是用于指导QDGAT中推理的问题语言嵌入</p>
+<p>QDGAT然后对表示$M^P \ M^Q$和以问题导向$c$为条件的图$G$进行推理</p>
+</blockquote>
+<h4 id="Prediction-Module"><a href="#Prediction-Module" class="headerlink" title="Prediction Module"></a>Prediction Module</h4><p>预测模块将图推理网络$U$的输出作为最终预测。目前NAQANet和NumNet+中的答案类型一般分为三类:</p>
+<ol>
+<li>跨度提取</li>
+<li>计数</li>
+<li>算术表达式</li>
+</ol>
+<p>作者为这些答案类型实现了单独的模块，它们都以图网络$U$和问题嵌入$c$的输出作为输入。具体如下:</p>
+<ul>
+<li>跨度提取:有三个跨度提取任务，即单篇文章跨度、多篇文章跨度、单问题跨度。单个跨度提取的概率是由问题或段落中开始和结束位置的<strong>概率的乘积</strong>导出的。</li>
+<li>计数:这个问题被认为是一个<strong>10类</strong>分类问题(0-9)，它涵盖了DROP数据集中大约97%的计数问题。</li>
+<li>算术表达式:答案由一个算数表达式给出，<strong>在DROP数据集中，只涉及加法和减法运算</strong>。作者通过将每个数字分类为(1，0，+1)中的一个来实现这一点，然后将其用作数值表达式中数字的<strong>系数</strong>，以得出最终答案。</li>
+</ul>
+<p>本文使用一个独特的分类网络将数据样本分类为五种细粒度类型$T$之一。每个类型求解器使用一个唯一的输出层来计算条件答案概率 $p(A|T)$。</p>
+<h4 id="Question-Directed-Graph-Attention-Network"><a href="#Question-Directed-Graph-Attention-Network" class="headerlink" title="Question Directed Graph Attention Network"></a>Question Directed Graph Attention Network</h4><p>​        基于异构图$G$，QDGAT对问题进行上下文感知的数值推理，通过在数字和实体之间传递消息的多次迭代来收集关系信息。它通过图中的边动态地确定与哪些对象交互，并通过图发送消息来传播关系信息。为了实现这一点，用上下文化的问题表示来扩充推理模块。例如，在表1的例子中，任务是找出有多少西班牙人和葡萄牙人受伤或死亡。实体和数字被显式标记，并在异构图中建模，如图1所示。QDGAT能够提取相关的实体，即西班牙语和葡萄牙语，条件是 $c$。在与这两个实体相关的数字中，其中一些是日期类型的，而其他的是关于人的。但是，应该只关注问题所要求的与人有关的数字。然后，模型对这些数字进行推理，得出答案计算的表达式。</p>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>DROP：DROP是通过在维基百科的段落上众包问答对来构建的，在最初的train/dev/test部分包含/ 9536 / 9622个样本。使用精确匹配(EM)和F1分数作为评估指标。</p>
+<h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210015145.png" style="zoom: 33%;" /></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>QDGAT在与数字和日期相关的问题上工作得更好，与span提取相比，这需要更具体的数字推理。</p>
+<p>在这项工作中，本文提出了一种名为QDGAT的新型方法，用于机器阅读理解任务中的数字推理。我们的方法不仅建立了一个包含不同类型的数字、实体和关系的更紧凑的图，可以作为其他复杂推理任务的通用方法，而且还将推理的条件直接放在问题语言嵌入上，通过图和被迭代传递的改变信息来调节注意力，实现推理。</p>
+<p><strong>case study</strong></p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210015251.png" alt="image-20220210015251686"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">没有胡子的猫Asimok</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://asimok.github.io/2022/02/09/Question%20Directed%20Graph%20Attention%20Network%20for%20Numerical%20Reasoning%20over%20Text/">http://asimok.github.io/2022/02/09/Question%20Directed%20Graph%20Attention%20Network%20for%20Numerical%20Reasoning%20over%20Text/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://asimok.github.io" target="_blank">没有胡子的猫Asimok</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NLP/">NLP</a><a class="post-meta__tags" href="/tags/MRC/">MRC</a><a class="post-meta__tags" href="/tags/DROP/">DROP</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210010810.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/01/26/A%20Multi-Type%20Multi-Span%20Network%20for%20Reading%20Comprehension%20that%20Requires%20Discrete%20Reasoning%20/"><img class="next-cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220126104449.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">A Multi-Type Multi-Span Network for Reading Comprehension that Requires Discrete Reasoning</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/20/A%20Simple%20and%20Effective%20Model%20for%20Answering%20Multi-span%20Questions/" title="A Simple and Effective Model for Answering Multi-span Questions"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210119092212.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-20</div><div class="title">A Simple and Effective Model for Answering Multi-span Questions</div></div></a></div><div><a href="/2021/02/19/tag-based-multi-span-extraction/" title="tag-based-multi-span-extraction"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210119092212.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-19</div><div class="title">tag-based-multi-span-extraction</div></div></a></div><div><a href="/2021/07/10/2020%20-%20Zero-Resource%20Knowledge-Grounded%20Dialogue%20Generati/" title="Zero-Resource Knowledge-Grounded Dialogue Generation"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210709120019.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-10</div><div class="title">Zero-Resource Knowledge-Grounded Dialogue Generation</div></div></a></div><div><a href="/2021/03/18/ACL2019-Answering%20while%20Summarizing%20Multi-task%20Learning%20for%20Multi-hop%20QA%20with%20Evidence%20Extraction/" title="Answering while Summarizing Multi-task Learning for Multi-hop QA with Evidence Extraction"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210316152458.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-18</div><div class="title">Answering while Summarizing Multi-task Learning for Multi-hop QA with Evidence Extraction</div></div></a></div><div><a href="/2021/04/24/ACL2019-Multi-hop%20Reading%20Comprehension%20through%20Question%20Decomposition%20and%20Rescoring.pdf/" title="Multi-hop Reading Comprehension through Question Decomposition and Rescoring"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210423103807.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-24</div><div class="title">Multi-hop Reading Comprehension through Question Decomposition and Rescoring</div></div></a></div><div><a href="/2021/04/10/Answering%20Complex%20Open-domain%20Questions%20Through%20Iterative%20Query%20Generation/" title="Answering Complex Open-domain Questions Through Iterative Query Generation"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210406142938.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-10</div><div class="title">Answering Complex Open-domain Questions Through Iterative Query Generation</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">没有胡子的猫Asimok</div><div class="author-info__description">记录自己的成长历程</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">126</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">150</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Asimok"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Asimok" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maqi_nepu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_39827677" target="_blank" title="CSDN"><i class="fab fa-internet-explorer"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/mmqrcode1605604352215.png" target="_blank" title="wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/qrcode_1605604361959.jpg" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">喜欢摄影的程序员</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Question-Directed-Graph-Attention-Network-for-Numerical-Reasoning-over-Text"><span class="toc-number">1.</span> <span class="toc-text">Question Directed Graph Attention Network for Numerical Reasoning over Text</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.1.</span> <span class="toc-text">任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%EF%BC%88%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">方法（模型）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Method"><span class="toc-number">1.2.1.</span> <span class="toc-text">Method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Problem-Definition"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">Problem Definition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Overall-Framework"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Overall Framework</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Word-Representation-Extractor"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">Word Representation Extractor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Graph-Construction"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">Graph Construction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Numerical-Reasoning-Module"><span class="toc-number">1.2.1.5.</span> <span class="toc-text">Numerical Reasoning Module</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Prediction-Module"><span class="toc-number">1.2.1.6.</span> <span class="toc-text">Prediction Module</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Question-Directed-Graph-Attention-Network"><span class="toc-number">1.2.1.7.</span> <span class="toc-text">Question Directed Graph Attention Network</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.3.</span> <span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B0%B4%E5%B9%B3"><span class="toc-number">1.4.</span> <span class="toc-text">性能水平</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.5.</span> <span class="toc-text">结论</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/02/09/Question%20Directed%20Graph%20Attention%20Network%20for%20Numerical%20Reasoning%20over%20Text/" title="Question Directed Graph Attention Network for Numerical Reasoning over Text"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210010810.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Question Directed Graph Attention Network for Numerical Reasoning over Text"/></a><div class="content"><a class="title" href="/2022/02/09/Question%20Directed%20Graph%20Attention%20Network%20for%20Numerical%20Reasoning%20over%20Text/" title="Question Directed Graph Attention Network for Numerical Reasoning over Text">Question Directed Graph Attention Network for Numerical Reasoning over Text</a><time datetime="2022-02-08T16:00:00.000Z" title="发表于 2022-02-09 00:00:00">2022-02-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/26/A%20Multi-Type%20Multi-Span%20Network%20for%20Reading%20Comprehension%20that%20Requires%20Discrete%20Reasoning%20/" title="A Multi-Type Multi-Span Network for Reading Comprehension that Requires Discrete Reasoning"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220126104449.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A Multi-Type Multi-Span Network for Reading Comprehension that Requires Discrete Reasoning"/></a><div class="content"><a class="title" href="/2022/01/26/A%20Multi-Type%20Multi-Span%20Network%20for%20Reading%20Comprehension%20that%20Requires%20Discrete%20Reasoning%20/" title="A Multi-Type Multi-Span Network for Reading Comprehension that Requires Discrete Reasoning">A Multi-Type Multi-Span Network for Reading Comprehension that Requires Discrete Reasoning</a><time datetime="2022-01-25T16:00:00.000Z" title="发表于 2022-01-26 00:00:00">2022-01-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/10/%E4%B8%8D%E8%BF%9E%E7%BB%ADMRC%E5%AE%9E%E9%AA%8C/" title="不连续MRC实验"><img src="/img/error1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="不连续MRC实验"/></a><div class="content"><a class="title" href="/2022/01/10/%E4%B8%8D%E8%BF%9E%E7%BB%ADMRC%E5%AE%9E%E9%AA%8C/" title="不连续MRC实验">不连续MRC实验</a><time datetime="2022-01-09T16:00:00.000Z" title="发表于 2022-01-10 00:00:00">2022-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/04/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）"><img src="/img/error2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法笔记（更新中）"/></a><div class="content"><a class="title" href="/2022/01/04/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）">算法笔记（更新中）</a><time datetime="2022-01-03T16:00:00.000Z" title="发表于 2022-01-04 00:00:00">2022-01-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/04/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="leetcode每日一题（更新中）"><img src="/img/error1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="leetcode每日一题（更新中）"/></a><div class="content"><a class="title" href="/2022/01/04/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="leetcode每日一题（更新中）">leetcode每日一题（更新中）</a><time datetime="2022-01-03T16:00:00.000Z" title="发表于 2022-01-04 00:00:00">2022-01-04</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 没有胡子的猫Asimok</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+      appKey: 't1nJqxp0EXl18EniOb74r4S6',
+      placeholder: '记得留下你的昵称和邮箱....可以快速收到回复',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://LHHLwaEB.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+        "X-LC-Key": 't1nJqxp0EXl18EniOb74r4S6',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/论文阅读/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 论文阅读 (47)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/工具-教程/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🪛 工具&教程 (31)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/PyTorch/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🔑 PyTorch (8)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/TensorFlow/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🚽 TensorFlow (11)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐍 Python (5)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/机器学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🖥 机器学习 (13)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/硬件开发/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎛 硬件开发 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/软件开发-模型/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📲 软件开发&模型复现 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://asimok.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?asimok";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="asimok";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><!-- hexo injector body_end end --></body></html>
