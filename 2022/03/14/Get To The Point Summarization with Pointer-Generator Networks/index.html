@@ -1,0 +1,583 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Get To The Point Summarization with Pointer-Generator Networks | 没有胡子的猫Asimok</title><meta name="keywords" content="NLP,pointer-generator network,摘要生成"><meta name="author" content="没有胡子的猫Asimok"><meta name="copyright" content="没有胡子的猫Asimok"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Get To The Point: Summarization with Pointer-Generator Networks  论文：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1704.04368  代码：https:&#x2F;&#x2F;github.com&#x2F;abisee&#x2F;pointer-generator  背景摘要技术整体分为两种:   抽取式extractive  生成式astractive 。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Get To The Point Summarization with Pointer-Generator Networks">
+<meta property="og:url" content="http://asimok.github.io/2022/03/14/Get%20To%20The%20Point%20Summarization%20with%20Pointer-Generator%20Networks/index.html">
+<meta property="og:site_name" content="没有胡子的猫Asimok">
+<meta property="og:description" content="Get To The Point: Summarization with Pointer-Generator Networks  论文：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1704.04368  代码：https:&#x2F;&#x2F;github.com&#x2F;abisee&#x2F;pointer-generator  背景摘要技术整体分为两种:   抽取式extractive  生成式astractive 。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312170914.png">
+<meta property="article:published_time" content="2022-03-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-14T06:33:55.037Z">
+<meta property="article:author" content="没有胡子的猫Asimok">
+<meta property="article:tag" content="NLP">
+<meta property="article:tag" content="指针网">
+<meta property="article:tag" content="摘要生成">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312170914.png"><link rel="shortcut icon" href="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG"><link rel="canonical" href="http://asimok.github.io/2022/03/14/Get%20To%20The%20Point%20Summarization%20with%20Pointer-Generator%20Networks/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Get To The Point Summarization with Pointer-Generator Networks',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-14 14:33:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">131</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">157</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312170914.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">没有胡子的猫Asimok</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Get To The Point Summarization with Pointer-Generator Networks</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-13T16:00:00.000Z" title="发表于 2022-03-14 00:00:00">2022-03-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-14T06:33:55.037Z" title="更新于 2022-03-14 14:33:55">2022-03-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Get To The Point Summarization with Pointer-Generator Networks"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/03/14/Get%20To%20The%20Point%20Summarization%20with%20Pointer-Generator%20Networks/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/2022/03/14/Get%20To%20The%20Point%20Summarization%20with%20Pointer-Generator%20Networks/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Get-To-The-Point-Summarization-with-Pointer-Generator-Networks"><a href="#Get-To-The-Point-Summarization-with-Pointer-Generator-Networks" class="headerlink" title="Get To The Point: Summarization with Pointer-Generator Networks"></a>Get To The Point: Summarization with Pointer-Generator Networks</h1><blockquote>
+<p> 论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1704.04368">https://arxiv.org/abs/1704.04368</a></p>
+<p> 代码：<a target="_blank" rel="noopener" href="https://github.com/abisee/pointer-generator">https://github.com/abisee/pointer-generator</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>摘要技术整体分为两种: </p>
+<ol>
+<li>抽取式extractive </li>
+<li>生成式astractive 。    </li>
+</ol>
+<p>​        抽取式比较简单，目前的performance也一般比较高，因为它是直接从原文抽取一些段落。但是想要生成高质量的摘要，必须具备一些复杂的摘要能力(如释义(paraphasing), 概括(generalization), 与现实世界知识的融合(incorporation of real-world knowledge)，这些只有通过生成式模型才可能得以实现。<br>​        鉴于生成式摘要任务的困难性，早期的摘要技术一般都是抽取式的，然而随着seq2sq架构的出现(Sutskever et al., 2014)，使用这种架构来读取与自由地生成文本就变得可行了。虽然这种模型很有前景，但存在本文摘要中所说的那三种缺点。<br>​        虽然最近的生成式摘要方面的工作专注于标题生成任务(headline generation)（将一个或两个句子减少到单个标题），但此文作者认为较长文本的摘要更具挑战性（需要更高级别的抽象同时避免重复）并最终更有用。</p>
+<h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>在生成式摘要任务中，对于传统的seq2seq+attention的模型架构，作者提出它们有以下缺点:</p>
+<ul>
+<li>难以准确复述原文细节</li>
+<li>无法处理原文中的未登录词(OOV)</li>
+<li>在生成的摘要中存在一些重复的部分</li>
+</ul>
+<p>本文提出了一种新颖的架构来增强标准的seq2seq+attention模型，采用了两种正交(互相之间不存在交集)的新颖手段:</p>
+<ul>
+<li>使用指针生成器网络(<strong>pointer-generator network</strong>)，通过指针从原文中拷贝词，这种方式的高明之处在于正确复述原文信息的同时，也能使用生成器生成一些新的词。</li>
+<li>使用覆盖率(coverage) 机制，追踪哪些信息已经在摘要中了，通过这种方式以期避免生成具有重复片段的摘要。</li>
+</ul>
+<p>不同模型的摘要生成效果：</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220311110522.png" alt="QQ20220311-110456@2x" style="zoom: 33%;" /></p>
+<h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><h3 id="seq2seq-attention-model"><a href="#seq2seq-attention-model" class="headerlink" title="seq2seq+attention model"></a>seq2seq+attention model</h3><p>本文的Baseline model</p>
+<p>模型结构：</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220311110722.png" alt="image-20220311110722271"></p>
+<ul>
+<li>encoder部分，本文采用单个 <strong>双向LSTM</strong>(bidirectional LSTM) 单元构成的层，训练数据中的文档中的<strong>token(词语或一些切割后的符号)</strong> $w_i$ 作为encoder的输入，产生一个encoder的隐藏层状态 $h_i$ 的序列。</li>
+<li><p>decoder部分，本文采用单个 <strong>单向LSTM</strong>(unidirectional LSTM) 单元构成的层，时刻 $t$ 时接收上一个词的嵌入(embedding) (训练阶段这是前一个参考摘要中的词，测试阶段这是前一个decoder产生的词)，生成解码状态  $s_t$。</p>
+</li>
+<li><p>注意力分布 $a^t$ 的计算：</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312164830.png" alt="image-20220312164830443" style="zoom:33%;" /></p>
+<blockquote>
+<p> 其中 $v , W<em>h , W_s , b</em>{attn}$ 都是可学习参数。</p>
+</blockquote>
+<ul>
+<li>注意力分布可以看作是建立在源文本(上图中的source text)中所有词上的一个概率分布，告诉decoder该看向哪里去生成下一个词。接下来，注意力分布用于产生encoder隐藏状态的加权和，即上下文向量(context vector)  $h_t^*$。</li>
+</ul>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312165200.png" alt="image-20220312165200280" style="zoom:33%;" /></p>
+<ul>
+<li>依靠这个上下文向量  $h<em>t^*$ 和decoder的隐层向量 $s_t$  ，共同决定$t$时刻 预测在词表上的概率分布 $P</em>{vocab}$ 。</li>
+</ul>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312165648.png" alt="image-20220312165648820" style="zoom:33%;" /></p>
+<blockquote>
+<p>其中  $V, V’, b, b’$ 都是可学习参数。</p>
+</blockquote>
+<ul>
+<li>$P_{vocab}$ 是建立在整个词表上的概率分布，提供最终的预测词分布 $P(w)$ :</li>
+</ul>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312165931.png" alt="image-20220312165931380" style="zoom:33%;" /></p>
+<ul>
+<li>训练阶段，时刻 $t$ 的损失函数是生成目标词$w_t^*$ 的负对数似然概率 $loss_t$ :</li>
+</ul>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312170047.png" alt="image-20220312170047713" style="zoom:33%;" /></p>
+<ul>
+<li>那么对于一条序列来说，将每个词的损失计算平均即得到这条序列的损失 $loss$:</li>
+</ul>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312170122.png" alt="image-20220312170122720" style="zoom:33%;" /></p>
+<h3 id="pointer-generator-network"><a href="#pointer-generator-network" class="headerlink" title="pointer-generator network"></a>pointer-generator network</h3><p>指针生成器网络是一个上面的baseline模型和指针网络(<strong>pointer network</strong>)的混合模型，模型架构如图:</p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312170914.png" alt="image-20220312170914267"></p>
+<ul>
+<li><p>其中注意力分布  $a^t$ 与上下文向量 $h_t^*$ 的计算公式与上文相同。(见公式(1), (2), (3))</p>
+</li>
+<li><p>在时刻 $t$ ，由上下文向量 $h<em>t^*$    ，decoder状态向量 $s_t$ ，decoder输入 $x_t$ 共同计算 生成概率 $p</em>{gen}$ 。</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220313103242.png" alt="image-20220313103242563" style="zoom:33%;" /></p>
+<blockquote>
+<p>其中 $w<em>{h^*}, w_s, w_x $ 与标量 $b</em>{ptr}$ 都是可学习参数,$\sigma$ 是sigmoid函数。</p>
+</blockquote>
+<ul>
+<li><p>这个$p<em>{gen}$的计算相当关键，它被用作一个两种决策的软连接: 通过P</em>{vocab} 从词表中生成一个词, 还是从输入序列的注意力分布 a^t 中进行采样得到一个词。同时，对于每一篇文档，用扩展后的词表(extended vocabulary) 来表示整个词表和这篇文档中的词的并集(解决OOV问题)。</p>
+</li>
+<li><p>得到如下在扩展词表上建立的概率分布:</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220313103659.png" alt="image-20220313103659217" style="zoom: 33%;" /></p>
+<blockquote>
+<p>如果$w$是一个未登录词(OOV)，$P<em>{vocab}(w)$ 就为 0；如果$w$在这篇文档中出现，但未在词表中出现，那么 $\sum</em>{i:w_i=w}a_i^t$ 就将为 0。</p>
+</blockquote>
+<ul>
+<li>能生成未登录词是pointer-generator网络的一个主要优势，损失函数的计算和上文公式中的(7), (8)相同，但注意对应的 P ( w ) P(w) P(w)计算过程要替换成公式(9)。</li>
+</ul>
+<h3 id="覆盖机制-coverage-mechanism"><a href="#覆盖机制-coverage-mechanism" class="headerlink" title="覆盖机制(coverage mechanism)"></a>覆盖机制(coverage mechanism)</h3><p>采用覆盖模型来解决生成摘要中出现重复片段的问题。</p>
+<ul>
+<li>在此覆盖率模型中，本文保留了一个 覆盖率向量(coverage vector) $c^t$  ，它是在之前所有decoder步骤上的注意力分布的求和:</li>
+</ul>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220313104934.png" alt="image-20220313104934530" style="zoom:33%;" /></p>
+<ul>
+<li>直观上看，$c^t$是源文档单词的 非标准化(unnormalized) 分布，表示到目前为止这些单词从注意力机制积累的覆盖程度。注意$c^0$是一个零向量，因为在第一步，对于源文档没有被覆盖的部分。覆盖率向量也被用来作为注意力机制的额外输入，将公式$(1)$变化为:</li>
+</ul>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220313105648.png" alt="image-20220313105648609" style="zoom:33%;" /></p>
+<blockquote>
+<p>其中 $w_c$ 是一个可学习的参数，具有和向量 $v$ 一样的长度。</p>
+</blockquote>
+<ul>
+<li>这确保了注意力机制做当前的决策时（下一步选择关注哪个词）会考量其先前的决定。这种方案使得对于注意力机制来说避免重复关注同一块地方的问题，因此能避免生成重复摘要的问题。</li>
+<li>此外，通过实验发现额外定义一个 覆盖率损失(coverage loss) 来惩罚将注意力重复放在同一区域的行为是非常必要的:</li>
+</ul>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220313105824.png" alt="image-20220313105824431" style="zoom: 33%;" /></p>
+<blockquote>
+<p>注意这个损失是 有界(bounded) 的:<img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220313105935.png" alt="image-20220313105935119" style="zoom: 25%;" /></p>
+</blockquote>
+<p><strong>最终的复合损失函数(composite loss function):</strong></p>
+<p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220313110025.png" alt="image-20220313110025442" style="zoom:33%;" /></p>
+<blockquote>
+<p>其中 $\lambda$ 是一个超参数，权衡两种损失的代价。</p>
+</blockquote>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><ul>
+<li>CNN/Daily Mail数据集</li>
+</ul>
+<blockquote>
+<p>包括在线新闻文章(平均每篇文章781个token)及其对应的摘要(平均长度为3.75个句子，56个token)。<br>训练集：287,226条<br>验证集：13,368条<br>测试集：11,490条</p>
+</blockquote>
+<h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220314142904.png" alt="QQ20220314-142832@2x"></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>​        本文提出的指针生成器网络解决seq2seq模型生成句子中经常有重复片段现象，通过指针从源文本中复制单词以解决OOV问题，并且有能力生成新词。在长文本数据集上摘要生成能力表现不错。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">没有胡子的猫Asimok</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://asimok.github.io/2022/03/14/Get%20To%20The%20Point%20Summarization%20with%20Pointer-Generator%20Networks/">http://asimok.github.io/2022/03/14/Get%20To%20The%20Point%20Summarization%20with%20Pointer-Generator%20Networks/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://asimok.github.io" target="_blank">没有胡子的猫Asimok</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NLP/">NLP</a><a class="post-meta__tags" href="/tags/%E6%8C%87%E9%92%88%E7%BD%91/">指针网</a><a class="post-meta__tags" href="/tags/%E6%91%98%E8%A6%81%E7%94%9F%E6%88%90/">摘要生成</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312170914.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/03/05/Pointer%20Networks%20%E6%8C%87%E9%92%88%E7%BD%91/"><img class="next-cover" src="/img/error2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Pointer Networks - 指针网</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/07/10/2020%20-%20Zero-Resource%20Knowledge-Grounded%20Dialogue%20Generati/" title="Zero-Resource Knowledge-Grounded Dialogue Generation"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210709120019.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-10</div><div class="title">Zero-Resource Knowledge-Grounded Dialogue Generation</div></div></a></div><div><a href="/2021/10/05/A%20Hierarchical%20Network%20for%20Abstractive%20Meeting%20Summarization%20with%20Cross-%20Domain%20Pretraining/" title="A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211003215719.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-05</div><div class="title">A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining</div></div></a></div><div><a href="/2021/01/20/A%20Simple%20and%20Effective%20Model%20for%20Answering%20Multi-span%20Questions/" title="A Simple and Effective Model for Answering Multi-span Questions"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210119092212.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-20</div><div class="title">A Simple and Effective Model for Answering Multi-span Questions</div></div></a></div><div><a href="/2021/03/18/ACL2019-Answering%20while%20Summarizing%20Multi-task%20Learning%20for%20Multi-hop%20QA%20with%20Evidence%20Extraction/" title="Answering while Summarizing Multi-task Learning for Multi-hop QA with Evidence Extraction"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210316152458.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-18</div><div class="title">Answering while Summarizing Multi-task Learning for Multi-hop QA with Evidence Extraction</div></div></a></div><div><a href="/2021/03/26/ACL2019-Avoiding%20Reasoning%20Shortcuts%20Adversarial%20Evaluation,%20Training,%20and%20Model%20Development%20for%20Multi-HopQA/" title="Avoiding Reasoning Shortcuts Adversarial Evaluation, Training, and Model Development for Multi-HopQA"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210325131930.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-26</div><div class="title">Avoiding Reasoning Shortcuts Adversarial Evaluation, Training, and Model Development for Multi-HopQA</div></div></a></div><div><a href="/2021/04/24/ACL2019-Multi-hop%20Reading%20Comprehension%20through%20Question%20Decomposition%20and%20Rescoring.pdf/" title="Multi-hop Reading Comprehension through Question Decomposition and Rescoring"><img class="cover" src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20210423103807.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-24</div><div class="title">Multi-hop Reading Comprehension through Question Decomposition and Rescoring</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">没有胡子的猫Asimok</div><div class="author-info__description">记录自己的成长历程</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">131</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">157</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Asimok"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Asimok" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maqi_nepu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_39827677" target="_blank" title="CSDN"><i class="fab fa-internet-explorer"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/mmqrcode1605604352215.png" target="_blank" title="wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/qrcode_1605604361959.jpg" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">喜欢摄影的程序员</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Get-To-The-Point-Summarization-with-Pointer-Generator-Networks"><span class="toc-number">1.</span> <span class="toc-text">Get To The Point: Summarization with Pointer-Generator Networks</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.2.</span> <span class="toc-text">任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%EF%BC%88%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">方法（模型）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#seq2seq-attention-model"><span class="toc-number">1.3.1.</span> <span class="toc-text">seq2seq+attention model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pointer-generator-network"><span class="toc-number">1.3.2.</span> <span class="toc-text">pointer-generator network</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A6%86%E7%9B%96%E6%9C%BA%E5%88%B6-coverage-mechanism"><span class="toc-number">1.3.3.</span> <span class="toc-text">覆盖机制(coverage mechanism)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.4.</span> <span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B0%B4%E5%B9%B3"><span class="toc-number">1.5.</span> <span class="toc-text">性能水平</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.6.</span> <span class="toc-text">结论</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/14/Get%20To%20The%20Point%20Summarization%20with%20Pointer-Generator%20Networks/" title="Get To The Point Summarization with Pointer-Generator Networks"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220312170914.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Get To The Point Summarization with Pointer-Generator Networks"/></a><div class="content"><a class="title" href="/2022/03/14/Get%20To%20The%20Point%20Summarization%20with%20Pointer-Generator%20Networks/" title="Get To The Point Summarization with Pointer-Generator Networks">Get To The Point Summarization with Pointer-Generator Networks</a><time datetime="2022-03-13T16:00:00.000Z" title="发表于 2022-03-14 00:00:00">2022-03-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/05/Pointer%20Networks%20%E6%8C%87%E9%92%88%E7%BD%91/" title="Pointer Networks - 指针网"><img src="/img/error2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Pointer Networks - 指针网"/></a><div class="content"><a class="title" href="/2022/03/05/Pointer%20Networks%20%E6%8C%87%E9%92%88%E7%BD%91/" title="Pointer Networks - 指针网">Pointer Networks - 指针网</a><time datetime="2022-03-04T16:00:00.000Z" title="发表于 2022-03-05 00:00:00">2022-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/05/TDEER%20An%20Efficient%20Translating%20Decoding%20Schema%20for%20Joint%20Extraction%20of%20Entities%20and%20Relations/" title="TDEER An Efficient Translating Decoding Schema for Joint Extraction of Entities and Relations"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220305153945.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TDEER An Efficient Translating Decoding Schema for Joint Extraction of Entities and Relations"/></a><div class="content"><a class="title" href="/2022/03/05/TDEER%20An%20Efficient%20Translating%20Decoding%20Schema%20for%20Joint%20Extraction%20of%20Entities%20and%20Relations/" title="TDEER An Efficient Translating Decoding Schema for Joint Extraction of Entities and Relations">TDEER An Efficient Translating Decoding Schema for Joint Extraction of Entities and Relations</a><time datetime="2022-03-04T16:00:00.000Z" title="发表于 2022-03-05 00:00:00">2022-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/11/NumNet%20Machine%20Reading%20Comprehension%20with%20Numerical%20Reasoning/" title="NumNet Machine Reading Comprehension with Numerical Reasoning"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210165728.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NumNet Machine Reading Comprehension with Numerical Reasoning"/></a><div class="content"><a class="title" href="/2022/02/11/NumNet%20Machine%20Reading%20Comprehension%20with%20Numerical%20Reasoning/" title="NumNet Machine Reading Comprehension with Numerical Reasoning">NumNet Machine Reading Comprehension with Numerical Reasoning</a><time datetime="2022-02-10T16:00:00.000Z" title="发表于 2022-02-11 00:00:00">2022-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/10/Giving%20BERT%20a%20Calculator%20Finding%20Operations%20and%20Arguments%20with%20Reading%20Comprehension.pdf/" title="Giving BERT a Calculator Finding Operations and Arguments with Reading Comprehension.pdf"><img src="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20220210143809.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Giving BERT a Calculator Finding Operations and Arguments with Reading Comprehension.pdf"/></a><div class="content"><a class="title" href="/2022/02/10/Giving%20BERT%20a%20Calculator%20Finding%20Operations%20and%20Arguments%20with%20Reading%20Comprehension.pdf/" title="Giving BERT a Calculator Finding Operations and Arguments with Reading Comprehension.pdf">Giving BERT a Calculator Finding Operations and Arguments with Reading Comprehension.pdf</a><time datetime="2022-02-09T16:00:00.000Z" title="发表于 2022-02-10 00:00:00">2022-02-10</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 没有胡子的猫Asimok</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+      appKey: 't1nJqxp0EXl18EniOb74r4S6',
+      placeholder: '记得留下你的昵称和邮箱....可以快速收到回复',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://LHHLwaEB.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+        "X-LC-Key": 't1nJqxp0EXl18EniOb74r4S6',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/论文阅读/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 论文阅读 (51)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/工具-教程/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🪛 工具&教程 (31)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/PyTorch/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🔑 PyTorch (8)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/TensorFlow/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🚽 TensorFlow (11)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐍 Python (5)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/机器学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🖥 机器学习 (14)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/硬件开发/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎛 硬件开发 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/软件开发-模型/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📲 软件开发&模型复现 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://asimok.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?asimok";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="asimok";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><!-- hexo injector body_end end --></body></html>
