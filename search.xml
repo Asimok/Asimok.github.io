@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Pointer Networks - 指针网</title>
+      <link href="/2022/03/05/Pointer%20Networks%20%E6%8C%87%E9%92%88%E7%BD%91/"/>
+      <url>/2022/03/05/Pointer%20Networks%20%E6%8C%87%E9%92%88%E7%BD%91/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Pointer-Networks-指针网"><a href="#Pointer-Networks-指针网" class="headerlink" title="Pointer Networks - 指针网"></a>Pointer Networks - 指针网</h1><blockquote><p>参考资料：</p><ul><li><a href="https://blog.csdn.net/qq_38556984/article/details/107574587">https://blog.csdn.net/qq_38556984/article/details/107574587</a></li><li><a href="https://www.cnblogs.com/zingp/p/11571593.html">https://www.cnblogs.com/zingp/p/11571593.html</a></li></ul></blockquote><ul><li>指针生成网络属于生成式模型。</li></ul><h2 id="为什么会提出指针网"><a href="#为什么会提出指针网" class="headerlink" title="为什么会提出指针网"></a>为什么会提出指针网</h2><ul><li>Pointer network 主要用在解决组合优化类问题(TSP, Convex Hull等等)，实际上是Sequence to Sequence learning中encoder RNN和decoder RNN的扩展。</li><li>传统的seq2seq模型是无法解决输出序列的词汇表会随着输入序列长度的改变而改变的问题的，如寻找凸包等。因为对于这类问题，输出往往是输入集合的子集。</li></ul><p><strong><em>重点是seq2seq模型的输出序列长度不会变！</em></strong></p><p>因此，PN就被提出来了！</p><p>​        传统带有注意力机制的seq2seq模型输出的是针对<strong>输出</strong>词汇表的一个概率分布，而Pointer Networks输出的则是针对<strong>输入</strong>文本序列的概率分布。其实我们可以发现，因为输出元素来自输入元素的特点，Pointer Networks特别适合用来直接复制输入序列中的某些元素给输出序列。</p><p>​        比如在做生成的时候，正确的输出中，部分词不在词表中，如果只依靠基础模型的输出，得不到OOV(词汇不足)的词，这时候指针网就发挥作用了，直接将该词copy过来作为输出。当然直接拷贝会存在一些问题，因此加了选择策略，决定当前预测是直接从源文本中复制一个词过来还是从词汇表中生成一个词出来。</p><p>​        还看到一种生成拷贝策略：当某个词是输入序列独有的则该词的生成概率为0，复制概率不变；若某个词是输出词汇表独有的则该词的复制概率为0，而生成概率不变；若某个词既存在于输入序列又存在于输出词汇表则生成概率和复制概率都不变。最后，将生成概率和复制概率加和得到最终的概率。</p><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul><li>seq2seq模型生成风格自由，但往往存在两大缺陷：1、模型容易不准确地再现事实细节，也就是说模型生成的摘要不准确；2、往往会重复，也就是会重复生成一些词或者句子。</li><li>指针网络相对可控，信息来源于输入的信息范围，是天生的复制粘贴利器。但是他也有个弊端，就是说无法生成输入范围以外的词汇，这样就有很大的限制。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 机器学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> Pointer Networks </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>TDEER An Efficient Translating Decoding Schema for Joint Extraction of Entities and Relations</title>
       <link href="/2022/03/05/TDEER%20An%20Efficient%20Translating%20Decoding%20Schema%20for%20Joint%20Extraction%20of%20Entities%20and%20Relations/"/>
       <url>/2022/03/05/TDEER%20An%20Efficient%20Translating%20Decoding%20Schema%20for%20Joint%20Extraction%20of%20Entities%20and%20Relations/</url>
