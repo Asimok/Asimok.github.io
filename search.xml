@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>READTWICE Reading Very Large Documents with Memories</title>
+      <link href="/2022/04/13/READTWICE%20Reading%20Very%20Large%20Documents%20with%20Memories/"/>
+      <url>/2022/04/13/READTWICE%20Reading%20Very%20Large%20Documents%20with%20Memories/</url>
+      
+        <content type="html"><![CDATA[<h1 id="READTWICE-Reading-Very-Large-Documents-with-Memories"><a href="#READTWICE-Reading-Very-Large-Documents-with-Memories" class="headerlink" title="READTWICE: Reading Very Large Documents with Memories"></a>READTWICE: Reading Very Large Documents with Memories</h1><blockquote><p> 论文：<a href="https://arxiv.org/abs/2105.04241">https://arxiv.org/abs/2105.04241</a></p><p> 会议：NAACL 2021</p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>知识密集型任务（如问答）通常需要吸收大量输入（如书籍或文章集）不同部分的信息。本文提出<strong>READTWICE</strong>，它结合了以前的几种方法的优点，用Transformers建模long-range dependencies。其主要思想是以小段并行方式阅读文本，将每个段汇总到一个内存表中，以便在第二次阅读文本时使用。</p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><p>主要思想：</p><p>将一个长文本输入当作一个较短的文本片段的集合，独立地、并行地读取。然后，编码器再次读取每个片段，使用其他片段的压缩信息做增强。</p><p>模型结构：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204131104502.png" alt="image-20220413110449460"></p><blockquote><p>memory module that holds compressed information from all segments. That compressed information is used only once: in the second pass.</p></blockquote><ul><li><p>在第一次读取中，每个段都用标准的BERT进行独立编码。然后，从每个片段中提取memories，并将其收集到一个全局内存池中。</p><blockquote><p> 每个段限制在512toekns</p></blockquote></li><li><p>对于第二次读取，首先使用MemoryAttention层（上层是residual connection and a LayerNorm layer）合并来自前段内contextual token embeddings和全局内存的信息。合并后的结果由另一个只有两个Transformers层的BERT小模型读取，以产生最终输出。因为第一次读取已经生成了丰富的上下文嵌入，而第二次只需要读内存的信息。</p></li></ul><p>用公式说明：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204131349047.png" alt="image-20220413134913023" style="zoom:33%;" /></p><blockquote><p>$x_i$ 表示分成的段i，$x_1, . . . , x_N$</p></blockquote><p>三种类型的memorie：</p><ul><li><p>READTWICE (CLS)。使用与段$x_i$相关的CLS标记表示，作为该段的摘要。</p></li><li><p>READTWICE (STS)。为了获得更精细的记忆，为每个连续的，长度位32个tokens的span提取一个记忆向量。每个span的第一个和最后一个标记的上下文嵌入被连接起来，并线性地投射到标记向量空间中的一个点，作为跨度表示。投射矩阵是从头到尾学习的。</p></li><li><p>READTWICE(E)。在基于跨度的记忆的另一个变体中，记忆entity mention spans的表示。为了获得这些跨度，首先用一个外部的命名实体识别系统对每个片段进行注释。然后，每个实体提及的跨度以与READTWICE（STS）相同的方式进行编码。</p><blockquote><p>这样做是出于直觉的考虑到：长距离的依赖性主要发生在实体之间。</p></blockquote></li></ul><h3 id="MemoryAttention"><a href="#MemoryAttention" class="headerlink" title="MemoryAttention"></a>MemoryAttention</h3><p>让单个片段的上下文tokens embedding 通过内存表上的dot-product attention与其他片段的记忆交互。</p><p>attention 权重定义：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204131453801.png" alt="image-20220413145358775" style="zoom:33%;" /></p><blockquote><p>$h_{ij}$：段落i的第j个token</p><p>m：memory table entry</p></blockquote><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204131456469.png" alt="image-20220413145604446" style="zoom:33%;" /></p><blockquote><p>$r_{i,m_s}$：学习到的片段$i$和记忆$M_m$之间相对距离的position score</p><p>w：是一组按距离索引的权重</p></blockquote><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204131500507.png" alt="image-20220413150019484" style="zoom:33%;" /></p><blockquote><p>将距离的阈值限制在[−B, B]之间</p></blockquote><p>MemoryAttention layer output：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204131502050.png" alt="image-20220413150241031" style="zoom:33%;" /></p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><ul><li><p>HotpotQA (HQA) </p></li><li><p>TriviaQA (TQA) </p></li><li><p>NarrativeQA (NQA)</p><blockquote><p>NQA会询问有关整本书的问题，需要QA系统来建模非常长的依赖关系。</p></blockquote></li></ul><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><ul><li>HotpotQA</li></ul><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204131513925.png" alt="image-20220413151357899" style="zoom: 33%;" /></p><ul><li>NarrativeQA</li></ul><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204131525501.png" alt="image-20220413152520478"></p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>READTWICE在多个QA任务中表现良好，尤其是在NarrativeQA中，实体之间的远距离依赖似乎非常重要。该方法概念简单，易于实现，能够阅读整本书。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> HotpotQA </tag>
+            
+            <tag> 长文本 </tag>
+            
+            <tag> NarrativeQA </tag>
+            
+            <tag> TrivalQA </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>EQG-RACE Examination-Type Question Generation</title>
       <link href="/2022/04/07/EQG-RACE%20Examination-Type%20Question%20Generation/"/>
       <url>/2022/04/07/EQG-RACE%20Examination-Type%20Question%20Generation/</url>
