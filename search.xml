@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>VAULT VAriable Unified Long Text Representation for Machine Reading Comprehension</title>
+      <link href="/2022/04/14/VAULT%20VAriable%20Unified%20Long%20Text%20Representation%20for%20Machine%20Reading%20Comprehension/"/>
+      <url>/2022/04/14/VAULT%20VAriable%20Unified%20Long%20Text%20Representation%20for%20Machine%20Reading%20Comprehension/</url>
+      
+        <content type="html"><![CDATA[<h1 id="VAULT-VAriable-Unified-Long-Text-Representation-for-Machine-Reading-Comprehension"><a href="#VAULT-VAriable-Unified-Long-Text-Representation-for-Machine-Reading-Comprehension" class="headerlink" title="VAULT: VAriable Unified Long Text Representation for Machine Reading Comprehension"></a>VAULT: VAriable Unified Long Text Representation for Machine Reading Comprehension</h1><blockquote><p> 论文：<a href="https://arxiv.org/abs/2105.03229">https://arxiv.org/abs/2105.03229</a></p><p> 会议：ACL 2021</p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>​        现有的机器阅读理解（MRC）模型需要复杂的模型体系结构，才能有效地对<strong>具有段落表示和分类的</strong>长文本进行建模，从而使推理的计算效率不高。在这项工作中，本文提出了VAULT：一种轻量级、并行高效的MRC段落表示方法，基于长文档输入的上下文表示，使用一种新的基于高斯分布的目标进行训练，该目标密切关注ground-truth的部分正确实例。</p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><p>传统的QA，模型训练时，答案范围的标注非对即错，过于绝对。实际上，与真实答案重叠的跨度应被视为部分正确。基于此，本文将真实答案跨度的起始和结束位置视为类高斯分布，而不是单点，并使用统计距离优化模型。</p><p>模型：VAULT（(VAriable Unified Long Text representation），因为它可以在任何位置处理可变数量和长度的段落，使用相同的统一模型结构来处理长文本。</p><p>模型结构：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132117010.png" alt="image-20220413211727987" style="zoom:50%;" /></p><h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><h4 id="A-Base-“Paragraph”-Predictor-Model"><a href="#A-Base-“Paragraph”-Predictor-Model" class="headerlink" title="A Base “Paragraph” Predictor Model"></a>A Base “Paragraph” Predictor Model</h4><p>假设：通过建模更长的上下文，即使是简单的段落表示也可以有效地表示段落。</p><p>使用Longformerm建模输入，Longformer provides a much larger maximum input length of 4,096。</p><h4 id="Position-aware-Paragraph-Representation-PAPR"><a href="#Position-aware-Paragraph-Representation-PAPR" class="headerlink" title="Position-aware Paragraph Representation (PAPR):"></a>Position-aware Paragraph Representation (PAPR):</h4><p>为了解决许多流行的非结构化文本（如维基百科页面），某些相关信息的展示方式相对标准的问题（例如，生日通常在第一段，而配偶姓名则在“个人生活”段），本文通过在每个段落的开头用特殊的atomic标记（$[paragration=i]$）标记段落，指示段落在文本中的位置，为基础模型提供了它正在阅读的文本部分的表示。通过这种输入表示，可以使用特殊段落标记输出嵌入直接做长答案分类。</p><p>paragraph answer的计算：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132136004.png" alt="image-20220413213639971"></p><blockquote><p>P：文本中的所有段落</p><p>组成P的相关token：$h^p_i$</p></blockquote><p>给定上下文$c$，计算段落$l_i$的概率：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132140144.png" alt="image-20220413214057122"></p><p>流程：首先在所有候选段落中选择logit最高的段落候选段落。然后，使用标准的指针网络在选定的段落答案候选中提取跨度答案。</p><h4 id="Gaussian-Prior-Optimization-GPO"><a href="#Gaussian-Prior-Optimization-GPO" class="headerlink" title="Gaussian Prior Optimization (GPO)"></a>Gaussian Prior Optimization (GPO)</h4><blockquote><p>高斯先验优化</p></blockquote><p>传统的跨度提取模型通过极大似然估计优化了答案跨度与真实答案跨度的预测起点和终点位置的概率。MLE方法提高了真实答案位置的概率，同时抑制了所有其他位置的概率。但实际情况并非这样绝对，本文假设，接近真实答案的位置相对于较远位置的token要给较高的置信度，因为提取的答案会与真实答案部分重叠。</p><p>真实答案范围：$s \in {start, end}$</p><p>高斯分布：$N (y_s, σ)$</p><blockquote><p>均值：真实答案的位置，$y_s$</p><p>方差：超参数</p></blockquote><p>概率密度：<img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132212045.png" alt="image-20220413221241008" style="zoom: 50%;" /></p><p>真实答案在$y_s$位置的类高斯分布：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132214120.png" alt="image-20220413221456088"></p><blockquote><p>用T重新缩放</p></blockquote><p>损失函数：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132218131.png" alt="image-20220413221833105"></p><p>使用KL散度增强训练的MLE（极大似然估计）目标。</p><blockquote><p>构建的分布：<img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132221093.png" style="zoom: 50%;" /></p><p>模型的预测：<img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132222933.png" alt="image-20220413222200912" style="zoom:50%;" /></p></blockquote><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><ul><li>一个基于维基百科（Natural Questions，NQ）</li></ul><blockquote><p>NQ试图通过提供较长的维基百科文件作为语境和真实的用户搜索引擎查询作为问题，使机器阅读理解（MRC）更加真实，并旨在避免观察偏差：如果问题是在用户看到段落后创建的，那么问题和答案语境之间的词汇重叠会经常发生。</p><p>NQ由出现在谷歌搜索日志中的crowdsourced-annotated full维基百科页面组成，其中包含两个任务：短答案（SA）和长答案（LA，例如段落）的起始和结束偏移量（如果存在）</p></blockquote><ul><li>另一个基于技术说明（TechQA）</li></ul><blockquote><p>TechQA是从客户支持领域（customer support domain）的真实用户问题发展而来的，每个问题都有50个文档，其中大多数文档都有答案——答案比标准的MRC数据集（如SQuAD）长很多（~3-5倍）。</p></blockquote><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132039857.png" alt="image-20220413203938826"></p><blockquote><p>VAULT可以从文章较后位置预测答案，但现有模型从一般答案最容易出现的第一段预测答案。</p></blockquote><ul><li>在NQ数据集上</li></ul><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132232399.png" alt="image-20220413223233371"></p><blockquote><p>短答案和长答案</p></blockquote><ul><li>TechQA</li></ul><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132233698.png" alt="image-20220413223325674"></p><blockquote><p>HA F1 (denotes Has Answer)</p></blockquote><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在这项工作中，介绍并检验了一个功能强大但简单的长文本阅读理解模型，称之为VAULT，基于这样一个假设：如果序列长度较大，长答案可以有效分类，而无需计算繁重的基于图的模型。</p><p>本文贡献：</p><ul><li>本文介绍了一种新颖、有效但简单的段落表示法。</li><li>在训练期间，引入软标签，以利用来自local contexts的信息，接近正确答案，这对于MRC来说是新颖的。</li><li>本文的模型提供了与NQ上的SOTA系统类似的性能，同时速度提高了16倍，并且有效地适应了一个新领域：TechQA。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> 长文本 </tag>
+            
+            <tag> Longformer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>READTWICE Reading Very Large Documents with Memories</title>
       <link href="/2022/04/13/READTWICE%20Reading%20Very%20Large%20Documents%20with%20Memories/"/>
       <url>/2022/04/13/READTWICE%20Reading%20Very%20Large%20Documents%20with%20Memories/</url>
