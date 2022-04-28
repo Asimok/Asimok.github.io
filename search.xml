@@ -4,6 +4,64 @@
   
     
     <entry>
+      <title>Graph Convolutional Networks for Text Classification</title>
+      <link href="/2022/04/28/Graph%20Convolutional%20Networks%20for%20Text%20Classification/"/>
+      <url>/2022/04/28/Graph%20Convolutional%20Networks%20for%20Text%20Classification/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Graph-Convolutional-Networks-for-Text-Classification"><a href="#Graph-Convolutional-Networks-for-Text-Classification" class="headerlink" title="Graph Convolutional Networks for Text Classification"></a>Graph Convolutional Networks for Text Classification</h1><blockquote><p> 论文：<a href="https://arxiv.org/abs/1809.05679">https://arxiv.org/abs/1809.05679</a></p><p> 代码：<a href="https://github.com/yao8839836/text_gcn">https://github.com/yao8839836/text_gcn</a></p><blockquote><p><a href="https://github.com/codeKgu/text-gcn">https://github.com/codeKgu/text-gcn</a></p><p><a href="https://github.com/chengsen/pytorch_textgcn">https://github.com/chengsen/pytorch_textgcn</a></p></blockquote><p> 会议：AAAI 2019</p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>文本分类是自然语言处理中一个重要的经典问题。有许多研究将卷积神经网络应用于分类。然而，只有有限的研究探索了更灵活的图卷积神经网络来完成这项任务。在这项工作中，使用图卷积网络进行文本分类。</p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><p>基于单词共现和文档-单词关系为语料库构建单个文本图，然后为语料库训练文本图卷积网络（Text-GCN）。Text-GCN使用word和document的独热表示进行初始化，然后在文档的已知类标签的监督下，联合学习word和document的嵌入。</p><h3 id="Graph-Convolutional-Networks-GCN"><a href="#Graph-Convolutional-Networks-GCN" class="headerlink" title="Graph Convolutional Networks (GCN)"></a>Graph Convolutional Networks (GCN)</h3><p>GCN是一个多层神经网络，它直接在图上运行，并根据节点的邻居属性获取节点的嵌入向量。</p><p>符号定义：<br>图$G=(V,E)$</p><blockquote><p> 其中$V$和$E$分别是节点和边的集合。</p><p>假设每个节点都与自身相连，即$(v,v)∈E$ 。</p><p>$X∈ R^{n×m}$：包含所有n个节点及其特征的矩阵，其中m是特征向量的维数。</p><p>A：G的邻接矩阵。</p><p>D：A的出度矩阵。</p></blockquote><p>GCN只能捕获具有一层卷积的近邻信息。当多个GCN层堆叠时，更大邻域的信息将被聚合。对于单层GCN，新的k-dimensional节点的特征矩阵$L$计算方式如下：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282143438.png" alt="image-20220428214318357" style="zoom: 33%;" /></p><blockquote><p>其中<img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282144487.png" alt="image-20220428214405461" style="zoom: 25%;" />是归一化操作。</p><p>ρ：激活函数，本文用的RELU。</p></blockquote><p>堆叠多层GCN:</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282150487.png" alt="image-20220428215057462" style="zoom:33%;" /></p><blockquote><p>j表示层号。</p></blockquote><h3 id="Text-Graph-Convolutional-Networks-Text-GCN"><a href="#Text-Graph-Convolutional-Networks-Text-GCN" class="headerlink" title="Text Graph Convolutional Networks (Text GCN)"></a>Text Graph Convolutional Networks (Text GCN)</h3><p>本文构建了一个包含单词节点和文档节点的大型异构文本图，这样可以显式地建模全局单词共现，并且可以轻松地调整图卷积。</p><p>模型结构：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282154020.png" alt="image-20220428215400982"></p><blockquote><p>节点定义： 文本图中的节点数$| V |$是文档数（语料库大小）加上不同单词数（词表大小）。</p><p>边的定义：document-word edges and word-word edges</p></blockquote><p>文档节点和单词节点之间的边的权重是文档中单词的TF-IDF值。我们发现使用TF-IDF权重比仅使用术语频率更好。为了利用全局词共现信息，对语料库中的所有文档使用固定大小的滑动窗口来收集共现统计信息。我们使用 point-wise mutual information（PMI）来计算两个词节点之间的权重。</p><blockquote><p>PMI是一种常用的词关联度量方法。</p><p>正的PMI值意味着语料库中单词的高度语义相关性，而负的PMI值意味着语料库中几乎没有语义相关性。因此，本文只在PMI值为正的词对之间添加边。</p><p>在初步实验中，发现使用PMI比使用单词共现计数获得更好的结果。</p></blockquote><p>形式上，节点$i$和节点$j$之间的边的权重定义为：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282210907.png" alt="image-20220428221055846" style="zoom:33%;" /></p><p>PMI计算：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282215083.png" alt="image-20220428221533060" style="zoom:33%;" /></p><blockquote><p>$#W(i)$是语料库中包含单词$i$的滑动窗口数量</p><p>$#W(i,j)$是同时包含单词$i,j$的滑动窗口数量</p><p>$#W$是滑动窗口的数量</p></blockquote><p>构建好文本图之后输入到两层GCN，通过Softmax分类器做最终分类。</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282235363.png" alt="image-20220428223552336" style="zoom:33%;" /></p><p>交叉熵损失函数：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282238985.png" alt="image-20220428223801962" style="zoom:33%;" /></p><p>使用两层GCN的解释：<br>两层GCN允许消息在最多两步之外的节点之间传递。因此，尽管图中没有直接的文档边，但两层GCN允许成对文档之间进行信息交换。在初步实验中<br>发现，两层GCN的性能优于单层GCN，而多层GCN并不能提高性能。</p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>20-Newsgroups (20NG)</p><p>Ohsumed</p><p>R52 and R8 of Reuters(路透社) 21578</p><p>Movie Review (MR)</p><blockquote><p>具体数据集的介绍，可以去论文相关部分。</p></blockquote><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282302421.png" alt="image-20220428230227396"></p><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282304569.png" alt="image-20220428230415541"></p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>本文贡献：</p><ul><li>提出了一种新的用于文本分类的图神经网络方法。这是第一次将整个语料库建模为一个异构图，并使用图神经网络联合学习单词和文档嵌入的研究。</li><li>在几个基准数据集上的结果表明，本文的文本分类方法，无需使用预先训练的单词嵌入或外部知识，该方法还可以自动学习预测词和文档嵌入。</li></ul><p>此外，实验结果表明，随着训练数据百分比的降低，文本GCN相对于最先进的比较方法的改进变得更加显著，这表明文本GCN对文本分类中较少训练数据的鲁棒性。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> GCN </tag>
+            
+            <tag> 文本分类 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Iterative GNN-based Decoder for Question Generation</title>
+      <link href="/2022/04/25/Iterative%20GNN-based%20Decoder%20for%20Question%20Generatio.pdf/"/>
+      <url>/2022/04/25/Iterative%20GNN-based%20Decoder%20for%20Question%20Generatio.pdf/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Iterative-GNN-based-Decoder-for-Question-Generation"><a href="#Iterative-GNN-based-Decoder-for-Question-Generation" class="headerlink" title="Iterative GNN-based Decoder for Question Generation"></a>Iterative GNN-based Decoder for Question Generation</h1><blockquote><p> 论文：<a href="https://aclanthology.org/2021.emnlp-main.201/">https://aclanthology.org/2021.emnlp-main.201/</a></p><p> 代码：<a href="https://github.com/sion-zcfei/IGND/issues/1">https://github.com/sion-zcfei/IGND/issues/1</a> 但仓库目前(2022-4-25)是空的</p><p> 会议：EMNLP 2021</p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>自然问题生成（Natural question generation，QG）旨在从文章中生成问题，生成的问题从文章中得到回答。大多数具有最先进性能的模型在每个解码步骤都会建模先前生成的文本。但是先前的工作存在两个问题：</p><ol><li>他们忽略了隐藏在先前生成的文本中的丰富结构信息。</li><li>他们忽略了拷贝的单词对文章的影响。</li></ol><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251033597.png" alt="image-20220425103342573" style="zoom:33%;" /></p><p>从上图中可以看到，拷贝的单词 donald davies 对下一个拷贝的单词 develop 有较大的贡献。复制的单词donald davies是文章的主体，而答案routing methodology 是本文的客体，他们之间包含结构信息。</p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><p>为了解决上述两个问题，在本文中，设计了一个基于迭代图网络的解码器（IGND），使用图神经网络在每个解码步骤对上一代的结构信息进行建模。观察到，从一篇文章中抄袭的单词在整个问题的语义中起着决定性的作用，因此对复制的单词信息进行建模，以获取结构信息，并利用它们对文章的影响。将角色标签引入到段落图中，其中所有单词都有角色标签 no-copy，只有答案单词有标签 answer。IGND在每个解码步骤更新角色标签。例如，当此节点中的单词在此解码步骤复制到问题时，角色标记将更改为 copied。然后，通过一种新的双向门控图神经网络（Bi-GGNN）对信息进行聚合。此外，我们还提出了一种关系图编码器，该编码器使用类似的bi-GGNN来捕获一段文章的依赖关系，从而提高生成效率。此外，本文的图模型捕捉到了文章中促进生成的依赖关系。</p><h3 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h3><p>文章：<img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251100454.png" style="zoom: 25%;" /></p><p>答案：$X^a=$<img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251102754.png" alt="image-20220425110210731" style="zoom:25%;" /></p><p>生成问题序列：$\hat Y = $<img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251103181.png" alt="image-20220425110324161" style="zoom:25%;" /></p><p>极大似然估计：<img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251103824.png" alt="image-20220425110358802" style="zoom:25%;" /></p><p>模型结构：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251202941.png" alt="image-20220425120244918" style="zoom: 33%;" /></p><h3 id="Graph2Seq-Model-with-Iterative-Graph-Network-based-Decoder"><a href="#Graph2Seq-Model-with-Iterative-Graph-Network-based-Decoder" class="headerlink" title="Graph2Seq Model with Iterative Graph Network-based Decoder"></a>Graph2Seq Model with Iterative Graph Network-based Decoder</h3><p>与RNN相比，GNN可以有效地利用丰富的隐藏文本结构信息，如语法信息。此外，还可以对序列词之间的全局关系进行建模，以改进表示。本文构造了一个基于依赖树的有向加权文本图G。在段落图中，每个段落词被视为一个节点，两个词之间的依赖关系被视为一条边。</p><p>Graph2Seq通过dependency relations编码段落图，使用IGND解码问题序列。</p><h4 id="Relational-Encoder"><a href="#Relational-Encoder" class="headerlink" title="Relational Encoder"></a>Relational Encoder</h4><p>答案信息对于生成高质量的答案和回答相关问题至关重要。依赖关系将答案和文章单词联系起来。为了使用依赖关系，本文提出了关系嵌入，为每个单词聚合全局依赖关系。</p><p>使用双向LSTM得到隐藏状态$H$：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251204454.png" alt="image-20220425120421432" style="zoom:33%;" /></p><blockquote><p>解释：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251205994.png" alt="image-20220425120559973" style="zoom:33%;" /></p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251211037.png" alt="image-20220425121112000" style="zoom:33%;" /></p></blockquote><p>answer-aware weighted context hidden states $H^p$:</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251207407.png" alt="image-20220425120709385" style="zoom:33%;" /></p><p>使用GGNN从文本图学习 graph embedding。它在每次迭代中融合来自传入和传出方向的中间节点嵌入（出度和入度）。在bi-GGNN中，每个节点的passage embeddings被初始化为passage embeddings $H^p$，关系嵌入被随机初始化。图参数在计算的每一跳都是共享的。在图中的每个节点上，我们使用平均聚合器聚合相邻节点的passage embedding，得到聚合向量。</p><p>聚合向量：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251216152.png" alt="image-20220425121626129" style="zoom:33%;" /></p><p>同样的方式可以得到relation embedding的聚合向量：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251218423.png" alt="image-20220425121834395" style="zoom:33%;" /></p><p>在每一跳将聚和在两个方向上的信息融合在一起：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251219286.png" alt="image-20220425121929263" style="zoom:33%;" /></p><p>使用GRU更新节点嵌入，合并聚合信息：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251235185.png" alt="image-20220425123542163" style="zoom:33%;" /></p><p>经过n跳的计算，获得最终的上下文嵌入，关系嵌入，结合文本信息和语法信息的节点嵌入计算如下：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251237930.png" alt="image-20220425123756909" style="zoom:33%;" /></p><p>最终通过最大池化，可以得到一个图级嵌入：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251239924.png" alt="image-20220425123908897" style="zoom:33%;" /></p><h3 id="Iterative-Graph-Network-based-Decoder"><a href="#Iterative-Graph-Network-based-Decoder" class="headerlink" title="Iterative Graph Network-based Decoder"></a>Iterative Graph Network-based Decoder</h3><p>传统QG任务的解码部分，使用一种具有copy机制的基于注意的LSTM解码器。为了解决这个问题，我们设计了基于迭代图网络的解码器（IGND）。</p><p>给节点添加role tag信息，每个节点都有一个角色标签，该标签在每个解码步骤都会更新，包括 answer, copied and no-copy。</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251251256.png" alt="image-20220425125149233" style="zoom:33%;" /></p><p>角色标签可以引导模型合并依赖关系，以生成答案相关问题。</p><p>在解码的每个时间步 t，节点嵌入会被重新初始化：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251254528.png" alt="image-20220425125410504" style="zoom:33%;" /></p><blockquote><p>其中，$h^n_i$是通过等式（18）计算的passage graph的节点嵌入，$r_i^t$是步骤$t$中节点$i$的角色标签嵌入。</p></blockquote><p>此外，采用bi-GGNN和平均聚合器来聚合节点嵌入。经过n跳计算，得到了最终的节点嵌入<img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251256991.png" alt="image-20220425125649965" style="zoom:33%;" />。</p><p>对于每个解码步骤$m$，LSTM读取前一个单词$w<em>{t-1}$的嵌入、先前的previous attentional context vector $c</em>{t−1}$和之前的隐藏状态$s_{t−1}$，计算其当前隐藏状态。</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251259970.png" alt="image-20220425125905944" style="zoom:33%;" /></p><p>在时间步t，注意力权重和上下文向量计算如下：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251311438.png" alt="image-20220425131128409" style="zoom:33%;" /></p><p>由于注意权重衡量每个输入单词与部分解码状态的相关性，并结合生成的单词信息，将$α_t$视为复制概率:</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251314905.png" alt="image-20220425131414878" style="zoom:33%;" /></p><p>最终的单词预测概率：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251315845.png" alt="image-20220425131520814" style="zoom:33%;" /></p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251315811.png" alt="image-20220425131544777" style="zoom:33%;" /></p><p>损失函数，negative log likelihood：</p><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251316640.png" alt="image-20220425131624611" style="zoom:33%;" /></p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>SQuAD </p><p>MS MARCO</p><blockquote><p>包含100000个带有相应答案和段落的查询。所有问题都是从真实的匿名用户查询中抽取的，上下文段落是从真实的web文档中提取的。</p><p>本文选取了MARCO数据集的一个子集，其中答案是段落中的子跨度，以构建句子级数据集。其中包含46109、4539和4539个sentence-question-answer triples，分别用于训练、验证和测试。</p></blockquote><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204251336592.png" alt="image-20220425133601566"></p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>本文贡献：</p><ul><li>设计了一个基于迭代图网络的解码器（IGND）来捕获生成中的结构信息，并在每个解码步骤对复制的词进行建模。</li><li>我们提出了一个关系图编码器来编码段落中的依赖关系，并建立答案和段落之间的联系。</li><li>提出的模型专注于句子级QG任务，获得了最优的分数，并且在 standard SQuAD and MARCO benchmarks for QG 上优于现有方法。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> QG </tag>
+            
+            <tag> GNN </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>RikiNet Reading Wikipedia Pages for Natural Question Answering</title>
       <link href="/2022/04/14/RikiNet%20Reading%20Wikipedia%20Pages%20for%20Natural%20Question%20Answering/"/>
       <url>/2022/04/14/RikiNet%20Reading%20Wikipedia%20Pages%20for%20Natural%20Question%20Answering/</url>
@@ -817,9 +875,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> Abstract </tag>
+            
+            <tag> NLP </tag>
             
         </tags>
       
@@ -1771,9 +1829,9 @@
       
         <tags>
             
-            <tag> ZRKGC </tag>
-            
             <tag> NLP </tag>
+            
+            <tag> ZRKGC </tag>
             
             <tag> MRC </tag>
             
