@@ -260,9 +260,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> QA </tag>
             
@@ -289,13 +289,13 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
             
-            <tag> 综述 </tag>
+            <tag> NLP </tag>
             
             <tag> 数据集 </tag>
+            
+            <tag> 综述 </tag>
             
         </tags>
       
@@ -523,11 +523,11 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
             
             <tag> DROP </tag>
+            
+            <tag> NLP </tag>
             
             <tag> NumNet </tag>
             
@@ -554,11 +554,11 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
             
             <tag> DROP </tag>
+            
+            <tag> NLP </tag>
             
         </tags>
       
@@ -583,11 +583,11 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
             
             <tag> DROP </tag>
+            
+            <tag> NLP </tag>
             
         </tags>
       
@@ -761,9 +761,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
         </tags>
       
@@ -848,9 +848,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
         </tags>
       
@@ -875,9 +875,9 @@
       
         <tags>
             
-            <tag> Abstract </tag>
-            
             <tag> NLP </tag>
+            
+            <tag> Abstract </tag>
             
         </tags>
       
@@ -983,9 +983,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> Dialogue </tag>
             
@@ -1052,33 +1052,6 @@
     
     
     <entry>
-      <title>使用TensorFlow实现GRU</title>
-      <link href="/2021/08/23/%E4%BD%BF%E7%94%A8TensorFlow%E5%AE%9E%E7%8E%B0GRU/"/>
-      <url>/2021/08/23/%E4%BD%BF%E7%94%A8TensorFlow%E5%AE%9E%E7%8E%B0GRU/</url>
-      
-        <content type="html"><![CDATA[<h1 id="使用TensorFlow实现GRU"><a href="#使用TensorFlow实现GRU" class="headerlink" title="使用TensorFlow实现GRU"></a>使用TensorFlow实现GRU</h1><h2 id="使用Cell实现"><a href="#使用Cell实现" class="headerlink" title="使用Cell实现"></a>使用Cell实现</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line"># 以Cell方式实现GRU</span><br><span class="line"># %%</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow import keras</span><br><span class="line">from tensorflow.keras import layers, losses, optimizers, Sequential</span><br><span class="line"></span><br><span class="line"># 指定GPU</span><br><span class="line">os.environ[&quot;CUDA_VISIBLE_DEVICES&quot;] = &quot;2&quot;</span><br><span class="line"></span><br><span class="line">tf.random.set_seed(22)</span><br><span class="line">np.random.seed(22)</span><br><span class="line">os.environ[&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;] = &#x27;2&#x27;</span><br><span class="line">assert tf.__version__.startswith(&#x27;2.&#x27;)</span><br><span class="line"></span><br><span class="line">batch_size = 128  # 批量大小</span><br><span class="line">total_words = 10000  # 词汇表大小N_vocab</span><br><span class="line">max_review_len = 80  # 句子最大长度s，大于的句子部分将截断，小于的将填充</span><br><span class="line">embedding_len = 100  # 词向量特征长度f</span><br><span class="line"># 加载IMDB数据集，此处的数据采用数字编码，一个数字代表一个单词</span><br><span class="line">(x_train, y_train), (x_test, y_test) = keras.datasets.imdb.load_data(num_words=total_words)</span><br><span class="line">print(x_train.shape, len(x_train[0]), y_train.shape)</span><br><span class="line">print(x_test.shape, len(x_test[0]), y_test.shape)</span><br><span class="line"># %%</span><br><span class="line">print(x_train[0])</span><br><span class="line"># %%</span><br><span class="line"># 数字编码表</span><br><span class="line">word_index = keras.datasets.imdb.get_word_index()</span><br><span class="line"># for k,v in word_index.items():</span><br><span class="line">#     print(k,v)</span><br><span class="line"># %%</span><br><span class="line">word_index = &#123;k: (v + 3) for k, v in word_index.items()&#125;</span><br><span class="line">word_index[&quot;&lt;PAD&gt;&quot;] = 0</span><br><span class="line">word_index[&quot;&lt;START&gt;&quot;] = 1</span><br><span class="line">word_index[&quot;&lt;UNK&gt;&quot;] = 2  # unknown</span><br><span class="line">word_index[&quot;&lt;UNUSED&gt;&quot;] = 3</span><br><span class="line"># 翻转编码表</span><br><span class="line">reverse_word_index = dict([(value, key) for (key, value) in word_index.items()])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def decode_review(text):</span><br><span class="line">    return &#x27; &#x27;.join([reverse_word_index.get(i, &#x27;?&#x27;) for i in text])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">decode_review(x_train[8])</span><br><span class="line"></span><br><span class="line"># %%</span><br><span class="line"></span><br><span class="line"># x_train:[b, 80]</span><br><span class="line"># x_test: [b, 80]</span><br><span class="line"># 截断和填充句子，使得等长，此处长句子保留句子后面的部分，短句子在前面填充</span><br><span class="line">x_train = keras.preprocessing.sequence.pad_sequences(x_train, maxlen=max_review_len)</span><br><span class="line">x_test = keras.preprocessing.sequence.pad_sequences(x_test, maxlen=max_review_len)</span><br><span class="line"># 构建数据集，打散，批量，并丢掉最后一个不够batch_size的batch</span><br><span class="line">db_train = tf.data.Dataset.from_tensor_slices((x_train, y_train))</span><br><span class="line">db_train = db_train.shuffle(1000).batch(batch_size, drop_remainder=True)</span><br><span class="line">db_test = tf.data.Dataset.from_tensor_slices((x_test, y_test))</span><br><span class="line">db_test = db_test.batch(batch_size, drop_remainder=True)</span><br><span class="line">print(&#x27;x_train shape:&#x27;, x_train.shape, tf.reduce_max(y_train), tf.reduce_min(y_train))</span><br><span class="line">print(&#x27;x_test shape:&#x27;, x_test.shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># %%</span><br><span class="line"></span><br><span class="line">class MyRNN(keras.Model):</span><br><span class="line">    # Cell方式构建多层网络</span><br><span class="line">    def __init__(self, units):</span><br><span class="line">        super(MyRNN, self).__init__()</span><br><span class="line">        # [b, 64]，构建Cell初始化状态向量，重复使用</span><br><span class="line">        # GRU与RNN相同 隐藏层状态为1个 LSTM两个</span><br><span class="line">        self.state0 = [tf.zeros([batch_size, units])]</span><br><span class="line">        self.state1 = [tf.zeros([batch_size, units])]</span><br><span class="line">        # 词向量编码 [b, 80] =&gt; [b, 80, 100]</span><br><span class="line">        self.embedding = layers.Embedding(total_words, embedding_len,</span><br><span class="line">                                          input_length=max_review_len)</span><br><span class="line">        # 构建2个Cell</span><br><span class="line">        self.rnn_cell0 = layers.GRUCell(units, dropout=0.5)</span><br><span class="line">        self.rnn_cell1 = layers.GRUCell(units, dropout=0.5)</span><br><span class="line">        # 构建分类网络，用于将CELL的输出特征进行分类，2分类</span><br><span class="line">        # [b, 80, 100] =&gt; [b, 64] =&gt; [b, 1]</span><br><span class="line">        self.out_layer = Sequential([</span><br><span class="line">            layers.Dense(units),</span><br><span class="line">            layers.Dropout(rate=0.5),</span><br><span class="line">            layers.ReLU(),</span><br><span class="line">            layers.Dense(1)])</span><br><span class="line"></span><br><span class="line">    def call(self, inputs, training=None, mask=None):</span><br><span class="line">        x = inputs  # [b, 80]</span><br><span class="line">        # embedding: [b, 80] =&gt; [b, 80, 100]</span><br><span class="line">        x = self.embedding(x)</span><br><span class="line">        # rnn cell compute,[b, 80, 100] =&gt; [b, 64]</span><br><span class="line">        state0 = self.state0</span><br><span class="line">        state1 = self.state1</span><br><span class="line">        out1 = None</span><br><span class="line">        for word in tf.unstack(x, axis=1):  # word: [b, 100]</span><br><span class="line">            out0, state0 = self.rnn_cell0(word, state0, training)</span><br><span class="line">            out1, state1 = self.rnn_cell1(out0, state1, training)</span><br><span class="line">        # 末层最后一个输出作为分类网络的输入: [b, 64] =&gt; [b, 1]</span><br><span class="line">        x = self.out_layer(out1, training)</span><br><span class="line">        # p(y is pos|x)</span><br><span class="line">        prob = tf.sigmoid(x)</span><br><span class="line"></span><br><span class="line">        return prob</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    units = 64  # RNN状态向量长度f</span><br><span class="line">    epochs = 50  # 训练epochs</span><br><span class="line"></span><br><span class="line">    model = MyRNN(units)</span><br><span class="line">    # 装配</span><br><span class="line">    model.compile(optimizer=optimizers.RMSprop(0.001),</span><br><span class="line">                  loss=losses.BinaryCrossentropy(),</span><br><span class="line">                  metrics=[&#x27;accuracy&#x27;])</span><br><span class="line">    # 训练和验证</span><br><span class="line">    model.fit(db_train, epochs=epochs, validation_data=db_test)</span><br><span class="line">    # 测试</span><br><span class="line">    model.evaluate(db_test)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="使用Layer实现"><a href="#使用Layer实现" class="headerlink" title="使用Layer实现"></a>使用Layer实现</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"># 以Layer方式实现GRU</span><br><span class="line"># %%</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow import keras</span><br><span class="line">from tensorflow.keras import layers, losses, optimizers, Sequential</span><br><span class="line"></span><br><span class="line"># 指定GPU</span><br><span class="line">os.environ[&quot;CUDA_VISIBLE_DEVICES&quot;] = &quot;3&quot;</span><br><span class="line"></span><br><span class="line">tf.random.set_seed(22)</span><br><span class="line">np.random.seed(22)</span><br><span class="line">os.environ[&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;] = &#x27;2&#x27;</span><br><span class="line">assert tf.__version__.startswith(&#x27;2.&#x27;)</span><br><span class="line"></span><br><span class="line">batch_size = 128  # 批量大小</span><br><span class="line">total_words = 10000  # 词汇表大小N_vocab</span><br><span class="line">max_review_len = 80  # 句子最大长度s，大于的句子部分将截断，小于的将填充</span><br><span class="line">embedding_len = 100  # 词向量特征长度f</span><br><span class="line"># 加载IMDB数据集，此处的数据采用数字编码，一个数字代表一个单词</span><br><span class="line">(x_train, y_train), (x_test, y_test) = keras.datasets.imdb.load_data(num_words=total_words)</span><br><span class="line">print(x_train.shape, len(x_train[0]), y_train.shape)</span><br><span class="line">print(x_test.shape, len(x_test[0]), y_test.shape)</span><br><span class="line"># %%</span><br><span class="line">print(x_train[0])</span><br><span class="line"># %%</span><br><span class="line"># 数字编码表</span><br><span class="line">word_index = keras.datasets.imdb.get_word_index()</span><br><span class="line"># for k,v in word_index.items():</span><br><span class="line">#     print(k,v)</span><br><span class="line"># %%</span><br><span class="line">word_index = &#123;k: (v + 3) for k, v in word_index.items()&#125;</span><br><span class="line">word_index[&quot;&lt;PAD&gt;&quot;] = 0</span><br><span class="line">word_index[&quot;&lt;START&gt;&quot;] = 1</span><br><span class="line">word_index[&quot;&lt;UNK&gt;&quot;] = 2  # unknown</span><br><span class="line">word_index[&quot;&lt;UNUSED&gt;&quot;] = 3</span><br><span class="line"># 翻转编码表</span><br><span class="line">reverse_word_index = dict([(value, key) for (key, value) in word_index.items()])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def decode_review(text):</span><br><span class="line">    return &#x27; &#x27;.join([reverse_word_index.get(i, &#x27;?&#x27;) for i in text])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">decode_review(x_train[8])</span><br><span class="line"></span><br><span class="line"># %%</span><br><span class="line"></span><br><span class="line"># x_train:[b, 80]</span><br><span class="line"># x_test: [b, 80]</span><br><span class="line"># 截断和填充句子，使得等长，此处长句子保留句子后面的部分，短句子在前面填充</span><br><span class="line">x_train = keras.preprocessing.sequence.pad_sequences(x_train, maxlen=max_review_len)</span><br><span class="line">x_test = keras.preprocessing.sequence.pad_sequences(x_test, maxlen=max_review_len)</span><br><span class="line"># 构建数据集，打散，批量，并丢掉最后一个不够batchsz的batch</span><br><span class="line">db_train = tf.data.Dataset.from_tensor_slices((x_train, y_train))</span><br><span class="line">db_train = db_train.shuffle(1000).batch(batch_size, drop_remainder=True)</span><br><span class="line">db_test = tf.data.Dataset.from_tensor_slices((x_test, y_test))</span><br><span class="line">db_test = db_test.batch(batch_size, drop_remainder=True)</span><br><span class="line">print(&#x27;x_train shape:&#x27;, x_train.shape, tf.reduce_max(y_train), tf.reduce_min(y_train))</span><br><span class="line">print(&#x27;x_test shape:&#x27;, x_test.shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># %%</span><br><span class="line"></span><br><span class="line">class MyRNN(keras.Model):</span><br><span class="line">    # Cell方式构建多层网络</span><br><span class="line">    def __init__(self, units):</span><br><span class="line">        super(MyRNN, self).__init__()</span><br><span class="line">        # 词向量编码 [b, 80] =&gt; [b, 80, 100]</span><br><span class="line">        self.embedding = layers.Embedding(total_words, embedding_len,</span><br><span class="line">                                          input_length=max_review_len)</span><br><span class="line">        # 构建RNN</span><br><span class="line">        self.rnn = keras.Sequential([</span><br><span class="line">            layers.GRU(units, dropout=0.5, return_sequences=True),</span><br><span class="line">            layers.GRU(units, dropout=0.5)</span><br><span class="line">        ])</span><br><span class="line">        # 构建分类网络，用于将CELL的输出特征进行分类，2分类</span><br><span class="line">        # [b, 80, 100] =&gt; [b, 64] =&gt; [b, 1]</span><br><span class="line">        self.out_layer = Sequential([</span><br><span class="line">            layers.Dense(32),</span><br><span class="line">            layers.Dropout(rate=0.5),</span><br><span class="line">            layers.ReLU(),</span><br><span class="line">            layers.Dense(1)])</span><br><span class="line"></span><br><span class="line">    def call(self, inputs, training=None,mask=None):</span><br><span class="line">        x = inputs  # [b, 80]</span><br><span class="line">        # embedding: [b, 80] =&gt; [b, 80, 100]</span><br><span class="line">        x = self.embedding(x)</span><br><span class="line">        # rnn cell compute,[b, 80, 100] =&gt; [b, 64]</span><br><span class="line">        x = self.rnn(x)</span><br><span class="line">        # 末层最后一个输出作为分类网络的输入: [b, 64] =&gt; [b, 1]</span><br><span class="line">        x = self.out_layer(x, training)</span><br><span class="line">        # p(y is pos|x)</span><br><span class="line">        prob = tf.sigmoid(x)</span><br><span class="line"></span><br><span class="line">        return prob</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    units = 32  # RNN状态向量长度f</span><br><span class="line">    epochs = 50  # 训练epochs</span><br><span class="line"></span><br><span class="line">    model = MyRNN(units)</span><br><span class="line">    # 装配</span><br><span class="line">    model.compile(optimizer=optimizers.Adam(0.001),</span><br><span class="line">                  loss=losses.BinaryCrossentropy(),</span><br><span class="line">                  metrics=[&#x27;accuracy&#x27;])</span><br><span class="line">    # 训练和验证</span><br><span class="line">    model.fit(db_train, epochs=epochs, validation_data=db_test)</span><br><span class="line">    # 测试</span><br><span class="line">    model.evaluate(db_test)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> TensorFlow </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> TensorFlow </tag>
-            
-            <tag> GRU </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>使用TensorFlow实现LSTM</title>
       <link href="/2021/08/23/%E4%BD%BF%E7%94%A8TensorFlow%E5%AE%9E%E7%8E%B0LSTM/"/>
       <url>/2021/08/23/%E4%BD%BF%E7%94%A8TensorFlow%E5%AE%9E%E7%8E%B0LSTM/</url>
@@ -1125,6 +1098,33 @@
             <tag> RNN </tag>
             
             <tag> TensorFlow </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用TensorFlow实现GRU</title>
+      <link href="/2021/08/23/%E4%BD%BF%E7%94%A8TensorFlow%E5%AE%9E%E7%8E%B0GRU/"/>
+      <url>/2021/08/23/%E4%BD%BF%E7%94%A8TensorFlow%E5%AE%9E%E7%8E%B0GRU/</url>
+      
+        <content type="html"><![CDATA[<h1 id="使用TensorFlow实现GRU"><a href="#使用TensorFlow实现GRU" class="headerlink" title="使用TensorFlow实现GRU"></a>使用TensorFlow实现GRU</h1><h2 id="使用Cell实现"><a href="#使用Cell实现" class="headerlink" title="使用Cell实现"></a>使用Cell实现</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line"># 以Cell方式实现GRU</span><br><span class="line"># %%</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow import keras</span><br><span class="line">from tensorflow.keras import layers, losses, optimizers, Sequential</span><br><span class="line"></span><br><span class="line"># 指定GPU</span><br><span class="line">os.environ[&quot;CUDA_VISIBLE_DEVICES&quot;] = &quot;2&quot;</span><br><span class="line"></span><br><span class="line">tf.random.set_seed(22)</span><br><span class="line">np.random.seed(22)</span><br><span class="line">os.environ[&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;] = &#x27;2&#x27;</span><br><span class="line">assert tf.__version__.startswith(&#x27;2.&#x27;)</span><br><span class="line"></span><br><span class="line">batch_size = 128  # 批量大小</span><br><span class="line">total_words = 10000  # 词汇表大小N_vocab</span><br><span class="line">max_review_len = 80  # 句子最大长度s，大于的句子部分将截断，小于的将填充</span><br><span class="line">embedding_len = 100  # 词向量特征长度f</span><br><span class="line"># 加载IMDB数据集，此处的数据采用数字编码，一个数字代表一个单词</span><br><span class="line">(x_train, y_train), (x_test, y_test) = keras.datasets.imdb.load_data(num_words=total_words)</span><br><span class="line">print(x_train.shape, len(x_train[0]), y_train.shape)</span><br><span class="line">print(x_test.shape, len(x_test[0]), y_test.shape)</span><br><span class="line"># %%</span><br><span class="line">print(x_train[0])</span><br><span class="line"># %%</span><br><span class="line"># 数字编码表</span><br><span class="line">word_index = keras.datasets.imdb.get_word_index()</span><br><span class="line"># for k,v in word_index.items():</span><br><span class="line">#     print(k,v)</span><br><span class="line"># %%</span><br><span class="line">word_index = &#123;k: (v + 3) for k, v in word_index.items()&#125;</span><br><span class="line">word_index[&quot;&lt;PAD&gt;&quot;] = 0</span><br><span class="line">word_index[&quot;&lt;START&gt;&quot;] = 1</span><br><span class="line">word_index[&quot;&lt;UNK&gt;&quot;] = 2  # unknown</span><br><span class="line">word_index[&quot;&lt;UNUSED&gt;&quot;] = 3</span><br><span class="line"># 翻转编码表</span><br><span class="line">reverse_word_index = dict([(value, key) for (key, value) in word_index.items()])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def decode_review(text):</span><br><span class="line">    return &#x27; &#x27;.join([reverse_word_index.get(i, &#x27;?&#x27;) for i in text])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">decode_review(x_train[8])</span><br><span class="line"></span><br><span class="line"># %%</span><br><span class="line"></span><br><span class="line"># x_train:[b, 80]</span><br><span class="line"># x_test: [b, 80]</span><br><span class="line"># 截断和填充句子，使得等长，此处长句子保留句子后面的部分，短句子在前面填充</span><br><span class="line">x_train = keras.preprocessing.sequence.pad_sequences(x_train, maxlen=max_review_len)</span><br><span class="line">x_test = keras.preprocessing.sequence.pad_sequences(x_test, maxlen=max_review_len)</span><br><span class="line"># 构建数据集，打散，批量，并丢掉最后一个不够batch_size的batch</span><br><span class="line">db_train = tf.data.Dataset.from_tensor_slices((x_train, y_train))</span><br><span class="line">db_train = db_train.shuffle(1000).batch(batch_size, drop_remainder=True)</span><br><span class="line">db_test = tf.data.Dataset.from_tensor_slices((x_test, y_test))</span><br><span class="line">db_test = db_test.batch(batch_size, drop_remainder=True)</span><br><span class="line">print(&#x27;x_train shape:&#x27;, x_train.shape, tf.reduce_max(y_train), tf.reduce_min(y_train))</span><br><span class="line">print(&#x27;x_test shape:&#x27;, x_test.shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># %%</span><br><span class="line"></span><br><span class="line">class MyRNN(keras.Model):</span><br><span class="line">    # Cell方式构建多层网络</span><br><span class="line">    def __init__(self, units):</span><br><span class="line">        super(MyRNN, self).__init__()</span><br><span class="line">        # [b, 64]，构建Cell初始化状态向量，重复使用</span><br><span class="line">        # GRU与RNN相同 隐藏层状态为1个 LSTM两个</span><br><span class="line">        self.state0 = [tf.zeros([batch_size, units])]</span><br><span class="line">        self.state1 = [tf.zeros([batch_size, units])]</span><br><span class="line">        # 词向量编码 [b, 80] =&gt; [b, 80, 100]</span><br><span class="line">        self.embedding = layers.Embedding(total_words, embedding_len,</span><br><span class="line">                                          input_length=max_review_len)</span><br><span class="line">        # 构建2个Cell</span><br><span class="line">        self.rnn_cell0 = layers.GRUCell(units, dropout=0.5)</span><br><span class="line">        self.rnn_cell1 = layers.GRUCell(units, dropout=0.5)</span><br><span class="line">        # 构建分类网络，用于将CELL的输出特征进行分类，2分类</span><br><span class="line">        # [b, 80, 100] =&gt; [b, 64] =&gt; [b, 1]</span><br><span class="line">        self.out_layer = Sequential([</span><br><span class="line">            layers.Dense(units),</span><br><span class="line">            layers.Dropout(rate=0.5),</span><br><span class="line">            layers.ReLU(),</span><br><span class="line">            layers.Dense(1)])</span><br><span class="line"></span><br><span class="line">    def call(self, inputs, training=None, mask=None):</span><br><span class="line">        x = inputs  # [b, 80]</span><br><span class="line">        # embedding: [b, 80] =&gt; [b, 80, 100]</span><br><span class="line">        x = self.embedding(x)</span><br><span class="line">        # rnn cell compute,[b, 80, 100] =&gt; [b, 64]</span><br><span class="line">        state0 = self.state0</span><br><span class="line">        state1 = self.state1</span><br><span class="line">        out1 = None</span><br><span class="line">        for word in tf.unstack(x, axis=1):  # word: [b, 100]</span><br><span class="line">            out0, state0 = self.rnn_cell0(word, state0, training)</span><br><span class="line">            out1, state1 = self.rnn_cell1(out0, state1, training)</span><br><span class="line">        # 末层最后一个输出作为分类网络的输入: [b, 64] =&gt; [b, 1]</span><br><span class="line">        x = self.out_layer(out1, training)</span><br><span class="line">        # p(y is pos|x)</span><br><span class="line">        prob = tf.sigmoid(x)</span><br><span class="line"></span><br><span class="line">        return prob</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    units = 64  # RNN状态向量长度f</span><br><span class="line">    epochs = 50  # 训练epochs</span><br><span class="line"></span><br><span class="line">    model = MyRNN(units)</span><br><span class="line">    # 装配</span><br><span class="line">    model.compile(optimizer=optimizers.RMSprop(0.001),</span><br><span class="line">                  loss=losses.BinaryCrossentropy(),</span><br><span class="line">                  metrics=[&#x27;accuracy&#x27;])</span><br><span class="line">    # 训练和验证</span><br><span class="line">    model.fit(db_train, epochs=epochs, validation_data=db_test)</span><br><span class="line">    # 测试</span><br><span class="line">    model.evaluate(db_test)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="使用Layer实现"><a href="#使用Layer实现" class="headerlink" title="使用Layer实现"></a>使用Layer实现</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"># 以Layer方式实现GRU</span><br><span class="line"># %%</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow import keras</span><br><span class="line">from tensorflow.keras import layers, losses, optimizers, Sequential</span><br><span class="line"></span><br><span class="line"># 指定GPU</span><br><span class="line">os.environ[&quot;CUDA_VISIBLE_DEVICES&quot;] = &quot;3&quot;</span><br><span class="line"></span><br><span class="line">tf.random.set_seed(22)</span><br><span class="line">np.random.seed(22)</span><br><span class="line">os.environ[&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;] = &#x27;2&#x27;</span><br><span class="line">assert tf.__version__.startswith(&#x27;2.&#x27;)</span><br><span class="line"></span><br><span class="line">batch_size = 128  # 批量大小</span><br><span class="line">total_words = 10000  # 词汇表大小N_vocab</span><br><span class="line">max_review_len = 80  # 句子最大长度s，大于的句子部分将截断，小于的将填充</span><br><span class="line">embedding_len = 100  # 词向量特征长度f</span><br><span class="line"># 加载IMDB数据集，此处的数据采用数字编码，一个数字代表一个单词</span><br><span class="line">(x_train, y_train), (x_test, y_test) = keras.datasets.imdb.load_data(num_words=total_words)</span><br><span class="line">print(x_train.shape, len(x_train[0]), y_train.shape)</span><br><span class="line">print(x_test.shape, len(x_test[0]), y_test.shape)</span><br><span class="line"># %%</span><br><span class="line">print(x_train[0])</span><br><span class="line"># %%</span><br><span class="line"># 数字编码表</span><br><span class="line">word_index = keras.datasets.imdb.get_word_index()</span><br><span class="line"># for k,v in word_index.items():</span><br><span class="line">#     print(k,v)</span><br><span class="line"># %%</span><br><span class="line">word_index = &#123;k: (v + 3) for k, v in word_index.items()&#125;</span><br><span class="line">word_index[&quot;&lt;PAD&gt;&quot;] = 0</span><br><span class="line">word_index[&quot;&lt;START&gt;&quot;] = 1</span><br><span class="line">word_index[&quot;&lt;UNK&gt;&quot;] = 2  # unknown</span><br><span class="line">word_index[&quot;&lt;UNUSED&gt;&quot;] = 3</span><br><span class="line"># 翻转编码表</span><br><span class="line">reverse_word_index = dict([(value, key) for (key, value) in word_index.items()])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def decode_review(text):</span><br><span class="line">    return &#x27; &#x27;.join([reverse_word_index.get(i, &#x27;?&#x27;) for i in text])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">decode_review(x_train[8])</span><br><span class="line"></span><br><span class="line"># %%</span><br><span class="line"></span><br><span class="line"># x_train:[b, 80]</span><br><span class="line"># x_test: [b, 80]</span><br><span class="line"># 截断和填充句子，使得等长，此处长句子保留句子后面的部分，短句子在前面填充</span><br><span class="line">x_train = keras.preprocessing.sequence.pad_sequences(x_train, maxlen=max_review_len)</span><br><span class="line">x_test = keras.preprocessing.sequence.pad_sequences(x_test, maxlen=max_review_len)</span><br><span class="line"># 构建数据集，打散，批量，并丢掉最后一个不够batchsz的batch</span><br><span class="line">db_train = tf.data.Dataset.from_tensor_slices((x_train, y_train))</span><br><span class="line">db_train = db_train.shuffle(1000).batch(batch_size, drop_remainder=True)</span><br><span class="line">db_test = tf.data.Dataset.from_tensor_slices((x_test, y_test))</span><br><span class="line">db_test = db_test.batch(batch_size, drop_remainder=True)</span><br><span class="line">print(&#x27;x_train shape:&#x27;, x_train.shape, tf.reduce_max(y_train), tf.reduce_min(y_train))</span><br><span class="line">print(&#x27;x_test shape:&#x27;, x_test.shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># %%</span><br><span class="line"></span><br><span class="line">class MyRNN(keras.Model):</span><br><span class="line">    # Cell方式构建多层网络</span><br><span class="line">    def __init__(self, units):</span><br><span class="line">        super(MyRNN, self).__init__()</span><br><span class="line">        # 词向量编码 [b, 80] =&gt; [b, 80, 100]</span><br><span class="line">        self.embedding = layers.Embedding(total_words, embedding_len,</span><br><span class="line">                                          input_length=max_review_len)</span><br><span class="line">        # 构建RNN</span><br><span class="line">        self.rnn = keras.Sequential([</span><br><span class="line">            layers.GRU(units, dropout=0.5, return_sequences=True),</span><br><span class="line">            layers.GRU(units, dropout=0.5)</span><br><span class="line">        ])</span><br><span class="line">        # 构建分类网络，用于将CELL的输出特征进行分类，2分类</span><br><span class="line">        # [b, 80, 100] =&gt; [b, 64] =&gt; [b, 1]</span><br><span class="line">        self.out_layer = Sequential([</span><br><span class="line">            layers.Dense(32),</span><br><span class="line">            layers.Dropout(rate=0.5),</span><br><span class="line">            layers.ReLU(),</span><br><span class="line">            layers.Dense(1)])</span><br><span class="line"></span><br><span class="line">    def call(self, inputs, training=None,mask=None):</span><br><span class="line">        x = inputs  # [b, 80]</span><br><span class="line">        # embedding: [b, 80] =&gt; [b, 80, 100]</span><br><span class="line">        x = self.embedding(x)</span><br><span class="line">        # rnn cell compute,[b, 80, 100] =&gt; [b, 64]</span><br><span class="line">        x = self.rnn(x)</span><br><span class="line">        # 末层最后一个输出作为分类网络的输入: [b, 64] =&gt; [b, 1]</span><br><span class="line">        x = self.out_layer(x, training)</span><br><span class="line">        # p(y is pos|x)</span><br><span class="line">        prob = tf.sigmoid(x)</span><br><span class="line"></span><br><span class="line">        return prob</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    units = 32  # RNN状态向量长度f</span><br><span class="line">    epochs = 50  # 训练epochs</span><br><span class="line"></span><br><span class="line">    model = MyRNN(units)</span><br><span class="line">    # 装配</span><br><span class="line">    model.compile(optimizer=optimizers.Adam(0.001),</span><br><span class="line">                  loss=losses.BinaryCrossentropy(),</span><br><span class="line">                  metrics=[&#x27;accuracy&#x27;])</span><br><span class="line">    # 训练和验证</span><br><span class="line">    model.fit(db_train, epochs=epochs, validation_data=db_test)</span><br><span class="line">    # 测试</span><br><span class="line">    model.evaluate(db_test)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> TensorFlow </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> TensorFlow </tag>
+            
+            <tag> GRU </tag>
             
         </tags>
       
@@ -1829,13 +1829,13 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
-            <tag> ZRKGC </tag>
-            
             <tag> MRC </tag>
             
+            <tag> NLP </tag>
+            
             <tag> RC </tag>
+            
+            <tag> ZRKGC </tag>
             
         </tags>
       
@@ -1887,9 +1887,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> TH-Net </tag>
             
@@ -2024,9 +2024,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -2055,9 +2055,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2088,9 +2088,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2119,9 +2119,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2150,9 +2150,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2181,9 +2181,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2241,9 +2241,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2272,9 +2272,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2305,9 +2305,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2336,9 +2336,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2404,9 +2404,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2520,9 +2520,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2582,9 +2582,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2781,9 +2781,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -2814,13 +2814,13 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
             
-            <tag> RC </tag>
-            
             <tag> DROP </tag>
+            
+            <tag> NLP </tag>
+            
+            <tag> RC </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -2849,9 +2849,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -3007,9 +3007,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> RC </tag>
             
@@ -3148,13 +3148,13 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
             
-            <tag> RC </tag>
-            
             <tag> DROP </tag>
+            
+            <tag> NLP </tag>
+            
+            <tag> RC </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -3208,9 +3208,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -3241,9 +3241,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -3299,9 +3299,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> 机器阅读理解 </tag>
             
@@ -3413,9 +3413,9 @@
       
         <tags>
             
-            <tag> NLP </tag>
-            
             <tag> MRC </tag>
+            
+            <tag> NLP </tag>
             
             <tag> 机器阅读理解 </tag>
             
