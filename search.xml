@@ -143,6 +143,60 @@
     
     
     <entry>
+      <title>组会报告</title>
+      <link href="/2022/12/05/%E7%BB%84%E4%BC%9A%E6%8A%A5%E5%91%8A/"/>
+      <url>/2022/12/05/%E7%BB%84%E4%BC%9A%E6%8A%A5%E5%91%8A/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-RocketQA系列搜索技术相关论文"><a href="#1-RocketQA系列搜索技术相关论文" class="headerlink" title="1. RocketQA系列搜索技术相关论文"></a>1. RocketQA系列搜索技术相关论文</h2><p><a href="https://zlc6vppbrn.feishu.cn/docx/doxcnzGc77PTCEGzCqLWt3onTph">https://zlc6vppbrn.feishu.cn/docx/doxcnzGc77PTCEGzCqLWt3onTph</a></p><h2 id="2-长文本"><a href="#2-长文本" class="headerlink" title="2. 长文本"></a>2. 长文本</h2><p><a href="https://zlc6vppbrn.feishu.cn/docx/ZL9fdzLeIoYUhyxnO7hcNFPlnZc">https://zlc6vppbrn.feishu.cn/docx/ZL9fdzLeIoYUhyxnO7hcNFPlnZc</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> 组会报告 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Read before Generate! Faithful Long Form Question Answering with Machine Reading</title>
+      <link href="/2022/12/05/Read%20before%20Generate!%20Faithful%20Long%20Form%20Question%20Answering%20with%20Machine%20Reading/"/>
+      <url>/2022/12/05/Read%20before%20Generate!%20Faithful%20Long%20Form%20Question%20Answering%20with%20Machine%20Reading/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Read-before-Generate-Faithful-Long-Form-Question-Answering-with-Machine-Reading"><a href="#Read-before-Generate-Faithful-Long-Form-Question-Answering-with-Machine-Reading" class="headerlink" title="Read before Generate! Faithful Long Form Question Answering with Machine Reading"></a>Read before Generate! Faithful Long Form Question Answering with Machine Reading</h1><blockquote><p> 论文：<a href="https://aclanthology.org/2022.findings-acl.61.pdf">https://aclanthology.org/2022.findings-acl.61.pdf</a><br> 会议：ACL2021<br> 飞书：<a href="https://zlc6vppbrn.feishu.cn/docx/P45VdH0vmosFNMxwMyxc3R5Anif">https://zlc6vppbrn.feishu.cn/docx/P45VdH0vmosFNMxwMyxc3R5Anif</a></p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>长文本问答 (LFQA) 旨在为给定问题生成段落长度的答案。当前使用大型预训练模型生成的LFQA工作可以有效地产生流畅且较为相关的内容，但对长文本问答来说，不同的文档可能包含冗余，互补或矛盾的信息，主要的挑战在于如何生成具有较少空洞内容的高置信度(faithful)答案。</p><p><strong>关键思想：</strong>本文提出了一个新的端到端框架，该框架对答案生成和机器阅读进行联合建模，使用与答案相关的细粒度的显著信息来增强生成模型，这些信息可以被视为对事实的强调。</p><p>a fluent and relevant but unfaithful answer：</p><blockquote><p>unfaithful answer 会误导读者</p></blockquote><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGI0ZTMzMTcyZWY4NjMxODJmZWNjYjg4MDAwZGI5MmFfVDhDajhJenJVSGVPSFlxUDdqMk9uWGV6VFl1YXhqdVFfVG9rZW46Ym94Y25PVjl2RENpcU1pQWE5VVg0eGd4eGJVXzE2NzAyMjUyMzM6MTY3MDIyODgzM19WNA" alt="|510"></p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><p>本文将基于Seq2Seq的生成器与机器阅读理解 (reader) 模块相结合。reader会为每个句子生成作为证据的概率得分，该分数将与生成器集成在一起，用于最终的分布预测。</p><p>模型结构：<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTI4NzA3NDk3NjU3ZTk2YzhlMGJhOGMyZjZlYWJjYTRfNm1heEh6Qk8xOTBjbmlVblZtUk5LY0lkWGlyWXRlQUhfVG9rZW46Ym94Y25YeFA4MlVEQkJ3UXg0NWFaVUw1VTZlXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt=""></p><p>为了对给定的通用领域问题生成深入的长答案，首先使用检索器从大量的外部知识中检索相关信息。然后，reader和generation模块将多个检索到的文档以及问题作为输入以生成答案。</p><p><strong>reader模块</strong>: 为每个文档中的每个句子计算证据得分。<br><strong>generator模块:</strong> 采用预训练的Seq2Seq语言模型，将句子证据得分融合到其生成过程中。</p><h3 id="Supporting-document-retriever"><a href="#Supporting-document-retriever" class="headerlink" title="Supporting document retriever"></a>Supporting document retriever</h3><p>使用DPR检索相关文档<br>retriever根据文档的相关性对文档进行排名：<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGE1MTA1MWI2ZWM5OWE0NWU1MTE4YmI1ZGYxNzZiYzFfR1Q0aFdXaThZeEwxaXRvNWh2Vk1rdzJiSG5pNTl1N21fVG9rZW46Ym94Y25EczVwa1lFSWJPMlkxVXZhc2pXZjVZXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|440"><br>对于问题Q,使用 $D = {D_1,D_2, …,D_k}$表示top-k相关文档。</p><h3 id="Document-reader"><a href="#Document-reader" class="headerlink" title="Document reader"></a>Document reader</h3><p>由于没有用于长答案的标注标签，因此检索到的文档可能包含与答案相关的补充，矛盾或冗余信息。因此，使用阅读器模块来预测每个文档中句子的证据概率。</p><h4 id="Evidence-span-prediction"><a href="#Evidence-span-prediction" class="headerlink" title="Evidence span prediction"></a>Evidence span prediction</h4><p>输入： $D_i \&amp; Q$<br>输出： $D_i$中可能是evidence spans的开始和结束位置，每个输出token有两个概率分布， $P^s_i (w_s) \ and \ P^e _i (w_s)$,分别表示token $w_s$作为头和尾token的概率</p><h4 id="Sentence-evidence-probability"><a href="#Sentence-evidence-probability" class="headerlink" title="Sentence evidence probability"></a>Sentence evidence probability</h4><p>句子级的概率更适合长文本任务，支持句可以为每个答案跨度提供所需的最小上下文信息，这一点非常重要，尤其是在多文档生成中。</p><p>文档中第i个句子的概率表示为 $P^i_{ rea}(S)$，由该句子中所有token的证据概率加和得到。</p><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ODIxYTc5MTg4NDMzZjllODczMWEwNDEzOTUxNjBmYjJfc3J3OUpleFBKYkN2d0dZcVBxb0Uza2VUbjd0RHlkY0tfVG9rZW46Ym94Y25KTW9SQU1KcWdzdWxqdG1QTHhGMlBoXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|415"></p><blockquote><p>$P_{rea}(S)$：表示经过归一化后，所有top-k句子的证据概率</p></blockquote><h4 id="Multi-task-MRC"><a href="#Multi-task-MRC" class="headerlink" title="Multi-task MRC"></a>Multi-task MRC</h4><p>由于LFQA数据没有gold answer span，因此选择SpanBert在MRQA,sQuAD,NewsQA,TriviaQA,SearchQA,HotpotQA,NatualQuestions上进行多任务微调，在下游任务上实现远程监督训练。</p><h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><h4 id="FiD-BART"><a href="#FiD-BART" class="headerlink" title="FiD-BART"></a>FiD-BART</h4><p>选择BART作为生成任务的backbone，本文提出FiD-BART(Fusion-in-Decoder)，以使BART能够处理多个长文档输入。FiD-BART在编码器中独立处理每个文档，同时在解码器中联合执行交叉注意力。</p><ul><li>Encoder<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NzViZjBjOTZkM2QyZjhjZjEzYzhiNTRjOTg3ZTY3YjdfMm5PNGZKM1Q1M1JvOHBDNzlPSnVtMDhMNjd6RHBLNUZfVG9rZW46Ym94Y25qSTNNOGZxUnRxeEZVOU12bHIwZWNmXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|450"></li></ul><blockquote><p>$h<em>{enc}^i$：文档 $D_i$作为encoder输入得到的最后一层隐藏层表示<br>$h</em>{enc}$：top-k文档encoder输出的拼接</p></blockquote><ul><li>Decoder</li></ul><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=OTQ2N2NjNGEyM2UyZjFkOTY2OWI1ZjE0Y2Y5MjQ4ZTJfR3hQUXZvRWxCWFFZbHF5Q3pqdkMyQXdVT2VST01tTzNfVG9rZW46Ym94Y25wVWNnVkV5eDJ5bnhqYThTbkJsdlpjXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|400"></p><blockquote><p>$h<em>l$：表示decoder的第l层<br>$h</em>{dec}$：表示decoder的最后一层输出</p></blockquote><p><em>计算时间与输入数量线性相关</em></p><h4 id="Reader-before-generator"><a href="#Reader-before-generator" class="headerlink" title="Reader-before-generator"></a>Reader-before-generator</h4><p>使用指针网，将证据概率融入到生成过程中。</p><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NmFmZjNiYzE2MzU2ODMyY2UzODU5NDQ3Mzk4YjY2ZDhfQjFOR3VyV3ViZEVIbm95R2d3bTdXc1JkanljbWJveE5fVG9rZW46Ym94Y253V01Bdk1KZXJCWUxmbWh6eTZGaU9lXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|400"></p><blockquote><p>$A$：attention分布<br>$h<em>c$：上下文向量<br>$p</em>{gen}$：生成概率<br>$W_c,W_g$：可训练参数</p></blockquote><p>$p_{gen}$用于选择：</p><ol><li>生成器从vocab中采样单词（词表）</li><li>根据证据分布 $P_{rea}(w)$从输入序列复制单词（输入序列）<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjVkNzhmMTQ0OWMyNWEzOTE5ZTA0MjQxNjkyMTJmYzZfTlp2eHg2Y2JxY0xqZ2tSMHNWNEdFOHMwZldZWndyeTlfVG9rZW46Ym94Y25Xa1ZxNVliZmVncVJqRmVDV244U3ljXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|410"></li></ol><h3 id="Pre-training"><a href="#Pre-training" class="headerlink" title="Pre-training"></a>Pre-training</h3><p>为了进一步提高检索文档的能力，提出了retrieval-augmented recovery (RAR)预训练任务，期望模型能够依赖更多的外部知识生成事实性陈述。</p><p><strong>任务定义：</strong><br>给定原始文本：S<br>从外部知识(BM25)中检索top-k文档： $D_1,D_2, …,D_N$<br>构造伪查询Q：替换S中30%的单词为[MASK]</p><p>任务：使用伪查询Q和top-k文档恢复S<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ODUyZWEzZWQ1ZjBhZTFiYmVjN2VhMmM0YTJjMzcyMjBfYUlqVFlKOTlucjVYWlF4RzF4dE5Id0lMa0c1SUpDNTNfVG9rZW46Ym94Y25PTWFkaUw0SXhURVNPWWtCNVVmWnFnXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|390"></p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><ul><li>LI5</li></ul><ol><li>唯一可公开获得的大规模LFQA数据集</li><li>272,634个train样例和1,507个dev样例</li><li>答案平均长度130个单词</li></ol><ul><li>MS MARCO</li></ul><ol><li>来自Bing查询</li><li>本文使用passage ranking track训练模型，该赛道比NLG更加抽象，并且更依赖多文档信息。</li><li>train样例大约500,000，dev样例6980</li></ol><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p>评价指标：<br>F1 score and ROUGE-L</p><h3 id="模型性能"><a href="#模型性能" class="headerlink" title="模型性能"></a>模型性能</h3><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YjFmMWM5MGU2MmZmYjVjNzY0Y2RjOGEwNDBhYTMwMmRfZmNSNmkwdmpjNkJpQzFqRk9YVmcya1ZDVGhudUttQnVfVG9rZW46Ym94Y25idEFyaWoyTTVPbHRVZmh0UmltaldnXzE2NzAyMjU4OTc6MTY3MDIyOTQ5N19WNA" alt="|450"></p><h3 id="Fine-grained-Comparison"><a href="#Fine-grained-Comparison" class="headerlink" title="Fine-grained Comparison"></a>Fine-grained Comparison</h3><p>将MARCO数据集按照检索到的文档质量拆分为不同的子集，验证文档的质量对生成质量的影响。</p><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NGYwN2FiMWJiNWRiNDZhYTA4OGRjNWM2YTNlZjlmZDJfZzV0akJMcUtNNzZLTkdoTFZ4dExKZklpVUJiZGJWNGZfVG9rZW46Ym94Y256bFNjaHlYRFRkMVd0TFdlMU5EU2xiXzE2NzAyMjU4OTc6MTY3MDIyOTQ5N19WNA" alt="|480"></p><blockquote><p>RBG在完整MS-MARCO评估集中Rouge-L只比FiD领先0.1，但从表3中可以看出，随着评估子集检索质量的提高，性能差距继续增加。表明RBG在提供高质量的检索文档时更加有效。</p></blockquote><h3 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a>消融实验</h3><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2I1OGZkMDRlYzM0MWJhNDRiZTRlNzlkMGY2ZWQwMDdfRE5KVXBMUkI1bUluSmo1RGg2a096QWhyVnltMlBzT1FfVG9rZW46Ym94Y25hQmlaWUN3aVdnem1Ub3BNWVdiV0tlXzE2NzAyMjU4OTc6MTY3MDIyOTQ5N19WNA" alt="|485"></p><h4 id="文档质量对生成结果的影响"><a href="#文档质量对生成结果的影响" class="headerlink" title="文档质量对生成结果的影响"></a>文档质量对生成结果的影响</h4><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjFlZTk5NjRjMmI2NWU1ODhjMzAxY2JlZTI3ZjBlMTJfSDB2blVhRHJTTkRDOVczQUZrQlhFR0NIaWk3OTVhelFfVG9rZW46Ym94Y25WTG1qTE80dFNyYjRnRnVsZ2hEOG9oXzE2NzAyMjU4OTc6MTY3MDIyOTQ5N19WNA" alt="|445"></p><ul><li>检索得到的高质量文档能够提高生成质量</li><li>检索的文档并不是越多越好</li></ul><h3 id="Zero-shot-on-extractive-QA-tasks"><a href="#Zero-shot-on-extractive-QA-tasks" class="headerlink" title="Zero-shot on extractive QA tasks"></a>Zero-shot on extractive QA tasks</h3><p>评价指标：模型生成的长答案中是否包含NQ和HotpotQA中的短答案<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=MGU3ZjMzZDEwZTkwOTBiZjYyNTBiODM4OGI3NDhkNjZfYmtiN1BBUWp6akluc2dIME1rRnFxdDFheFFaRW16OFBfVG9rZW46Ym94Y25jS1M5M2RLQkpUZFZlT1ZpM2NubXpjXzE2NzAyMjU4OTc6MTY3MDIyOTQ5N19WNA" alt="|450"></p><blockquote><p>模型在需要综合复杂信息的问题上生成faithful答案的能力更强。</p></blockquote><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>主要贡献：</p><ul><li>本文是截至当前第一个尝试解决LFQA中的faithful挑战的人。</li><li>为开放域LFQA提出了一个新的端到端框架，该框架在reader模块的句子证据得分的指导下生成答案。</li><li>本文的方法可以提高生成答案的事实正确性，同时仍保持较高的信息性。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> 长文本 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Graph Convolutional Networks for Text Classification</title>
       <link href="/2022/04/28/Graph%20Convolutional%20Networks%20for%20Text%20Classification/"/>
       <url>/2022/04/28/Graph%20Convolutional%20Networks%20for%20Text%20Classification/</url>

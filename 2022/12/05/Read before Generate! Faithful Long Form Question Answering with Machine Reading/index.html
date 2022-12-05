@@ -1,0 +1,555 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Read before Generate! Faithful Long Form Question Answering with Machine Reading | 没有胡子的猫Asimok</title><meta name="keywords" content="NLP,长文本"><meta name="author" content="没有胡子的猫Asimok"><meta name="copyright" content="没有胡子的猫Asimok"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Read before Generate! Faithful Long Form Question Answering with Machine Reading  论文：https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.findings-acl.61.pdf 会议：ACL2021 飞书：https:&#x2F;&#x2F;zlc6vppbrn.feishu.cn&#x2F;docx&#x2F;P45VdH0vmosFNMxwM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Read before Generate! Faithful Long Form Question Answering with Machine Reading">
+<meta property="og:url" content="http://asimok.github.io/2022/12/05/Read%20before%20Generate!%20Faithful%20Long%20Form%20Question%20Answering%20with%20Machine%20Reading/index.html">
+<meta property="og:site_name" content="没有胡子的猫Asimok">
+<meta property="og:description" content="Read before Generate! Faithful Long Form Question Answering with Machine Reading  论文：https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.findings-acl.61.pdf 会议：ACL2021 飞书：https:&#x2F;&#x2F;zlc6vppbrn.feishu.cn&#x2F;docx&#x2F;P45VdH0vmosFNMxwM">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTI4NzA3NDk3NjU3ZTk2YzhlMGJhOGMyZjZlYWJjYTRfNm1heEh6Qk8xOTBjbmlVblZtUk5LY0lkWGlyWXRlQUhfVG9rZW46Ym94Y25YeFA4MlVEQkJ3UXg0NWFaVUw1VTZlXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA">
+<meta property="article:published_time" content="2022-12-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-05T07:39:48.588Z">
+<meta property="article:author" content="没有胡子的猫Asimok">
+<meta property="article:tag" content="NLP">
+<meta property="article:tag" content="长文本">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTI4NzA3NDk3NjU3ZTk2YzhlMGJhOGMyZjZlYWJjYTRfNm1heEh6Qk8xOTBjbmlVblZtUk5LY0lkWGlyWXRlQUhfVG9rZW46Ym94Y25YeFA4MlVEQkJ3UXg0NWFaVUw1VTZlXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA"><link rel="shortcut icon" href="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG"><link rel="canonical" href="http://asimok.github.io/2022/12/05/Read%20before%20Generate!%20Faithful%20Long%20Form%20Question%20Answering%20with%20Machine%20Reading/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Read before Generate! Faithful Long Form Question Answering with Machine Reading',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-05 15:39:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202205171612113.JPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">150</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">179</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTI4NzA3NDk3NjU3ZTk2YzhlMGJhOGMyZjZlYWJjYTRfNm1heEh6Qk8xOTBjbmlVblZtUk5LY0lkWGlyWXRlQUhfVG9rZW46Ym94Y25YeFA4MlVEQkJ3UXg0NWFaVUw1VTZlXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">没有胡子的猫Asimok</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Read before Generate! Faithful Long Form Question Answering with Machine Reading</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-05T07:39:48.588Z" title="更新于 2022-12-05 15:39:48">2022-12-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Read before Generate! Faithful Long Form Question Answering with Machine Reading"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/12/05/Read%20before%20Generate!%20Faithful%20Long%20Form%20Question%20Answering%20with%20Machine%20Reading/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/2022/12/05/Read%20before%20Generate!%20Faithful%20Long%20Form%20Question%20Answering%20with%20Machine%20Reading/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Read-before-Generate-Faithful-Long-Form-Question-Answering-with-Machine-Reading"><a href="#Read-before-Generate-Faithful-Long-Form-Question-Answering-with-Machine-Reading" class="headerlink" title="Read before Generate! Faithful Long Form Question Answering with Machine Reading"></a>Read before Generate! Faithful Long Form Question Answering with Machine Reading</h1><blockquote>
+<p> 论文：<a target="_blank" rel="noopener" href="https://aclanthology.org/2022.findings-acl.61.pdf">https://aclanthology.org/2022.findings-acl.61.pdf</a><br> 会议：ACL2021<br> 飞书：<a target="_blank" rel="noopener" href="https://zlc6vppbrn.feishu.cn/docx/P45VdH0vmosFNMxwMyxc3R5Anif">https://zlc6vppbrn.feishu.cn/docx/P45VdH0vmosFNMxwMyxc3R5Anif</a></p>
+</blockquote>
+<h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>长文本问答 (LFQA) 旨在为给定问题生成段落长度的答案。当前使用大型预训练模型生成的LFQA工作可以有效地产生流畅且较为相关的内容，但对长文本问答来说，不同的文档可能包含冗余，互补或矛盾的信息，主要的挑战在于如何生成具有较少空洞内容的高置信度(faithful)答案。</p>
+<p><strong>关键思想：</strong>本文提出了一个新的端到端框架，该框架对答案生成和机器阅读进行联合建模，使用与答案相关的细粒度的显著信息来增强生成模型，这些信息可以被视为对事实的强调。</p>
+<p>a fluent and relevant but unfaithful answer：</p>
+<blockquote>
+<p>unfaithful answer 会误导读者</p>
+</blockquote>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGI0ZTMzMTcyZWY4NjMxODJmZWNjYjg4MDAwZGI5MmFfVDhDajhJenJVSGVPSFlxUDdqMk9uWGV6VFl1YXhqdVFfVG9rZW46Ym94Y25PVjl2RENpcU1pQWE5VVg0eGd4eGJVXzE2NzAyMjUyMzM6MTY3MDIyODgzM19WNA" alt="|510"></p>
+<h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><p>本文将基于Seq2Seq的生成器与机器阅读理解 (reader) 模块相结合。reader会为每个句子生成作为证据的概率得分，该分数将与生成器集成在一起，用于最终的分布预测。</p>
+<p>模型结构：<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTI4NzA3NDk3NjU3ZTk2YzhlMGJhOGMyZjZlYWJjYTRfNm1heEh6Qk8xOTBjbmlVblZtUk5LY0lkWGlyWXRlQUhfVG9rZW46Ym94Y25YeFA4MlVEQkJ3UXg0NWFaVUw1VTZlXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt=""></p>
+<p>为了对给定的通用领域问题生成深入的长答案，首先使用检索器从大量的外部知识中检索相关信息。然后，reader和generation模块将多个检索到的文档以及问题作为输入以生成答案。</p>
+<p><strong>reader模块</strong>: 为每个文档中的每个句子计算证据得分。<br><strong>generator模块:</strong> 采用预训练的Seq2Seq语言模型，将句子证据得分融合到其生成过程中。</p>
+<h3 id="Supporting-document-retriever"><a href="#Supporting-document-retriever" class="headerlink" title="Supporting document retriever"></a>Supporting document retriever</h3><p>使用DPR检索相关文档<br>retriever根据文档的相关性对文档进行排名：<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGE1MTA1MWI2ZWM5OWE0NWU1MTE4YmI1ZGYxNzZiYzFfR1Q0aFdXaThZeEwxaXRvNWh2Vk1rdzJiSG5pNTl1N21fVG9rZW46Ym94Y25EczVwa1lFSWJPMlkxVXZhc2pXZjVZXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|440"><br>对于问题Q,使用 $D = {D_1,D_2, …,D_k}$表示top-k相关文档。</p>
+<h3 id="Document-reader"><a href="#Document-reader" class="headerlink" title="Document reader"></a>Document reader</h3><p>由于没有用于长答案的标注标签，因此检索到的文档可能包含与答案相关的补充，矛盾或冗余信息。因此，使用阅读器模块来预测每个文档中句子的证据概率。</p>
+<h4 id="Evidence-span-prediction"><a href="#Evidence-span-prediction" class="headerlink" title="Evidence span prediction"></a>Evidence span prediction</h4><p>输入： $D_i \&amp; Q$<br>输出： $D_i$中可能是evidence spans的开始和结束位置，每个输出token有两个概率分布， $P^s_i (w_s) \ and \ P^e _i (w_s)$,分别表示token $w_s$作为头和尾token的概率</p>
+<h4 id="Sentence-evidence-probability"><a href="#Sentence-evidence-probability" class="headerlink" title="Sentence evidence probability"></a>Sentence evidence probability</h4><p>句子级的概率更适合长文本任务，支持句可以为每个答案跨度提供所需的最小上下文信息，这一点非常重要，尤其是在多文档生成中。</p>
+<p>文档中第i个句子的概率表示为 $P^i_{ rea}(S)$，由该句子中所有token的证据概率加和得到。</p>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ODIxYTc5MTg4NDMzZjllODczMWEwNDEzOTUxNjBmYjJfc3J3OUpleFBKYkN2d0dZcVBxb0Uza2VUbjd0RHlkY0tfVG9rZW46Ym94Y25KTW9SQU1KcWdzdWxqdG1QTHhGMlBoXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|415"></p>
+<blockquote>
+<p>$P_{rea}(S)$：表示经过归一化后，所有top-k句子的证据概率</p>
+</blockquote>
+<h4 id="Multi-task-MRC"><a href="#Multi-task-MRC" class="headerlink" title="Multi-task MRC"></a>Multi-task MRC</h4><p>由于LFQA数据没有gold answer span，因此选择SpanBert在MRQA,sQuAD,NewsQA,TriviaQA,SearchQA,HotpotQA,NatualQuestions上进行多任务微调，在下游任务上实现远程监督训练。</p>
+<h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><h4 id="FiD-BART"><a href="#FiD-BART" class="headerlink" title="FiD-BART"></a>FiD-BART</h4><p>选择BART作为生成任务的backbone，本文提出FiD-BART(Fusion-in-Decoder)，以使BART能够处理多个长文档输入。FiD-BART在编码器中独立处理每个文档，同时在解码器中联合执行交叉注意力。</p>
+<ul>
+<li>Encoder<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NzViZjBjOTZkM2QyZjhjZjEzYzhiNTRjOTg3ZTY3YjdfMm5PNGZKM1Q1M1JvOHBDNzlPSnVtMDhMNjd6RHBLNUZfVG9rZW46Ym94Y25qSTNNOGZxUnRxeEZVOU12bHIwZWNmXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|450"></li>
+</ul>
+<blockquote>
+<p>$h<em>{enc}^i$：文档 $D_i$作为encoder输入得到的最后一层隐藏层表示<br>$h</em>{enc}$：top-k文档encoder输出的拼接</p>
+</blockquote>
+<ul>
+<li>Decoder</li>
+</ul>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=OTQ2N2NjNGEyM2UyZjFkOTY2OWI1ZjE0Y2Y5MjQ4ZTJfR3hQUXZvRWxCWFFZbHF5Q3pqdkMyQXdVT2VST01tTzNfVG9rZW46Ym94Y25wVWNnVkV5eDJ5bnhqYThTbkJsdlpjXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|400"></p>
+<blockquote>
+<p>$h<em>l$：表示decoder的第l层<br>$h</em>{dec}$：表示decoder的最后一层输出</p>
+</blockquote>
+<p><em>计算时间与输入数量线性相关</em></p>
+<h4 id="Reader-before-generator"><a href="#Reader-before-generator" class="headerlink" title="Reader-before-generator"></a>Reader-before-generator</h4><p>使用指针网，将证据概率融入到生成过程中。</p>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NmFmZjNiYzE2MzU2ODMyY2UzODU5NDQ3Mzk4YjY2ZDhfQjFOR3VyV3ViZEVIbm95R2d3bTdXc1JkanljbWJveE5fVG9rZW46Ym94Y253V01Bdk1KZXJCWUxmbWh6eTZGaU9lXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|400"></p>
+<blockquote>
+<p>$A$：attention分布<br>$h<em>c$：上下文向量<br>$p</em>{gen}$：生成概率<br>$W_c,W_g$：可训练参数</p>
+</blockquote>
+<p>$p_{gen}$用于选择：</p>
+<ol>
+<li>生成器从vocab中采样单词（词表）</li>
+<li>根据证据分布 $P_{rea}(w)$从输入序列复制单词（输入序列）<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjVkNzhmMTQ0OWMyNWEzOTE5ZTA0MjQxNjkyMTJmYzZfTlp2eHg2Y2JxY0xqZ2tSMHNWNEdFOHMwZldZWndyeTlfVG9rZW46Ym94Y25Xa1ZxNVliZmVncVJqRmVDV244U3ljXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|410"></li>
+</ol>
+<h3 id="Pre-training"><a href="#Pre-training" class="headerlink" title="Pre-training"></a>Pre-training</h3><p>为了进一步提高检索文档的能力，提出了retrieval-augmented recovery (RAR)预训练任务，期望模型能够依赖更多的外部知识生成事实性陈述。</p>
+<p><strong>任务定义：</strong><br>给定原始文本：S<br>从外部知识(BM25)中检索top-k文档： $D_1,D_2, …,D_N$<br>构造伪查询Q：替换S中30%的单词为[MASK]</p>
+<p>任务：使用伪查询Q和top-k文档恢复S<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ODUyZWEzZWQ1ZjBhZTFiYmVjN2VhMmM0YTJjMzcyMjBfYUlqVFlKOTlucjVYWlF4RzF4dE5Id0lMa0c1SUpDNTNfVG9rZW46Ym94Y25PTWFkaUw0SXhURVNPWWtCNVVmWnFnXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" alt="|390"></p>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><ul>
+<li>LI5</li>
+</ul>
+<ol>
+<li>唯一可公开获得的大规模LFQA数据集</li>
+<li>272,634个train样例和1,507个dev样例</li>
+<li>答案平均长度130个单词</li>
+</ol>
+<ul>
+<li>MS MARCO</li>
+</ul>
+<ol>
+<li>来自Bing查询</li>
+<li>本文使用passage ranking track训练模型，该赛道比NLG更加抽象，并且更依赖多文档信息。</li>
+<li>train样例大约500,000，dev样例6980</li>
+</ol>
+<h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p>评价指标：<br>F1 score and ROUGE-L</p>
+<h3 id="模型性能"><a href="#模型性能" class="headerlink" title="模型性能"></a>模型性能</h3><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YjFmMWM5MGU2MmZmYjVjNzY0Y2RjOGEwNDBhYTMwMmRfZmNSNmkwdmpjNkJpQzFqRk9YVmcya1ZDVGhudUttQnVfVG9rZW46Ym94Y25idEFyaWoyTTVPbHRVZmh0UmltaldnXzE2NzAyMjU4OTc6MTY3MDIyOTQ5N19WNA" alt="|450"></p>
+<h3 id="Fine-grained-Comparison"><a href="#Fine-grained-Comparison" class="headerlink" title="Fine-grained Comparison"></a>Fine-grained Comparison</h3><p>将MARCO数据集按照检索到的文档质量拆分为不同的子集，验证文档的质量对生成质量的影响。</p>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NGYwN2FiMWJiNWRiNDZhYTA4OGRjNWM2YTNlZjlmZDJfZzV0akJMcUtNNzZLTkdoTFZ4dExKZklpVUJiZGJWNGZfVG9rZW46Ym94Y256bFNjaHlYRFRkMVd0TFdlMU5EU2xiXzE2NzAyMjU4OTc6MTY3MDIyOTQ5N19WNA" alt="|480"></p>
+<blockquote>
+<p>RBG在完整MS-MARCO评估集中Rouge-L只比FiD领先0.1，但从表3中可以看出，随着评估子集检索质量的提高，性能差距继续增加。表明RBG在提供高质量的检索文档时更加有效。</p>
+</blockquote>
+<h3 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a>消融实验</h3><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2I1OGZkMDRlYzM0MWJhNDRiZTRlNzlkMGY2ZWQwMDdfRE5KVXBMUkI1bUluSmo1RGg2a096QWhyVnltMlBzT1FfVG9rZW46Ym94Y25hQmlaWUN3aVdnem1Ub3BNWVdiV0tlXzE2NzAyMjU4OTc6MTY3MDIyOTQ5N19WNA" alt="|485"></p>
+<h4 id="文档质量对生成结果的影响"><a href="#文档质量对生成结果的影响" class="headerlink" title="文档质量对生成结果的影响"></a>文档质量对生成结果的影响</h4><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjFlZTk5NjRjMmI2NWU1ODhjMzAxY2JlZTI3ZjBlMTJfSDB2blVhRHJTTkRDOVczQUZrQlhFR0NIaWk3OTVhelFfVG9rZW46Ym94Y25WTG1qTE80dFNyYjRnRnVsZ2hEOG9oXzE2NzAyMjU4OTc6MTY3MDIyOTQ5N19WNA" alt="|445"></p>
+<ul>
+<li>检索得到的高质量文档能够提高生成质量</li>
+<li>检索的文档并不是越多越好</li>
+</ul>
+<h3 id="Zero-shot-on-extractive-QA-tasks"><a href="#Zero-shot-on-extractive-QA-tasks" class="headerlink" title="Zero-shot on extractive QA tasks"></a>Zero-shot on extractive QA tasks</h3><p>评价指标：模型生成的长答案中是否包含NQ和HotpotQA中的短答案<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=MGU3ZjMzZDEwZTkwOTBiZjYyNTBiODM4OGI3NDhkNjZfYmtiN1BBUWp6akluc2dIME1rRnFxdDFheFFaRW16OFBfVG9rZW46Ym94Y25jS1M5M2RLQkpUZFZlT1ZpM2NubXpjXzE2NzAyMjU4OTc6MTY3MDIyOTQ5N19WNA" alt="|450"></p>
+<blockquote>
+<p>模型在需要综合复杂信息的问题上生成faithful答案的能力更强。</p>
+</blockquote>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>主要贡献：</p>
+<ul>
+<li>本文是截至当前第一个尝试解决LFQA中的faithful挑战的人。</li>
+<li>为开放域LFQA提出了一个新的端到端框架，该框架在reader模块的句子证据得分的指导下生成答案。</li>
+<li>本文的方法可以提高生成答案的事实正确性，同时仍保持较高的信息性。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">没有胡子的猫Asimok</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://asimok.github.io/2022/12/05/Read%20before%20Generate!%20Faithful%20Long%20Form%20Question%20Answering%20with%20Machine%20Reading/">http://asimok.github.io/2022/12/05/Read%20before%20Generate!%20Faithful%20Long%20Form%20Question%20Answering%20with%20Machine%20Reading/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://asimok.github.io" target="_blank">没有胡子的猫Asimok</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NLP/">NLP</a><a class="post-meta__tags" href="/tags/%E9%95%BF%E6%96%87%E6%9C%AC/">长文本</a></div><div class="post_share"><div class="social-share" data-image="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTI4NzA3NDk3NjU3ZTk2YzhlMGJhOGMyZjZlYWJjYTRfNm1heEh6Qk8xOTBjbmlVblZtUk5LY0lkWGlyWXRlQUhfVG9rZW46Ym94Y25YeFA4MlVEQkJ3UXg0NWFaVUw1VTZlXzE2NzAyMjUyNTc6MTY3MDIyODg1N19WNA" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/05/%E7%BB%84%E4%BC%9A%E6%8A%A5%E5%91%8A/"><img class="prev-cover" src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YzRkNjkwZTg0MzQ2MDY0MzIxODQyMmQzODdiN2IyNGNfUW5TaXZNcDh6N0FRUHB3M0hETU9LMjFFbWlxM2M4RHhfVG9rZW46Ym94Y25lY3NvQk9qSjRXVmNFZjRRczc4OWJnXzE2NzAyMjYzNDM6MTY3MDIyOTk0M19WNA" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">组会报告</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/28/Graph%20Convolutional%20Networks%20for%20Text%20Classification/"><img class="next-cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282154020.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Graph Convolutional Networks for Text Classification</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/04/13/READTWICE%20Reading%20Very%20Large%20Documents%20with%20Memories/" title="READTWICE Reading Very Large Documents with Memories"><img class="cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204131104502.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-13</div><div class="title">READTWICE Reading Very Large Documents with Memories</div></div></a></div><div><a href="/2022/04/05/RoR%20Read-over-Read%20for%20Long%20Document%20Machine%20Reading%20Comprehension/" title="RoR Read-over-Read for Long Document Machine Reading Comprehension"><img class="cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204051541991.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-05</div><div class="title">RoR Read-over-Read for Long Document Machine Reading Comprehension</div></div></a></div><div><a href="/2022/04/14/RikiNet%20Reading%20Wikipedia%20Pages%20for%20Natural%20Question%20Answering/" title="RikiNet Reading Wikipedia Pages for Natural Question Answering"><img class="cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204141034102.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-14</div><div class="title">RikiNet Reading Wikipedia Pages for Natural Question Answering</div></div></a></div><div><a href="/2022/04/14/VAULT%20VAriable%20Unified%20Long%20Text%20Representation%20for%20Machine%20Reading%20Comprehension/" title="VAULT VAriable Unified Long Text Representation for Machine Reading Comprehension"><img class="cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132117010.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-14</div><div class="title">VAULT VAriable Unified Long Text Representation for Machine Reading Comprehension</div></div></a></div><div><a href="/2022/12/05/Optimal%20Partial%20Transport%20Based%20Sentence%20Selection%20for%20Long-form%20Document%20Matching/" title="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching"><img class="cover" src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YjY1ODM1OTM4MmM0MDA2OWE0MTc0YWNkZjU2YWQzMzNfTGRQWlAzWUV5OXc5VVZ2OEJWVFlIaHN5aHpHQ3J6ZzlfVG9rZW46Ym94Y25wM2YydmlUbG1WeWVZVjFKRnJxd09oXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-05</div><div class="title">Optimal Partial Transport Based Sentence Selection for Long-form Document Matching</div></div></a></div><div><a href="/2021/01/20/A%20Simple%20and%20Effective%20Model%20for%20Answering%20Multi-span%20Questions/" title="A Simple and Effective Model for Answering Multi-span Questions"><img class="cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/picgo/img/MacBookPro/20210119092212.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-20</div><div class="title">A Simple and Effective Model for Answering Multi-span Questions</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202205171612113.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">没有胡子的猫Asimok</div><div class="author-info__description">记录自己的成长历程</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">150</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">179</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Asimok"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Asimok" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maqi_nepu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_39827677" target="_blank" title="CSDN"><i class="fab fa-internet-explorer"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/mmqrcode1605604352215.png" target="_blank" title="wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/qrcode_1605604361959.jpg" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">喜欢摄影的程序员</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Read-before-Generate-Faithful-Long-Form-Question-Answering-with-Machine-Reading"><span class="toc-number">1.</span> <span class="toc-text">Read before Generate! Faithful Long Form Question Answering with Machine Reading</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.1.</span> <span class="toc-text">任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%EF%BC%88%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">方法（模型）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Supporting-document-retriever"><span class="toc-number">1.2.1.</span> <span class="toc-text">Supporting document retriever</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Document-reader"><span class="toc-number">1.2.2.</span> <span class="toc-text">Document reader</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Evidence-span-prediction"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Evidence span prediction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sentence-evidence-probability"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Sentence evidence probability</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multi-task-MRC"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Multi-task MRC</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generator"><span class="toc-number">1.2.3.</span> <span class="toc-text">Generator</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#FiD-BART"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">FiD-BART</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Reader-before-generator"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">Reader-before-generator</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pre-training"><span class="toc-number">1.2.4.</span> <span class="toc-text">Pre-training</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.3.</span> <span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B0%B4%E5%B9%B3"><span class="toc-number">1.4.</span> <span class="toc-text">性能水平</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD"><span class="toc-number">1.4.1.</span> <span class="toc-text">模型性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fine-grained-Comparison"><span class="toc-number">1.4.2.</span> <span class="toc-text">Fine-grained Comparison</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="toc-number">1.4.3.</span> <span class="toc-text">消融实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E8%B4%A8%E9%87%8F%E5%AF%B9%E7%94%9F%E6%88%90%E7%BB%93%E6%9E%9C%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">文档质量对生成结果的影响</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zero-shot-on-extractive-QA-tasks"><span class="toc-number">1.4.4.</span> <span class="toc-text">Zero-shot on extractive QA tasks</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.5.</span> <span class="toc-text">结论</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/05/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）"><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204011411201.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法笔记（更新中）"/></a><div class="content"><a class="title" href="/2022/12/05/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）">算法笔记（更新中）</a><time datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/05/Article%20Reranking%20by%20Memory-Enhanced%20Key%20Sentence%20Matching%20for%20Detecting%20Previously%20Fact-Checked%20Claims/" title="Article Reranking by Memory-Enhanced Key Sentence Matching for Detecting Previously Fact-Checked Claims"><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=OWQwYzg1MTIwNjAzMDFlMmQ5NTVlYzEwMDRhNTMxMGRfeEZHQjhyODhrcDRDczhGNkREMkNVME53cHU1TWVUUUtfVG9rZW46Ym94Y252V2p6SG1YcUZaanZEWGVGUHFVNXFoXzE2NzAyMTQ4MDM6MTY3MDIxODQwM19WNA" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Article Reranking by Memory-Enhanced Key Sentence Matching for Detecting Previously Fact-Checked Claims"/></a><div class="content"><a class="title" href="/2022/12/05/Article%20Reranking%20by%20Memory-Enhanced%20Key%20Sentence%20Matching%20for%20Detecting%20Previously%20Fact-Checked%20Claims/" title="Article Reranking by Memory-Enhanced Key Sentence Matching for Detecting Previously Fact-Checked Claims">Article Reranking by Memory-Enhanced Key Sentence Matching for Detecting Previously Fact-Checked Claims</a><time datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/05/Generalizing%20to%20the%20Future%20Mitigating%20Entity%20Bias%20in%20Fake%20News%20Detection/" title="Generalizing to the Future Mitigating Entity Bias in Fake News Detection"><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202212051437603.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Generalizing to the Future Mitigating Entity Bias in Fake News Detection"/></a><div class="content"><a class="title" href="/2022/12/05/Generalizing%20to%20the%20Future%20Mitigating%20Entity%20Bias%20in%20Fake%20News%20Detection/" title="Generalizing to the Future Mitigating Entity Bias in Fake News Detection">Generalizing to the Future Mitigating Entity Bias in Fake News Detection</a><time datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/05/Multi-span%20Style%20Extraction%20for%20Generative%20Reading%20Comprehension/" title="Multi-span Style Extraction for Generative Reading Comprehension"><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=N2E5NmRiOWQzMjFkNmQyYmE3YjM5ZjY2MDgwMGI0ZmRfOUxveU53RFVqUE0zdG9PdEs5SFZKUUU1dDJsUjZ4NnFfVG9rZW46Ym94Y255R0JwTWNYU0tjNVNRdWJ3Y0daaHdjXzE2NzAyMjI1OTg6MTY3MDIyNjE5OF9WNA" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Multi-span Style Extraction for Generative Reading Comprehension"/></a><div class="content"><a class="title" href="/2022/12/05/Multi-span%20Style%20Extraction%20for%20Generative%20Reading%20Comprehension/" title="Multi-span Style Extraction for Generative Reading Comprehension">Multi-span Style Extraction for Generative Reading Comprehension</a><time datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/05/Optimal%20Partial%20Transport%20Based%20Sentence%20Selection%20for%20Long-form%20Document%20Matching/" title="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching"><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YjY1ODM1OTM4MmM0MDA2OWE0MTc0YWNkZjU2YWQzMzNfTGRQWlAzWUV5OXc5VVZ2OEJWVFlIaHN5aHpHQ3J6ZzlfVG9rZW46Ym94Y25wM2YydmlUbG1WeWVZVjFKRnJxd09oXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching"/></a><div class="content"><a class="title" href="/2022/12/05/Optimal%20Partial%20Transport%20Based%20Sentence%20Selection%20for%20Long-form%20Document%20Matching/" title="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching">Optimal Partial Transport Based Sentence Selection for Long-form Document Matching</a><time datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 没有胡子的猫Asimok</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+      appKey: 't1nJqxp0EXl18EniOb74r4S6',
+      placeholder: '记得留下你的昵称和邮箱....可以快速收到回复',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://LHHLwaEB.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+        "X-LC-Key": 't1nJqxp0EXl18EniOb74r4S6',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/论文阅读/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 论文阅读 (70)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/工具-教程/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🪛 工具&教程 (31)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/PyTorch/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🔑 PyTorch (8)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/TensorFlow/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🚽 TensorFlow (11)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐍 Python (5)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/机器学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🖥 机器学习 (14)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/硬件开发/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎛 硬件开发 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/软件开发-模型/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📲 软件开发&模型复现 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://asimok.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?asimok";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="asimok";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><!-- hexo injector body_end end --></body></html>
