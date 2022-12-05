@@ -1,0 +1,574 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Optimal Partial Transport Based Sentence Selection for Long-form Document Matching | 没有胡子的猫Asimok</title><meta name="keywords" content="NLP,长文本"><meta name="author" content="没有胡子的猫Asimok"><meta name="copyright" content="没有胡子的猫Asimok"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching  论文：Optimal Partial Transport Based Sentence Selection for Long-form Document Matching 代码：https:&#x2F;&#x2F;github.com&#x2F;ruc-wjyu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching">
+<meta property="og:url" content="http://asimok.github.io/2022/12/05/Optimal%20Partial%20Transport%20Based%20Sentence%20Selection%20for%20Long-form%20Document%20Matching/index.html">
+<meta property="og:site_name" content="没有胡子的猫Asimok">
+<meta property="og:description" content="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching  论文：Optimal Partial Transport Based Sentence Selection for Long-form Document Matching 代码：https:&#x2F;&#x2F;github.com&#x2F;ruc-wjyu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YjY1ODM1OTM4MmM0MDA2OWE0MTc0YWNkZjU2YWQzMzNfTGRQWlAzWUV5OXc5VVZ2OEJWVFlIaHN5aHpHQ3J6ZzlfVG9rZW46Ym94Y25wM2YydmlUbG1WeWVZVjFKRnJxd09oXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA">
+<meta property="article:published_time" content="2022-12-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-05T07:20:42.631Z">
+<meta property="article:author" content="没有胡子的猫Asimok">
+<meta property="article:tag" content="NLP">
+<meta property="article:tag" content="长文本">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YjY1ODM1OTM4MmM0MDA2OWE0MTc0YWNkZjU2YWQzMzNfTGRQWlAzWUV5OXc5VVZ2OEJWVFlIaHN5aHpHQ3J6ZzlfVG9rZW46Ym94Y25wM2YydmlUbG1WeWVZVjFKRnJxd09oXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA"><link rel="shortcut icon" href="https://gitee.com/Asimok/picgo/raw/master/img/MacBookPro/20211229164321.JPG"><link rel="canonical" href="http://asimok.github.io/2022/12/05/Optimal%20Partial%20Transport%20Based%20Sentence%20Selection%20for%20Long-form%20Document%20Matching/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Optimal Partial Transport Based Sentence Selection for Long-form Document Matching',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-05 15:20:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202205171612113.JPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">148</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">178</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YjY1ODM1OTM4MmM0MDA2OWE0MTc0YWNkZjU2YWQzMzNfTGRQWlAzWUV5OXc5VVZ2OEJWVFlIaHN5aHpHQ3J6ZzlfVG9rZW46Ym94Y25wM2YydmlUbG1WeWVZVjFKRnJxd09oXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">没有胡子的猫Asimok</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Optimal Partial Transport Based Sentence Selection for Long-form Document Matching</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-05T07:20:42.631Z" title="更新于 2022-12-05 15:20:42">2022-12-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/12/05/Optimal%20Partial%20Transport%20Based%20Sentence%20Selection%20for%20Long-form%20Document%20Matching/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/2022/12/05/Optimal%20Partial%20Transport%20Based%20Sentence%20Selection%20for%20Long-form%20Document%20Matching/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Optimal-Partial-Transport-Based-Sentence-Selection-for-Long-form-Document-Matching"><a href="#Optimal-Partial-Transport-Based-Sentence-Selection-for-Long-form-Document-Matching" class="headerlink" title="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching"></a>Optimal Partial Transport Based Sentence Selection for Long-form Document Matching</h1><blockquote>
+<p> 论文：<a target="_blank" rel="noopener" href="https://aclanthology.org/2022.coling-1.208.pdf">Optimal Partial Transport Based Sentence Selection for Long-form Document Matching</a><br> 代码：<a target="_blank" rel="noopener" href="https://github.com/ruc-wjyu/OPT-Match">https://github.com/ruc-wjyu/OPT-Match</a> (暂未开源)<br> 会议：COLING 2022<br> 飞书：<a target="_blank" rel="noopener" href="https://zlc6vppbrn.feishu.cn/docx/HIyLd9808oq3yvxzz3BcTJEUn1g">https://zlc6vppbrn.feishu.cn/docx/HIyLd9808oq3yvxzz3BcTJEUn1g</a></p>
+</blockquote>
+<h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>传统的长文档匹配方法首先在跨文档句子对之间进行对齐，然后聚合所有句子级的匹配信号。但是，这种方法可能会出现问题，尽管两个文档整体上匹配良好，但大多数句子仍然可能不同，因为文档之间的对齐是部分的。那些不同的句子会导致虚假的句子级匹配信号，可能会掩盖真实的句子，从而增加学习匹配功能的难度。因此，准确选择文档匹配的关键句子是以一个关键问题。</p>
+<p>本文提出了一种新颖的匹配方法OPT-Match，该组件选择在匹配中起主要作用的句子。利用OPT的部分传输特性，选择的关键句子不仅可以有效地提高匹配精度，还可以解释匹配结果的合理性。</p>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YjljZGFkMzgwYzJhMjM1NDZmNDI1N2QwNDFhNjAwZDlfTk1HNVJkeVI1QzNmZkhVNHE5RGZPZHgxcm40TnRtOTVfVG9rZW46Ym94Y243WDNNUENoZE1RdVoxckJDRjJhSjZmXzE2NzAyMjQxMDQ6MTY3MDIyNzcwNF9WNA" alt="|580"></p>
+<p>文档1重点介绍了药用和芳香植物行业的未来机会。文档2研究了spicata的外部储存。大多数句子都不相似，但文件1引用了文件2，因为它们都以药用和芳香植物为例。传统的，基于句子的匹配策略无法识别相关关系。</p>
+<h3 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h3><h4 id="现有匹配策略"><a href="#现有匹配策略" class="headerlink" title="现有匹配策略"></a>现有匹配策略</h4><ol>
+<li>基于句子的短文本匹配 </li>
+<li>映射到语义空间后进行层次匹配（词，句子，文章）</li>
+</ol>
+<p>但是，这些方法忽略了长文档通常包含多个段落和句子，这些段落和句子包含复杂的语义。对长文档匹配来说，文档对之间的对齐是局部的，关键句子之间的一些匹配信号可以确定文档级别的匹配结果。</p>
+<h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><p>模型结构：<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YjY1ODM1OTM4MmM0MDA2OWE0MTc0YWNkZjU2YWQzMzNfTGRQWlAzWUV5OXc5VVZ2OEJWVFlIaHN5aHpHQ3J6ZzlfVG9rZW46Ym94Y25wM2YydmlUbG1WeWVZVjFKRnJxd09oXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" alt="|405"></p>
+<h3 id="方法特性"><a href="#方法特性" class="headerlink" title="方法特性"></a>方法特性</h3><ul>
+<li>OPT-Match通过限制要传输的块来建模文档对齐的部分性质</li>
+<li>OPT-Match允许源域和目标域不一定具有相同的块，这与两个文档的长度可能相差很大的现象非常吻合。但是，基于OT的方法无法考虑这一点</li>
+<li>OPT-Match是一种与模型无关的方法，可以轻松地将其插入各种文档匹配模型中</li>
+</ul>
+<h3 id="Proposed-OPT-Match-Method"><a href="#Proposed-OPT-Match-Method" class="headerlink" title="Proposed OPT-Match Method"></a>Proposed OPT-Match Method</h3><h4 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h4><script type="math/tex; mode=display">D = {(X_i, Y_i, z_i)}\tag{1}</script><blockquote>
+<p>分别代表源文档，目标文档，标签（表示二者语义关系）<br>$X_i,Y_i$由连续的句子组成</p>
+</blockquote>
+<p><strong>学习目标：</strong></p>
+<script type="math/tex; mode=display">X ×Y → Z \tag{2}</script><blockquote>
+<p>将输入文档中的所有句子作为输入，输出它们之间关系的预测</p>
+</blockquote>
+<p><strong>主要思想：</strong><br>从源文档中选择出关键句进行匹配，而不是所有句子。</p>
+<h4 id="The-Principle-of-Our-Method"><a href="#The-Principle-of-Our-Method" class="headerlink" title="The Principle of Our Method"></a>The Principle of Our Method</h4><p><strong>sentence selection method:</strong></p>
+<p>定义源文档和目标文档概率分布的最小传输距离为：</p>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=MTljMzE4MTg1YWEwYThiNjJmMGEzYzZmNGFiYWY2MmNfSUJ3bzZSdGZ4N0pHaWcwbDJycFZSVzJtTk9LT1d0TE5fVG9rZW46Ym94Y25tcEZSYlJxclI5N3VrRTJMQnlSRnNoXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" alt="|460"></p>
+<blockquote>
+<p>$T$:表示 $\mu\ v$ 的联合分布</p>
+</blockquote>
+<script type="math/tex; mode=display">µ = T1_N \    ν = T^⊤1_M</script><script type="math/tex; mode=display">C = [c(s^X_ m,s^Y _n )] \tag{4}</script><blockquote>
+<p>$C$：句子级的损失矩阵<br>$c(s^X_ m,s^Y _n )$: 表示两个句子之间的差异</p>
+</blockquote>
+<h4 id="Optimal-Transport缺陷"><a href="#Optimal-Transport缺陷" class="headerlink" title="Optimal Transport缺陷"></a>Optimal Transport缺陷</h4><ol>
+<li>需要µ，ν分布大小相同，因此很难适应不同句子数量的文档匹配，并且通常情况下，文档中的句子数量可能会有很大差异，并且冗长的文档通常包含更多的语义。</li>
+<li>OT要求源点必须精确映射到目标。但是，在文档匹配中，只有来自源文档的一些关键句子与来自目标文档的关键句子对齐，因此应该只有一部分来自源的块被传输到目标。</li>
+<li>OT聚合所有句子级对齐信号，这些信号会在匹配的过程中引入噪声。</li>
+</ol>
+<h4 id="OPT-based-Sentence-level-Alignment"><a href="#OPT-based-Sentence-level-Alignment" class="headerlink" title="OPT-based Sentence-level Alignment"></a>OPT-based Sentence-level Alignment</h4><p>目标：解决OT的三个缺陷</p>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NWU5Njk2MGI0MGZiNzc5MjlmZGZmODJhNzM3YTJkZjBfb01mZnlPRFRjS3p2VFpmaGZybmlua2FONEY4T240d1pfVG9rZW46Ym94Y25zZkJURTNpSmhTS0FzM0FMTlc5dGliXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" alt="|400"></p>
+<ul>
+<li><p>缺陷1<br>OT中要求 $\mu v$具有相同的维度，因此首先要解决维度限制，设 $µ = 1_M\  ν = 1_N$</p>
+<blockquote>
+<p>其中 $1_M$表示维度为M的全1向量</p>
+</blockquote>
+</li>
+<li><p>缺陷2<br>OT要求源点必须精确映射到目标。因此设置了需要传输的比例 $ϵ$，以控制文档对齐的程度。直观地说，使用较低的$ϵ$，OPT-Match 会更多地关注强对齐的句子对，同时过滤掉更多的虚假对齐信号。</p>
+</li>
+<li><p>cost matrix C<br>为了衡量两个交叉文档句子之间的差异，定义了代价矩阵$C$。<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NTc1NDFhMjZlYTVhYzBiNDk5ZWNjMGU3MmI5NjI2ZjRfMnEwVmhyc2Ywa2l0WFA0U29DUDlDbVJsbVFxa3pEeTJfVG9rZW46Ym94Y252THR4eFJGOVNVUzN5Q21oV2pFbWZkXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" alt="|375"></p>
+</li>
+</ul>
+<p>目标：期望将以更低的成本运输更多相似的句子对，因此也具有更强的对齐关系。</p>
+<p>解决方法：<br>最优化转移策略中引入entropic regularizer E(T)，实现两个分布的快速近似</p>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmZkOTMzNWI2MTlkY2VhNzIwMTJiMmI3YjAyOWUzZDdfYWpZTGE2dGNHZkJPZXdwU1Via2FZOExuUUV0UXRadHZfVG9rZW46Ym94Y25LWDFQY1NGWUoxYmhRVElOU3doWmlmXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" alt="|400"></p>
+<blockquote>
+<p>λ：权重系数<br>使用Bregman-Dykstra算法迭代计算 $T^*$<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=Yzk2OTRlZjRiYTYzODBiMjExZGVmYzFkOTU5YmIyZmVfenJncFJTZ0FDSTBuQmY3UmhmMTRhNnM4NFJMODVNVXJfVG9rZW46Ym94Y244V1dseE1KTDVMQ0FUaE13Vm1BM0tiXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" alt="|410"></p>
+</blockquote>
+<p>初始化</p>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=MDliYjU1NDFkZWJhOGUyZmZlNjdjZjg4ZmU4ZTlkOTRfU0ZuU0I2dGtva1FyQVM2bkVRczliQlFCZzdVWVRPWktfVG9rZW46Ym94Y240cmpWbkgxV3FwNk9TSUZjNnV1UndlXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" alt="|310"></p>
+<blockquote>
+<p>$T^<em>$表示在约束条件下，转移的概率，在句子对齐方案中 $T^</em>$可以视为源句和目标句之间的对齐程度，该方案下仅突出显示强对齐的句子。</p>
+</blockquote>
+<h4 id="Sentence-Selection"><a href="#Sentence-Selection" class="headerlink" title="Sentence Selection"></a>Sentence Selection</h4><ul>
+<li>缺陷3<br>OT聚合所有句子级对齐信号，这些信号会在匹配的过程中引入噪声，因此设计两个算法选择与 $T^*$相关的 $S^X, S^Y$做匹配。</li>
+</ul>
+<h4 id="Hard-Selection"><a href="#Hard-Selection" class="headerlink" title="Hard Selection"></a>Hard Selection</h4><blockquote>
+<p>encoding前</p>
+</blockquote>
+<p>从源文档和目标文档中分别选择了最佳传输策略中对齐度最高的k个句子，并丢弃其余句子，其中k是一个超参数，代表关键句子的理想数量。选择源文档中与 $T^<em>*1_N$相关的top-k句子，放置到 $S^X$。类似地，对于目标文档，选择 $1^⊤_M</em>T^*$top-k句子放置到 $S^Y$。</p>
+<h4 id="Soft-Selection"><a href="#Soft-Selection" class="headerlink" title="Soft Selection"></a>Soft Selection</h4><blockquote>
+<p>encoding后</p>
+</blockquote>
+<p>将 $T^*$作为采样概率，使用Gumbel softmax对关键句子采样，可微<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NDE5ZGZkOGJiNmJlNWU4ZGQ2ZmM3YjZlZWM1OGMxZjdfaXNtUEYzdEJicU1CZWR5SGxEZ01NSVVkNUxiTml3OHpfVG9rZW46Ym94Y25xQmVkMXpacTYzVDU0RHp2VXN1dkN1XzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" alt="|410"></p>
+<blockquote>
+<p>$U(0,1)$：表示0，1之间的均匀分布<br>$prob_i$：句子选中的概率</p>
+</blockquote>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjE4MDYwODU1ZTc5MGFkMWIxN2Y0Yzc3MDlhMjdmN2FfNWpia25oUzl6eUE1Y1BQblR6TDMzQmxGbHFqNjluQUdfVG9rZW46Ym94Y25kTXJvQUFHU3lYVnlOMVBLMlNCbWpnXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" alt="|375"></p>
+<blockquote>
+<p>得到每个句子的权重系数，用于选择关键句</p>
+</blockquote>
+<h4 id="Loss"><a href="#Loss" class="headerlink" title="Loss"></a>Loss</h4><p>OPT-Match只作为句子选择模块，训练目标与原模型相同， 一般损失函数为交叉熵：</p>
+<p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ODczNjJlNTYxNmQ2NGZmNGUzNDYwYTY3MThmYWMyMDdfY1BTamVMSE53TjJPME5mcU5RZ0lFMHJ6Y21VMHhkVUNfVG9rZW46Ym94Y255emZmRFVpTU9EMDRlY3B3aXBMR29jXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" alt="|435"></p>
+<blockquote>
+<p>M：表示匹配组件<br>$z_i$：真实标签</p>
+</blockquote>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>Long-Form文档匹配数据集：</p>
+<ul>
+<li><p>Citation recommendations<br>任务：预测一篇论文是否引用另一篇论文。<br>相关数据集：<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NGU2NzkwZDY1ZmM2MDU3MGI3OTBlMjU4OWFkZThlZTJfYzg1TUxYOVQyeE9kb1JhRnZEd2dMU0FubnY1dHlTOGNfVG9rZW46Ym94Y25TaGxGZVA4clNiWjlDbEhucEtLcGRiXzE2NzAyMjQ3ODg6MTY3MDIyODM4OF9WNA" alt=""></p>
+</li>
+<li><p>Plagiarism detection<br>任务：检测源文档中的span是否抄袭目标文档中的span（查重？）<br>相关数据集：<br>PAN</p>
+</li>
+</ul>
+<h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=OWY2NGZhODJmZjQxODI2NWFiODdjYzZlODVhMThiY2FfUjdaSkttNXd3eW14cXk0aDJNUkJhbVozRDhSZkNQNUlfVG9rZW46Ym94Y25qTFJCQnBlb2RQa0pJMXRTd2dCcVBoXzE2NzAyMjQ3ODg6MTY3MDIyODM4OF9WNA" alt=""></p>
+<ul>
+<li>硬匹配效果普遍偏好，原因在于，soft-selection本质上计算每个句子的权重系数，不能完全过滤掉文档中的噪声。</li>
+<li>BERT及其变体以token为单位建模，因此只选择了硬匹配的方式</li>
+<li>BERT及其变体 (例如Transformer-XL和Longformer) 在PAN上的性能要差得多，原因在于，PAN文档较长(&gt; 1500 words)，直接截断会带入大量噪音，但OPT-Match模块不受文档长度的影响。并且OPT-Match通过选择关键句子进行匹配可以成功滤除文档中的噪声。</li>
+<li>文档越长性能越好</li>
+</ul>
+<blockquote>
+<p>使用acc和F1作为评估指标，因为所有数据集都有用于文档匹配的二分类标签。</p>
+<p>使用MRR作为句子选择的评估指标，因为句子选择被视为排名任务。</p>
+</blockquote>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><h3 id="主要贡献："><a href="#主要贡献：" class="headerlink" title="主要贡献："></a>主要贡献：</h3><ul>
+<li>强调了长格式文档匹配中关键句子选择的重要性</li>
+<li>提出了一个广泛适用的组件，称为OPT-Match，该组件通过进行部分文档对齐来选择用于文档匹配的关键句子</li>
+<li>实验结果表明，在四个公开数据集上，OPT-Match改进了现有的文档匹配模型，并且OPT-Match选择的句子与人工一致</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">没有胡子的猫Asimok</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://asimok.github.io/2022/12/05/Optimal%20Partial%20Transport%20Based%20Sentence%20Selection%20for%20Long-form%20Document%20Matching/">http://asimok.github.io/2022/12/05/Optimal%20Partial%20Transport%20Based%20Sentence%20Selection%20for%20Long-form%20Document%20Matching/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://asimok.github.io" target="_blank">没有胡子的猫Asimok</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NLP/">NLP</a><a class="post-meta__tags" href="/tags/%E9%95%BF%E6%96%87%E6%9C%AC/">长文本</a></div><div class="post_share"><div class="social-share" data-image="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YjY1ODM1OTM4MmM0MDA2OWE0MTc0YWNkZjU2YWQzMzNfTGRQWlAzWUV5OXc5VVZ2OEJWVFlIaHN5aHpHQ3J6ZzlfVG9rZW46Ym94Y25wM2YydmlUbG1WeWVZVjFKRnJxd09oXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/05/Multi-span%20Style%20Extraction%20for%20Generative%20Reading%20Comprehension/"><img class="prev-cover" src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=N2E5NmRiOWQzMjFkNmQyYmE3YjM5ZjY2MDgwMGI0ZmRfOUxveU53RFVqUE0zdG9PdEs5SFZKUUU1dDJsUjZ4NnFfVG9rZW46Ym94Y255R0JwTWNYU0tjNVNRdWJ3Y0daaHdjXzE2NzAyMjI1OTg6MTY3MDIyNjE5OF9WNA" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Multi-span Style Extraction for Generative Reading Comprehension</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/28/Graph%20Convolutional%20Networks%20for%20Text%20Classification/"><img class="next-cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204282154020.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Graph Convolutional Networks for Text Classification</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/04/13/READTWICE%20Reading%20Very%20Large%20Documents%20with%20Memories/" title="READTWICE Reading Very Large Documents with Memories"><img class="cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204131104502.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-13</div><div class="title">READTWICE Reading Very Large Documents with Memories</div></div></a></div><div><a href="/2022/04/05/RoR%20Read-over-Read%20for%20Long%20Document%20Machine%20Reading%20Comprehension/" title="RoR Read-over-Read for Long Document Machine Reading Comprehension"><img class="cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204051541991.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-05</div><div class="title">RoR Read-over-Read for Long Document Machine Reading Comprehension</div></div></a></div><div><a href="/2022/04/14/RikiNet%20Reading%20Wikipedia%20Pages%20for%20Natural%20Question%20Answering/" title="RikiNet Reading Wikipedia Pages for Natural Question Answering"><img class="cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204141034102.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-14</div><div class="title">RikiNet Reading Wikipedia Pages for Natural Question Answering</div></div></a></div><div><a href="/2022/04/14/VAULT%20VAriable%20Unified%20Long%20Text%20Representation%20for%20Machine%20Reading%20Comprehension/" title="VAULT VAriable Unified Long Text Representation for Machine Reading Comprehension"><img class="cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204132117010.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-14</div><div class="title">VAULT VAriable Unified Long Text Representation for Machine Reading Comprehension</div></div></a></div><div><a href="/2021/01/20/A%20Simple%20and%20Effective%20Model%20for%20Answering%20Multi-span%20Questions/" title="A Simple and Effective Model for Answering Multi-span Questions"><img class="cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/picgo/img/MacBookPro/20210119092212.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-20</div><div class="title">A Simple and Effective Model for Answering Multi-span Questions</div></div></a></div><div><a href="/2021/10/05/A%20Hierarchical%20Network%20for%20Abstractive%20Meeting%20Summarization%20with%20Cross-%20Domain%20Pretraining/" title="A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining"><img class="cover" src="https://raw.githubusercontent.com/Asimok/picgo/main/picgo/img/MacBookPro/20211003215719.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-05</div><div class="title">A Hierarchical Network for Abstractive Meeting Summarization with Cross- Domain Pretraining</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202205171612113.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">没有胡子的猫Asimok</div><div class="author-info__description">记录自己的成长历程</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">148</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">178</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Asimok"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Asimok" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maqi_nepu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_39827677" target="_blank" title="CSDN"><i class="fab fa-internet-explorer"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/mmqrcode1605604352215.png" target="_blank" title="wechat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://gitee.com/Asimok/picgo/raw/master/img/night1/qrcode_1605604361959.jpg" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">喜欢摄影的程序员</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Optimal-Partial-Transport-Based-Sentence-Selection-for-Long-form-Document-Matching"><span class="toc-number">1.</span> <span class="toc-text">Optimal Partial Transport Based Sentence Selection for Long-form Document Matching</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.1.</span> <span class="toc-text">任务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%9C%BA"><span class="toc-number">1.1.1.</span> <span class="toc-text">动机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89%E5%8C%B9%E9%85%8D%E7%AD%96%E7%95%A5"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">现有匹配策略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%EF%BC%88%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">方法（模型）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%89%B9%E6%80%A7"><span class="toc-number">1.2.1.</span> <span class="toc-text">方法特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Proposed-OPT-Match-Method"><span class="toc-number">1.2.2.</span> <span class="toc-text">Proposed OPT-Match Method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Problem-Statement"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Problem Statement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Principle-of-Our-Method"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">The Principle of Our Method</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Optimal-Transport%E7%BC%BA%E9%99%B7"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Optimal Transport缺陷</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OPT-based-Sentence-level-Alignment"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">OPT-based Sentence-level Alignment</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sentence-Selection"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">Sentence Selection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hard-Selection"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">Hard Selection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Soft-Selection"><span class="toc-number">1.2.2.7.</span> <span class="toc-text">Soft Selection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Loss"><span class="toc-number">1.2.2.8.</span> <span class="toc-text">Loss</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.3.</span> <span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B0%B4%E5%B9%B3"><span class="toc-number">1.4.</span> <span class="toc-text">性能水平</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.5.</span> <span class="toc-text">结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE%EF%BC%9A"><span class="toc-number">1.5.1.</span> <span class="toc-text">主要贡献：</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/05/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）"><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202204011411201.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法笔记（更新中）"/></a><div class="content"><a class="title" href="/2022/12/05/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记（更新中）">算法笔记（更新中）</a><time datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/05/Article%20Reranking%20by%20Memory-Enhanced%20Key%20Sentence%20Matching%20for%20Detecting%20Previously%20Fact-Checked%20Claims/" title="Article Reranking by Memory-Enhanced Key Sentence Matching for Detecting Previously Fact-Checked Claims"><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=OWQwYzg1MTIwNjAzMDFlMmQ5NTVlYzEwMDRhNTMxMGRfeEZHQjhyODhrcDRDczhGNkREMkNVME53cHU1TWVUUUtfVG9rZW46Ym94Y252V2p6SG1YcUZaanZEWGVGUHFVNXFoXzE2NzAyMTQ4MDM6MTY3MDIxODQwM19WNA" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Article Reranking by Memory-Enhanced Key Sentence Matching for Detecting Previously Fact-Checked Claims"/></a><div class="content"><a class="title" href="/2022/12/05/Article%20Reranking%20by%20Memory-Enhanced%20Key%20Sentence%20Matching%20for%20Detecting%20Previously%20Fact-Checked%20Claims/" title="Article Reranking by Memory-Enhanced Key Sentence Matching for Detecting Previously Fact-Checked Claims">Article Reranking by Memory-Enhanced Key Sentence Matching for Detecting Previously Fact-Checked Claims</a><time datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/05/Generalizing%20to%20the%20Future%20Mitigating%20Entity%20Bias%20in%20Fake%20News%20Detection/" title="Generalizing to the Future Mitigating Entity Bias in Fake News Detection"><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202212051437603.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Generalizing to the Future Mitigating Entity Bias in Fake News Detection"/></a><div class="content"><a class="title" href="/2022/12/05/Generalizing%20to%20the%20Future%20Mitigating%20Entity%20Bias%20in%20Fake%20News%20Detection/" title="Generalizing to the Future Mitigating Entity Bias in Fake News Detection">Generalizing to the Future Mitigating Entity Bias in Fake News Detection</a><time datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/05/Multi-span%20Style%20Extraction%20for%20Generative%20Reading%20Comprehension/" title="Multi-span Style Extraction for Generative Reading Comprehension"><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=N2E5NmRiOWQzMjFkNmQyYmE3YjM5ZjY2MDgwMGI0ZmRfOUxveU53RFVqUE0zdG9PdEs5SFZKUUU1dDJsUjZ4NnFfVG9rZW46Ym94Y255R0JwTWNYU0tjNVNRdWJ3Y0daaHdjXzE2NzAyMjI1OTg6MTY3MDIyNjE5OF9WNA" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Multi-span Style Extraction for Generative Reading Comprehension"/></a><div class="content"><a class="title" href="/2022/12/05/Multi-span%20Style%20Extraction%20for%20Generative%20Reading%20Comprehension/" title="Multi-span Style Extraction for Generative Reading Comprehension">Multi-span Style Extraction for Generative Reading Comprehension</a><time datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/05/Optimal%20Partial%20Transport%20Based%20Sentence%20Selection%20for%20Long-form%20Document%20Matching/" title="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching"><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YjY1ODM1OTM4MmM0MDA2OWE0MTc0YWNkZjU2YWQzMzNfTGRQWlAzWUV5OXc5VVZ2OEJWVFlIaHN5aHpHQ3J6ZzlfVG9rZW46Ym94Y25wM2YydmlUbG1WeWVZVjFKRnJxd09oXzE2NzAyMjQxNjQ6MTY3MDIyNzc2NF9WNA" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching"/></a><div class="content"><a class="title" href="/2022/12/05/Optimal%20Partial%20Transport%20Based%20Sentence%20Selection%20for%20Long-form%20Document%20Matching/" title="Optimal Partial Transport Based Sentence Selection for Long-form Document Matching">Optimal Partial Transport Based Sentence Selection for Long-form Document Matching</a><time datetime="2022-12-04T16:00:00.000Z" title="发表于 2022-12-05 00:00:00">2022-12-05</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 没有胡子的猫Asimok</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+      appKey: 't1nJqxp0EXl18EniOb74r4S6',
+      placeholder: '记得留下你的昵称和邮箱....可以快速收到回复',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://LHHLwaEB.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'LHHLwaEBsTVFQqdGy3lf9wC7-gzGzoHsz',
+        "X-LC-Key": 't1nJqxp0EXl18EniOb74r4S6',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/论文阅读/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 论文阅读 (68)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/工具-教程/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🪛 工具&教程 (31)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/PyTorch/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🔑 PyTorch (8)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/TensorFlow/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🚽 TensorFlow (11)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐍 Python (5)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/机器学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🖥 机器学习 (14)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/硬件开发/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎛 硬件开发 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://asimok.github.io/categories/软件开发-模型/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📲 软件开发&模型复现 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://asimok.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?asimok";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="asimok";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><!-- hexo injector body_end end --></body></html>
