@@ -60,6 +60,58 @@
     
     
     <entry>
+      <title>Generalizing to the Future Mitigating Entity Bias in Fake News Detection</title>
+      <link href="/2022/12/05/Generalizing%20to%20the%20Future%20Mitigating%20Entity%20Bias%20in%20Fake%20News%20Detection/"/>
+      <url>/2022/12/05/Generalizing%20to%20the%20Future%20Mitigating%20Entity%20Bias%20in%20Fake%20News%20Detection/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Generalizing-to-the-Future-Mitigating-Entity-Bias-in-Fake-News-Detection"><a href="#Generalizing-to-the-Future-Mitigating-Entity-Bias-in-Fake-News-Detection" class="headerlink" title="Generalizing to the Future Mitigating Entity Bias in Fake News Detection"></a>Generalizing to the Future Mitigating Entity Bias in Fake News Detection</h1><blockquote><p>论文：<a href="https://arxiv.org/abs/2204.09484">Generalizing to the Future:Mitigating Entity Bias in Fake News Detection</a><br>代码：<a href="https://github.com/ictmcg/endef-sigir2022">https://github.com/ictmcg/endef-sigir2022</a><br>会议：SIGIR 2022<br>飞书：<a href="https://zlc6vppbrn.feishu.cn/docx/doxcnGnsfAAZXGYBUlKaqWYX4mg">https://zlc6vppbrn.feishu.cn/docx/doxcnGnsfAAZXGYBUlKaqWYX4mg</a></p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>现有的假新闻检测方法忽略了真实数据中的非预期实体偏差，严重影响了模型对未来数据的泛化能力。 例如，2010-2017年，包含“唐纳德·特朗普”实体的97%的新闻在我们的数据中是真实的，但这一比例在2018年降至仅33%。 这将导致在前一个场景中训练的模型很难推广到后一个场景，因为它倾向于预测关于唐纳德·特朗普的新闻是真实的，以降低训练损失。</p><p>本文提出了一个实体去偏框架(ENDEF)，该框架从因果角度出发，通过减轻实体偏差，虚假新闻检测模型推广到未来数据中。</p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202212051436587.png" alt=""><br>基于实体、新闻内容和新闻真实性之间的因果关系图，分别对训练过程中各个原因（实体和内容）的贡献进行建模。 在推理阶段，我们去除实体的直接影响，以减轻实体偏差。</p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在中英文数据集上进行的大量离线实验表明，该框架在很大程度上提高了基本假新闻检测器的性能，在线测试也验证了其在实际应用中的优越性。</p><p>是第一个明确提高假新闻检测模型对未来数据泛化能力的工作。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> 假新闻检测 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Multi-span Style Extraction for Generative Reading Comprehension</title>
+      <link href="/2022/12/05/Multi-span%20Style%20Extraction%20for%20Generative%20Reading%20Comprehension/"/>
+      <url>/2022/12/05/Multi-span%20Style%20Extraction%20for%20Generative%20Reading%20Comprehension/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Multi-span-Style-Extraction-for-Generative-Reading-Comprehension"><a href="#Multi-span-Style-Extraction-for-Generative-Reading-Comprehension" class="headerlink" title="Multi-span Style Extraction for Generative Reading Comprehension"></a>Multi-span Style Extraction for Generative Reading Comprehension</h1><blockquote><p> 论文：<a href="https://arxiv.org/abs/2009.07382">https://arxiv.org/abs/2009.07382</a><br> 代码：<a href="https://github.com/chunchiehy/musst">https://github.com/chunchiehy/musst</a><br> 会议：AAAI-2021<br> 飞书：<a href="https://zlc6vppbrn.feishu.cn/docx/doxcnnIj90LvJt2BV33MMNyEKbh">https://zlc6vppbrn.feishu.cn/docx/doxcnnIj90LvJt2BV33MMNyEKbh</a></p></blockquote><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>生成式机器阅读理解（MRC）的答案通常分布在输入问题和文档中，正确答案由单个或多个片段组成。对于答案为单个片段的MRC任务通常称为抽取式MRC，并且已有大量性能优异的single-span抽取模型，但当场景切换到生成式任务时通常会产生不完整的答案或引入多余的词，因此本文的目标是将single-span提取方法扩展到multi-span，使用生成式MRC的方法解决multi-span的QA问题。<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NjVjZmI0NWM0MWRlNTkxNWY1Njk4YzIxYTNhOTI5OGFfSWpIbXlNejIyWXV6ZG9lYTJVdDlmWWxDQVdSYnBTM1ZfVG9rZW46Ym94Y24ydUJlbk81QUptV21LYXhDWGFLM1hWXzE2NzAyMjI1NjI6MTY3MDIyNjE2Ml9WNA" alt="|540"></p><h2 id="方法（模型）"><a href="#方法（模型）" class="headerlink" title="方法（模型）"></a>方法（模型）</h2><p><strong>MUSST</strong> for MUlti-Span STyle extraction<br>由3个模块组成：passage ranker, multi-span answer annotator, question-answering module</p><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=N2E5NmRiOWQzMjFkNmQyYmE3YjM5ZjY2MDgwMGI0ZmRfOUxveU53RFVqUE0zdG9PdEs5SFZKUUU1dDJsUjZ4NnFfVG9rZW46Ym94Y255R0JwTWNYU0tjNVNRdWJ3Y0daaHdjXzE2NzAyMjI1OTg6MTY3MDIyNjE5OF9WNA" alt="|"></p><h3 id="Passage-ranker"><a href="#Passage-ranker" class="headerlink" title="Passage ranker"></a>Passage ranker</h3><p><strong>问题定义：</strong></p><script type="math/tex; mode=display">P(y|Q, P; θ)</script><blockquote><p>表示在给定问题Q时，P可能包含答案的概率分布， θ是模型参数。</p></blockquote><p>输入形式：$[CLS]\ Q\ [SEP]\ P_i \ [SEP]$<br>使用最后一层的[CLS]作为输入的聚合表示。</p><p><strong>Ranker：</strong></p><script type="math/tex; mode=display">s = softmax(W_2tanh(W_1c + b_1) + b_2) ∈ R^2 \\ u_i= s_0\ and \ r_i= s_1</script><p>使用两个全连接层作为预测模块，表示问题和段落的相关性。</p><blockquote><p>其中$r_i,u_i$分别表示问答对$(Q, P_i)$的相关度和非相关度，s是一个二维向量。<br>对同一个问题Q，计算所有段落的相关性并作了如下的归一化：</p></blockquote><p><img src="https://raw.githubusercontent.com/Asimok/picgo/main/img/MacBookPro/202212051445773.png" alt="|225"></p><p>损失函数：</p><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=ODQ4NTk0ZDEzZjMxYWZmZjZiZjhhYWQzNTZmNGM5YzlfODk5dXVzemx4ZTZRNGc0MTRBU1J1bDJ5YkQ2djZIdGdfVG9rZW46Ym94Y250cFk3MW9QUWg4NmVrRlRyTnJvMWRiXzE2NzAyMjI2OTI6MTY3MDIyNjI5Ml9WNA" alt="625|550"></p><blockquote><p>T：训练集中问题的总数</p><p>r()：表示相关性得分</p><p>u()：表示非相关性得分</p></blockquote><p>训练过程中，每个问题Q都有n个question-passage pair组成候选集合，正例表示为与问题相关的段落，负例则从集合中随机采样未选中的question-passage pair。</p><p><strong>trick：</strong><br>动态采样：在每个epoch训练开始时重采样了负例，以避免在每个epoch对问题使用相同的训练样例。</p><h3 id="Question-answering-module"><a href="#Question-answering-module" class="headerlink" title="Question-answering module"></a>Question-answering module</h3><p><strong>问题定义：</strong><br>给定Q和P计算答案A的概率分布$P(y|Q, P) $。</p><p><strong>Question-passage reader：</strong><br>reader的结构设计与ranker类似，都是用预训练模型当encoder，不同的是ranker只用到了[CLS]，而reader用到了最后一层的所有输出做预测：</p><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=OTBhODg3NTExYjk1ZWJhZGZmNGYyODNlYzM0YWQ1ZTRfTm5OdXl0a0lkbUxyTzdUVDNhbkZ6bVBhVVlXSjZFNjhfVG9rZW46Ym94Y25GRDRDclZCbXRkOE1zSEdpTUg0dG9jXzE2NzAyMjM0MjU6MTY3MDIyNzAyNV9WNA" alt="|400"></p><p><strong>Multi-span style answer generator：</strong></p><p>token作为头尾的概率：</p><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=MzJiMjQ4M2FiYmJmNWEwMWZmMDRmNzhkYTk4Mzg3MjRfam1HRlR3WEZ1TkdYdjRUdmJ1bzVubTNaUzVzRWFIQ3FfVG9rZW46Ym94Y25xVlo2aDZYeGl6ZXkyMzRHRENmYVNkXzE2NzAyMjM0MjU6MTY3MDIyNzAyNV9WNA" alt="|400"></p><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NWI3NGU1MjU3NGJjOTc2ZWVhYzlmOTFkYTY1YzIyZjBfZEtkWmt5Rldoc0lucG8wVzExMURET2JJMHRBa01EczZfVG9rZW46Ym94Y256Z1hPRVFGWlQzMFBtNVFmdk1JUk1oXzE2NzAyMjM0MjU6MTY3MDIyNzAyNV9WNA" alt="|400"></p><p><strong>Training and inference：</strong></p><p>这里值得学习的是，在预处理时加入了一个virtual span，跨度为整个输入序列，这种方法使模型能够在预测期间生成多种答案跨度，virtual span作为停止符。</p><p><strong>损失函数：</strong></p><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=YTdiMzk4YWIyY2Y4OGZiODA3ZTRmM2YyNzkwYWNmNDVfMjY4aUNpaWhPN1NJQUhrbWRYRVN1OWZySjBnY052bnFfVG9rZW46Ym94Y25jYUJFbGNpc1JDT1NIQmdrOUh2WWJiXzE2NzAyMjM0MjU6MTY3MDIyNzAyNV9WNA" alt="400"></p><p>选span的依据是头尾span乘积最大。</p><p>为了缓解生成span重复问题，在每个预测时间步j时，模型在计算token新的开始和结束位置的概率分布时mask掉之前时间步的预测过的span位置。</p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>MS MARCO v2.1 dataset<br><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=NTkwZTZhZGE4ZmQzMzZlMmZmY2RkY2Y3MmEyZDU1N2FfMTVZSjh0QVpMVXZ3U1FoSkVhMU1sWHNRUjZ6aE9QdWRfVG9rZW46Ym94Y25ZMG02c3dLWGlxWG1Xd3hDZkVORjRlXzE2NzAyMjM1MjU6MTY3MDIyNzEyNV9WNA" alt="|550"></p><h2 id="性能水平"><a href="#性能水平" class="headerlink" title="性能水平"></a>性能水平</h2><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=MmE1NDU3OGQ5NmI5NDdhNDVmYzE1YTM0NTM1ZDVkYTlfTHFpTUV4S3RwQnlFS2VLV2lVRUhSa3dYcTRoZURVeG1fVG9rZW46Ym94Y25mSE5hSGI1YkVidlYwVG9ZNGhMTHVnXzE2NzAyMjM1NDg6MTY3MDIyNzE0OF9WNA" alt="|600"></p><p><img src="https://zlc6vppbrn.feishu.cn/space/api/box/stream/download/asynccode/?code=MjIzN2MxMTkzYTUwMDhkMjJjYjQzOWNkZGEwNzBhYTBfZDY4YUdFSFRndEh2ZU5IVTdLSldDcEk2aEtQZzRxUUlfVG9rZW46Ym94Y25JcW1NbmtjZHlOMHltVWo5WUJoYk9iXzE2NzAyMjM1NDg6MTY3MDIyNzE0OF9WNA" alt="|750"></p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>本文提出的多跨度提取框架（MUSST），能够缓解生成式模型生成不完整答案或引入单跨度提取模型遇到的冗余单词的问题。并且在只有ranker分类器的支持下，模型性能也不错，可以看出，段落重排序任务是比较重要的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文阅读 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Graph Convolutional Networks for Text Classification</title>
       <link href="/2022/04/28/Graph%20Convolutional%20Networks%20for%20Text%20Classification/"/>
       <url>/2022/04/28/Graph%20Convolutional%20Networks%20for%20Text%20Classification/</url>
