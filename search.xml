@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Linux crontab 定时任务</title>
+      <link href="/2023/01/24/Linux%20crontab%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+      <url>/2023/01/24/Linux%20crontab%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="编辑定时任务配置文件"><a href="#编辑定时任务配置文件" class="headerlink" title="编辑定时任务配置文件"></a>编辑定时任务配置文件</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用<span class="comment">#注释定时任务</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 保存退出即可更新定时任务</span></span><br></pre></td></tr></table></figure><h1 id="设置定时任务"><a href="#设置定时任务" class="headerlink" title="设置定时任务"></a>设置定时任务</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * script </span><br></pre></td></tr></table></figure><p>设置定时任务的时间比较复杂，可以通过在线工具<a href="https://crontab.guru/">Cronitor</a>快速设置。</p><p>例如：<br>每天12:00 执行<code>check_in.py</code><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00 12 * * * /Users/maqi/opt/anaconda3/envs/code/bin/python /Users/maqi/PycharmProjects/PythonDemo/JD_Beans/check_in.py </span><br></pre></td></tr></table></figure></p><h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">crontab -e # 编辑配置文件</span><br><span class="line"></span><br><span class="line">crontab -l # 查看当前运行的定时任务</span><br><span class="line"></span><br><span class="line">crontab -r # 删除所有的定时任务</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具&amp;教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> crontab </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>迁移微信聊天记录至移动硬盘</title>
       <link href="/2023/01/23/%E8%BF%81%E7%A7%BB%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%E8%87%B3%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98/"/>
       <url>/2023/01/23/%E8%BF%81%E7%A7%BB%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%E8%87%B3%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98/</url>
